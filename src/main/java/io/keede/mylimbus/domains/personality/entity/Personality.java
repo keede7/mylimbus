@@ -20,7 +20,7 @@ public class Personality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String keyword;
 
     @Column(nullable = false)
@@ -28,31 +28,16 @@ public class Personality {
 
 //    private List<String> skills;
 
-    @Column(nullable = false)
     private String mainPassive;
 
-    @Column(nullable = false)
     private String supportPassive;
 
-    @Column(nullable = false)
     private String defend;
 
     private LocalDateTime releaseDate;
 
-    public Personality(
-            String keyword,
-            String name,
-            String mainPassive,
-            String supportPassive,
-            String defend,
-            LocalDateTime releaseDate
-    ) {
-        this.keyword = keyword;
+    public Personality(String name) {
         this.name = name;
-        this.mainPassive = mainPassive;
-        this.supportPassive = supportPassive;
-        this.defend = defend;
-        this.releaseDate = releaseDate;
     }
 
 }
