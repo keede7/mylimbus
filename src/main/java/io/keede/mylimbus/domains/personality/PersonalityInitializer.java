@@ -3,13 +3,13 @@ package io.keede.mylimbus.domains.personality;
 import io.keede.mylimbus.domains.personality.entity.Personality;
 import io.keede.mylimbus.domains.personality.entity.PersonalityRepository;
 import jakarta.annotation.PostConstruct;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static io.keede.mylimbus.domains.personality.entity.PersonalityKeyword.*;
 
-@Service
+@Component
 public class PersonalityInitializer {
 
     private final PersonalityRepository personalityRepository;

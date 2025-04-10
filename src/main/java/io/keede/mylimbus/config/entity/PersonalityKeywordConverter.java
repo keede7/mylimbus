@@ -1,4 +1,4 @@
-package io.keede.mylimbus.config;
+package io.keede.mylimbus.config.entity;
 
 import io.keede.mylimbus.domains.personality.entity.PersonalityKeyword;
 import jakarta.persistence.AttributeConverter;
