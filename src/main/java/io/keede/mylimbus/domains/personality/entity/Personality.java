@@ -31,7 +31,37 @@ public class Personality {
     @Column(nullable = false, name = "personality_name")
     private String name;
 
-//    private List<String> skills;
+    @Enumerated
+    @AttributeOverrides(
+            value = {
+                    @AttributeOverride(name = "skillSequence", column = @Column(name = "first_skill_sequence")),
+                    @AttributeOverride(name = "sin", column = @Column(name = "first_skill_sin")),
+                    @AttributeOverride(name = "attackType", column = @Column(name = "first_skill_attack_type")),
+            }
+    )
+    private PersonalitySkill firstSkill;
+
+    @Enumerated
+    @AttributeOverrides(
+            value = {
+                    @AttributeOverride(name = "skillSequence", column = @Column(name = "second_skill_sequence")),
+                    @AttributeOverride(name = "sin", column = @Column(name = "second_skill_sin")),
+                    @AttributeOverride(name = "attackType", column = @Column(name = "second_skill_attack_type")),
+            }
+    )
+    private PersonalitySkill secondSkill;
+
+    @Enumerated
+    @AttributeOverrides(
+            value = {
+                    @AttributeOverride(name = "skillSequence", column = @Column(name = "third_skill_sequence")),
+                    @AttributeOverride(name = "sin", column = @Column(name = "third_skill_sin")),
+                    @AttributeOverride(name = "attackType", column = @Column(name = "third_skill_attack_type")),
+            }
+    )
+    private PersonalitySkill thirdSkill;
+
+    private int grade;
 
     private String mainPassive;
 
@@ -41,15 +71,20 @@ public class Personality {
 
     private LocalDateTime releaseDate;
 
-    public Personality(String name) {
-        this.name = name;
-        this.keywords = List.of(PersonalityKeyword.G사, PersonalityKeyword.N사);
-    }
-
     public Personality(
             String name,
             List<PersonalityKeyword> keywords
     ) {
+        this.name = name;
+        this.keywords = keywords;
+    }
+
+    public Personality(
+            int grade,
+            String name,
+            List<PersonalityKeyword> keywords
+    ) {
+        this.grade = grade;
         this.name = name;
         this.keywords = keywords;
     }
