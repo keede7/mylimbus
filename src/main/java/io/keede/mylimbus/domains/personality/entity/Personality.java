@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author keede
@@ -13,6 +16,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Getter
+@DynamicUpdate
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Personality {
 
@@ -20,10 +25,10 @@ public class Personality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(nullable = false)
-    private String keyword;
+    @Column(name = "personality_keywords")
+    private List<PersonalityKeyword> keywords;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "personality_name")
     private String name;
 
 //    private List<String> skills;
@@ -38,6 +43,15 @@ public class Personality {
 
     public Personality(String name) {
         this.name = name;
+        this.keywords = List.of(PersonalityKeyword.G사, PersonalityKeyword.N사);
+    }
+
+    public Personality(
+            String name,
+            List<PersonalityKeyword> keywords
+    ) {
+        this.name = name;
+        this.keywords = keywords;
     }
 
 }

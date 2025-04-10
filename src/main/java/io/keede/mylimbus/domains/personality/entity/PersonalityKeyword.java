@@ -12,8 +12,9 @@ import java.util.Arrays;
  */
 @AllArgsConstructor
 public enum PersonalityKeyword {
-    림버스_컴퍼니("림버스_컴퍼니"),
+    림버스_컴퍼니("림버스 컴퍼니"),
     조직("조직"),
+    LCE("LCE"),
     LCB("LCB"),
     LCD("LCD"),
     LCCB("LCCB"),
@@ -46,12 +47,14 @@ public enum PersonalityKeyword {
     유로지비("유로지비"),
     흑운회("흑운회"),
     쌍갈고리_해적단("쌍갈고리 해적단"),
-    에드가_가문("에드가_가문"),
+    에드가_가문("에드가 가문"),
+    제2권속("제2권속"),
     제3권속("제3권속"),
     혈귀("혈귀"),
     라만차랜드("라만차랜드"),
     흑수("흑수"),
-    료고파("료고파"),
+    흑수_묘("흑수•묘"),
+    료고파("료.고.파"),
     장미스패너_공방("장미스패너 공방"),
     G사("G사"),
     N사("N사"),
@@ -59,7 +62,9 @@ public enum PersonalityKeyword {
     K사("K사"),
     T사("T사"),
     W사("W사"),
-    R사("R사")
+    R사("R사"),
+    워더링하이츠("워더링하이츠"),
+    와일드헌트("와일드헌트"),
     ;
 
     private final String name;
@@ -71,4 +76,7 @@ public enum PersonalityKeyword {
                 .orElse(null);
     }
 
+    public String getName() {
+        return this.name;
+    }
 }
