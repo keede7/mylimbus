@@ -1,0 +1,60 @@
+spring:
+  jpa:
+    open-in-view: false
+
+# boot 2.4 버전 이후 spring.profiles 가 deprecated 되고 spring.config.activate.on-profile 로 변경됨
+---
+spring.config.activate.on-profile: local
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem://localhost/~/testdb;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    properties:
+      hibernate:
+        format_sql: true
+
+---
+spring.config.activate.on-profile: dev
+
+server:
+  port: 9090
+
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem://localhost/~/testdb;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    properties:
+      hibernate:
+        format_sql: true
+
+---
