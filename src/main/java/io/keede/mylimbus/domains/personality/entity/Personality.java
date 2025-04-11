@@ -7,8 +7,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author keede
@@ -63,13 +66,13 @@ public class Personality {
 
     private int grade;
 
-    private String mainPassive;
-
-    private String supportPassive;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "personality_id")
+    private Set<Passive> passives = new HashSet<>();
 
     private String defend;
 
-    private LocalDateTime releaseDate;
+    private LocalDate releaseDate;
 
     public Personality(
             int grade,
@@ -78,7 +81,9 @@ public class Personality {
             PersonalitySkill firstSkill,
             PersonalitySkill secondSkill,
             PersonalitySkill thirdSkill,
-            String defend
+            String defend,
+            Set<Passive> passives,
+            LocalDate releaseDate
     ) {
         this.grade = grade;
         this.name = name;
@@ -87,6 +92,7 @@ public class Personality {
         this.secondSkill = secondSkill;
         this.thirdSkill = thirdSkill;
         this.defend = defend;
+        this.passives.addAll(passives);
+        this.releaseDate = releaseDate;
     }
-
 }
