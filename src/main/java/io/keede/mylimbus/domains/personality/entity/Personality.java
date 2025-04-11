@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author keede
@@ -13,6 +16,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Getter
+@DynamicUpdate
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Personality {
 
@@ -20,39 +25,68 @@ public class Personality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String keyword;
+    @Column(name = "personality_keywords")
+    private List<PersonalityKeyword> keywords;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "personality_name")
     private String name;
 
-//    private List<String> skills;
+    @Embedded
+    @AttributeOverrides(
+            value = {
+//                    @AttributeOverride(name = "skillSequence", column = @Column(name = "first_skill_sequence")),
+                    @AttributeOverride(name = "sin", column = @Column(name = "first_skill_sin")),
+                    @AttributeOverride(name = "attackType", column = @Column(name = "first_skill_attack_type")),
+            }
+    )
+    private PersonalitySkill firstSkill;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides(
+            value = {
+//                    @AttributeOverride(name = "skillSequence", column = @Column(name = "second_skill_sequence")),
+                    @AttributeOverride(name = "sin", column = @Column(name = "second_skill_sin")),
+                    @AttributeOverride(name = "attackType", column = @Column(name = "second_skill_attack_type")),
+            }
+    )
+    private PersonalitySkill secondSkill;
+
+    @Embedded
+    @AttributeOverrides(
+            value = {
+//                    @AttributeOverride(name = "skillSequence", column = @Column(name = "third_skill_sequence")),
+                    @AttributeOverride(name = "sin", column = @Column(name = "third_skill_sin")),
+                    @AttributeOverride(name = "attackType", column = @Column(name = "third_skill_attack_type")),
+            }
+    )
+    private PersonalitySkill thirdSkill;
+
+    private int grade;
+
     private String mainPassive;
 
-    @Column(nullable = false)
     private String supportPassive;
 
-    @Column(nullable = false)
     private String defend;
 
     private LocalDateTime releaseDate;
 
     public Personality(
-            String keyword,
+            int grade,
             String name,
-            String mainPassive,
-            String supportPassive,
-            String defend,
-            LocalDateTime releaseDate
+            List<PersonalityKeyword> keywords,
+            PersonalitySkill firstSkill,
+            PersonalitySkill secondSkill,
+            PersonalitySkill thirdSkill,
+            String defend
     ) {
-        this.keyword = keyword;
+        this.grade = grade;
         this.name = name;
-        this.mainPassive = mainPassive;
-        this.supportPassive = supportPassive;
+        this.keywords = keywords;
+        this.firstSkill = firstSkill;
+        this.secondSkill = secondSkill;
+        this.thirdSkill = thirdSkill;
         this.defend = defend;
-        this.releaseDate = releaseDate;
     }
 
 }
