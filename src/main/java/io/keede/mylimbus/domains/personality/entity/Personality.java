@@ -31,30 +31,30 @@ public class Personality {
     @Column(nullable = false, name = "personality_name")
     private String name;
 
-    @Enumerated
+    @Embedded
     @AttributeOverrides(
             value = {
-                    @AttributeOverride(name = "skillSequence", column = @Column(name = "first_skill_sequence")),
+//                    @AttributeOverride(name = "skillSequence", column = @Column(name = "first_skill_sequence")),
                     @AttributeOverride(name = "sin", column = @Column(name = "first_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "first_skill_attack_type")),
             }
     )
     private PersonalitySkill firstSkill;
 
-    @Enumerated
+    @Embedded
     @AttributeOverrides(
             value = {
-                    @AttributeOverride(name = "skillSequence", column = @Column(name = "second_skill_sequence")),
+//                    @AttributeOverride(name = "skillSequence", column = @Column(name = "second_skill_sequence")),
                     @AttributeOverride(name = "sin", column = @Column(name = "second_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "second_skill_attack_type")),
             }
     )
     private PersonalitySkill secondSkill;
 
-    @Enumerated
+    @Embedded
     @AttributeOverrides(
             value = {
-                    @AttributeOverride(name = "skillSequence", column = @Column(name = "third_skill_sequence")),
+//                    @AttributeOverride(name = "skillSequence", column = @Column(name = "third_skill_sequence")),
                     @AttributeOverride(name = "sin", column = @Column(name = "third_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "third_skill_attack_type")),
             }
@@ -72,21 +72,21 @@ public class Personality {
     private LocalDateTime releaseDate;
 
     public Personality(
-            String name,
-            List<PersonalityKeyword> keywords
-    ) {
-        this.name = name;
-        this.keywords = keywords;
-    }
-
-    public Personality(
             int grade,
             String name,
-            List<PersonalityKeyword> keywords
+            List<PersonalityKeyword> keywords,
+            PersonalitySkill firstSkill,
+            PersonalitySkill secondSkill,
+            PersonalitySkill thirdSkill,
+            String defend
     ) {
         this.grade = grade;
         this.name = name;
         this.keywords = keywords;
+        this.firstSkill = firstSkill;
+        this.secondSkill = secondSkill;
+        this.thirdSkill = thirdSkill;
+        this.defend = defend;
     }
 
 }

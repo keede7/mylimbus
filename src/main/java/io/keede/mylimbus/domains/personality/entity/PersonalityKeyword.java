@@ -1,8 +1,6 @@
 package io.keede.mylimbus.domains.personality.entity;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.Arrays;
 
