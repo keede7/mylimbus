@@ -1,5 +1,6 @@
 package io.keede.mylimbus.domains.personality.entity;
 
+import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author keede
@@ -94,5 +96,21 @@ public class Personality {
         this.defend = defend;
         this.passives.addAll(passives);
         this.releaseDate = releaseDate;
+    }
+
+    public GetPersonalityResponseDto toDto() {
+        return new GetPersonalityResponseDto(
+                this.id,
+                this.name,
+                this.grade,
+                this.defend,
+                this.firstSkill,
+                this.secondSkill,
+                this.thirdSkill,
+                this.passives.stream()
+                        .map(Passive::toDto)
+                        .collect(Collectors.toSet()),
+                this.releaseDate
+        );
     }
 }

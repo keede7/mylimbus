@@ -1,5 +1,6 @@
 package io.keede.mylimbus.domains.personality.entity;
 
+import io.keede.mylimbus.web.dto.response.PassiveDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -45,5 +46,15 @@ public class Passive {
         this.activeConditionCount = activeConditionCount;
         this.passiveType = passiveType;
         this.passiveCondition = passiveCondition;
+    }
+
+    public PassiveDto toDto() {
+        return new PassiveDto(
+                this.id,
+                this.sin,
+                this.activeConditionCount,
+                this.passiveType,
+                this.passiveCondition
+        );
     }
 }

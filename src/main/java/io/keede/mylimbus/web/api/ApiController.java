@@ -1,0 +1,31 @@
+package io.keede.mylimbus.web.api;
+
+import io.keede.mylimbus.domains.personality.service.PersonalityQueryService;
+import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+* @author keede
+* Created on 2025/04/13
+*/
+@RestController
+@RequestMapping("/api/personality")
+public class ApiController {
+
+    private final PersonalityQueryService personalityQueryService;
+
+    public ApiController(
+            PersonalityQueryService personalityQueryService
+    ) {
+        this.personalityQueryService = personalityQueryService;
+    }
+
+    @GetMapping
+    public List<GetPersonalityResponseDto> getPersonalities() {
+        return this.personalityQueryService.getPersonalities();
+    }
+}
