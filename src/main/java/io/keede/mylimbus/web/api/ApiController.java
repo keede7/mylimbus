@@ -32,8 +32,6 @@ public class ApiController {
 
     @GetMapping("/personality/keyword")
     public List<GetPersonalityResponseDto> getPersonalitiesByKeyword(RequestPersonalitiesByKeywordDto dto) {
-        System.out.println("dto = " + dto);
-        this.personalityQueryService.getPersonalitiesByKeyword(dto);
-        return null;
+        return this.personalityQueryService.getPersonalitiesByKeyword(dto);
     }
 }

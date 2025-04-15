@@ -33,10 +33,11 @@ public class PersonalityQueryService {
     }
 
     @Transactional(readOnly = true)
-    public void getPersonalitiesByKeyword(RequestPersonalitiesByKeywordDto dto) {
-        this.personalityRepository.findPersonalities()
+    public List<GetPersonalityResponseDto> getPersonalitiesByKeyword(RequestPersonalitiesByKeywordDto dto) {
+        return this.personalityRepository.findPersonalities()
                 .stream()
                 .filter(s -> s.isMatchKeyword(dto.keyword()))
-                .forEach(System.out::println);
+                .map(Personality::toDto)
+                .toList();
     }
 }
