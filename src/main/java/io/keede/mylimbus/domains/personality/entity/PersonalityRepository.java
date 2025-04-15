@@ -8,10 +8,9 @@ import java.util.List;
 
 public interface PersonalityRepository extends JpaRepository<Personality, Long> {
 
-    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"keywords"})
+    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"keywords", "passives"})
     @Query("SELECT personality " +
-            "FROM Personality personality " +
-            "WHERE personality.id = 1 ")
+            "FROM Personality personality ")
     List<Personality> findPersonalities();
 
 }

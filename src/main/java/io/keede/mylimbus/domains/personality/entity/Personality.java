@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 @DynamicUpdate
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class Personality {
 
     @Id
@@ -112,5 +114,11 @@ public class Personality {
                         .collect(Collectors.toSet()),
                 this.releaseDate
         );
+    }
+
+    public boolean isMatchKeyword(String keyword) {
+        return this.keywords
+                .stream()
+                .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
     }
 }
