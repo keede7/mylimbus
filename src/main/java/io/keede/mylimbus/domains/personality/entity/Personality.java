@@ -10,7 +10,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -120,5 +119,11 @@ public class Personality {
         return this.keywords
                 .stream()
                 .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
+    }
+
+    public boolean isMatchSkillSin(Sin sin) {
+        return this.firstSkill.isMatchSin(sin)
+                || this.secondSkill.isMatchSin(sin)
+                || this.thirdSkill.isMatchSin(sin);
     }
 }
