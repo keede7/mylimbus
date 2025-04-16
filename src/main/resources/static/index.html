@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Limbus Company Wiki'">Limbus Company Wiki</title>
+    <!-- Bootstrap 및 기본 스타일시트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- 사용자 정의 스타일 -->
+    <style>
+        :root {
+            --main-bg-color: #1e2124;
+            --header-bg-color: #2c2f33;
+            --sidebar-bg-color: #2c2f33;
+            --text-color: #ffffff;
+            --accent-color: #7289da;
+            --link-color: #00b0f4;
+            --border-color: #4e5d94;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--main-bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 헤더 스타일 */
+        .wiki-header {
+            background-color: var(--header-bg-color);
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wiki-logo {
+            height: 50px;
+        }
+
+        .wiki-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .wiki-nav-item {
+            margin: 0 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .wiki-nav-item:hover {
+            color: var(--accent-color);
+        }
+
+        .search-form {
+            display: flex;
+            margin-left: 20px;
+        }
+
+        .search-input {
+            padding: 8px;
+            border-radius: 4px 0 0 4px;
+            border: 1px solid var(--border-color);
+            background-color: #383b40;
+            color: var(--text-color);
+        }
+
+        .search-button {
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 8px 12px;
+            color: white;
+        }
+
+        /* 메인 컨테이너 */
+        .wiki-container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* 사이드바 스타일 */
+        .wiki-sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg-color);
+            padding: 20px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .sidebar-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-nav-item {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+
+        .sidebar-nav-link:hover {
+            background-color: rgba(114, 137, 218, 0.2);
+            color: var(--accent-color);
+        }
+
+        .sidebar-nav-subitem {
+            padding-left: 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* 메인 콘텐츠 영역 */
+        .wiki-content {
+            flex: 1;
+            padding: 20px;
+            background-color: var(--main-bg-color);
+        }
+
+        /* 사용자 커스텀 영역 - 틀만 제공 */
+        .custom-content-area {
+            /* 사용자가 커스텀할 영역 */
+            min-height: 500px;
+        }
+
+        /* 푸터 스타일 */
+        .wiki-footer {
+            background-color: var(--header-bg-color);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
+        }
+
+        .footer-link {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-info {
+            color: #7a7a7a;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+<!-- 헤더 영역 -->
+<header class="wiki-header">
+    <div class="wiki-logo-container">
+        <a th:href="@{/}">
+            <img th:src="@{/images/limbus-company-logo.png}" alt="Limbus Company Wiki" class="wiki-logo">
+        </a>
+    </div>
+
+    <nav class="wiki-nav">
+        <a class="wiki-nav-item" th:href="@{/identities}">정체성</a>
+        <a class="wiki-nav-item" th:href="@{/sinners}">죄인</a>
+        <a class="wiki-nav-item" th:href="@{/e.g.o}">E.G.O</a>
+        <a class="wiki-nav-item" th:href="@{/story}">스토리</a>
+        <a class="wiki-nav-item" th:href="@{/gameplay}">게임플레이</a>
+
+        <form class="search-form" th:action="@{/search}" method="get">
+            <input type="text" name="query" class="search-input" placeholder="검색...">
+            <button type="submit" class="search-button">검색</button>
+        </form>
+    </nav>
+</header>
+
+<!-- 메인 컨테이너 -->
+<div class="wiki-container">
+    <!-- 사이드바 영역 -->
+    <aside class="wiki-sidebar">
+        <div class="sidebar-header">메뉴</div>
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/identities}">정체성</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/sinners}">죄인</a>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/yi-sang}">이상</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/faust}">파우스트</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/don-quixote}">돈키호테</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/ryoshu}">료슈</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/meursault}">뫼르소</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/hong-lu}">홍루</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/heathcliff}">히스클리프</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/ishmael}">이슈마엘</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/rodion}">로디온</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/sinclair}">싱클레어</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/outis}">아웃이스</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/sinners/gregor}">그레고르</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/e.g.o}">E.G.O</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/story}">스토리</a>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/story/chapters}">챕터</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/story/mirrorworld}">거울세계</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/gameplay}">게임플레이</a>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/gameplay/battle}">전투</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/gameplay/status-effects}">상태 효과</a>
+                    </li>
+                    <li class="sidebar-nav-subitem">
+                        <a class="sidebar-nav-link" th:href="@{/gameplay/dungeons}">던전</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/updates}">업데이트</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" th:href="@{/community}">커뮤니티</a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- 메인 콘텐츠 영역 - 사용자 커스텀 가능 -->
+    <main class="wiki-content">
+        <!-- 페이지 제목 -->
+        <h1 class="page-title" th:text="${pageTitle}">페이지 제목</h1>
+
+        <!-- 사용자 커스텀 콘텐츠 영역 -->
+        <div class="custom-content-area" th:utext="${customContent}">
+            <!-- main.html - Thymeleaf 메인 콘텐츠 영역 -->
+            <div class="limbus-game-container">
+                <!-- 상단 네비게이션 바 -->
+                <div class="limbus-top-nav">
+                    <div class="nav-title">절두·호흡·출혈·기절 던전</div>
+                    <div class="nav-edit-icon">
+                        <img th:src="@{/images/icons/edit-icon.png}" alt="편집">
+                    </div>
+                </div>
+
+                <!-- 인격 카드 그리드 -->
+                <div class="identity-grid-container">
+                    <!-- 첫 번째 줄 -->
+                    <div class="identity-row">
+                        <!-- 카드 1 - 빨간 테두리 -->
+                        <div class="identity-card red-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-1.png}" class="identity-image" alt="일등 항해사">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">피뢰도호</div>
+                                <div class="identity-name">일등 항해사</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 2 - 노란 테두리 -->
+                        <div class="identity-card yellow-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-2.png}" class="identity-image" alt="죽은 자">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">뫼르소</div>
+                                <div class="identity-name">죽은 자</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 3 - 노란 테두리 -->
+                        <div class="identity-card yellow-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-3.png}" class="identity-image" alt="작은 하우">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">중지</div>
+                                <div class="identity-name">작은 하우</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 4 - 갈색 테두리 -->
+                        <div class="identity-card brown-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-4.png}" class="identity-image" alt="수감자">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 09</div>
+                                <div class="identity-type">LCB</div>
+                                <div class="identity-name">수감자</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 5 - 보라 테두리 -->
+                        <div class="identity-card purple-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-5.png}" class="identity-image" alt="작은 하우">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">중지</div>
+                                <div class="identity-name">작은 하우</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 6 - 파란 테두리 -->
+                        <div class="identity-card blue-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-6.png}" class="identity-image" alt="수감자">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 17</div>
+                                <div class="identity-type">LCB</div>
+                                <div class="identity-name">수감자</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 두 번째 줄 -->
+                    <div class="identity-row">
+                        <!-- 카드 7 - 노란 테두리 -->
+                        <div class="identity-card yellow-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-7.png}" class="identity-image" alt="작살잡이">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">피뢰도호</div>
+                                <div class="identity-name">작살잡이</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 8 - 노란 테두리 -->
+                        <div class="identity-card yellow-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-8.png}" class="identity-image" alt="선장">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">피뢰도호</div>
+                                <div class="identity-name">선장</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 9 - 갈색 테두리 -->
+                        <div class="identity-card brown-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-9.png}" class="identity-image" alt="수감자">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 18</div>
+                                <div class="identity-type">LCB</div>
+                                <div class="identity-name">수감자</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 10 - 보라 테두리 -->
+                        <div class="identity-card purple-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆☆☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-10.png}" class="identity-image" alt="작은 하우">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 50</div>
+                                <div class="identity-type">중지</div>
+                                <div class="identity-name">작은 하우</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 11 - 빨간 테두리 -->
+                        <div class="identity-card red-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-11.png}" class="identity-image" alt="수감자">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 19</div>
+                                <div class="identity-type">LCB</div>
+                                <div class="identity-name">수감자</div>
+                            </div>
+                        </div>
+
+                        <!-- 카드 12 - 회색 테두리 -->
+                        <div class="identity-card gray-border">
+                            <div class="identity-rank">
+                                <span class="rank-symbol">☆</span>
+                            </div>
+                            <div class="identity-image-container">
+                                <img th:src="@{/images/identities/identity-12.png}" class="identity-image" alt="수감자">
+                            </div>
+                            <div class="identity-info">
+                                <div class="identity-level">Lv. 19</div>
+                                <div class="identity-type">LCB</div>
+                                <div class="identity-name">수감자</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 우측 자원 표시 영역 -->
+                <div class="resources-container">
+                    <div class="ego-resources-title">E.G.O 자원</div>
+                    <div class="resource-items">
+                        <div class="resource-item red">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/red-resource.png}" alt="적색 자원">
+                            </div>
+                            <div class="resource-count">6/22</div>
+                        </div>
+                        <div class="resource-item orange">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/orange-resource.png}" alt="주황 자원">
+                            </div>
+                            <div class="resource-count">5/19</div>
+                        </div>
+                        <div class="resource-item yellow">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/yellow-resource.png}" alt="황색 자원">
+                            </div>
+                            <div class="resource-count">9/42</div>
+                        </div>
+                        <div class="resource-item green">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/green-resource.png}" alt="녹색 자원">
+                            </div>
+                            <div class="resource-count">12/32</div>
+                        </div>
+                        <div class="resource-item blue">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/blue-resource.png}" alt="청색 자원">
+                            </div>
+                            <div class="resource-count">4/41</div>
+                        </div>
+                        <div class="resource-item aqua">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/aqua-resource.png}" alt="담청 자원">
+                            </div>
+                            <div class="resource-count">18/60</div>
+                        </div>
+                        <div class="resource-item purple">
+                            <div class="resource-icon">
+                                <img th:src="@{/images/resources/purple-resource.png}" alt="보라 자원">
+                            </div>
+                            <div class="resource-count">18/49</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 네비게이션 버튼 -->
+                <div class="bottom-navigation">
+                    <div class="nav-button back">
+                        <img th:src="@{/images/icons/back-icon.png}" alt="뒤로">
+                    </div>
+                    <div class="nav-button detail">
+                        <span>상세</span>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                /* Limbus Company 게임 스타일 */
+                .limbus-game-container {
+                    background-color: #1a1916;
+                    background-image: url('[[@{/images/backgrounds/metal-texture.png}]]');
+                    color: #ffffff;
+                    font-family: 'Noto Sans KR', sans-serif;
+                    padding: 10px;
+                    position: relative;
+                    width: 100%;
+                    min-height: 600px;
+                    border-radius: 5px;
+                    border: 2px solid #8a7248;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+                }
+
+                /* 상단 네비게이션 바 */
+                .limbus-top-nav {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 8px 15px;
+                    background: linear-gradient(to right, #362e20, #594d33, #362e20);
+                    border: 1px solid #8a7248;
+                    border-radius: 5px;
+                    margin-bottom: 15px;
+                }
+
+                .nav-title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #e0d0a0;
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+                }
+
+                .nav-edit-icon img {
+                    width: 24px;
+                    height: 24px;
+                    cursor: pointer;
+                }
+
+                /* 인격 카드 그리드 */
+                .identity-grid-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-bottom: 15px;
+                }
+
+                .identity-row {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: space-between;
+                }
+
+                /* 인격 카드 스타일 */
+                .identity-card {
+                    position: relative;
+                    width: 130px;
+                    height: 200px;
+                    border-radius: 10px;
+                    background-color: #000000;
+                    overflow: hidden;
+                    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+                    transition: transform 0.2s;
+                }
+
+                .identity-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.8);
+                }
+
+                /* 각 테두리 색상 스타일 */
+                .red-border {
+                    border: 3px solid #d20000;
+                    background: radial-gradient(ellipse at center, #6b0000, #300000);
+                }
+
+                .yellow-border {
+                    border: 3px solid #ffd700;
+                    background: radial-gradient(ellipse at center, #6b5600, #302500);
+                }
+
+                .brown-border {
+                    border: 3px solid #8b4513;
+                    background: radial-gradient(ellipse at center, #3e2108, #1a0d03);
+                }
+
+                .purple-border {
+                    border: 3px solid #9400d3;
+                    background: radial-gradient(ellipse at center, #4b0069, #21002e);
+                }
+
+                .blue-border {
+                    border: 3px solid #0000ff;
+                    background: radial-gradient(ellipse at center, #000069, #00002e);
+                }
+
+                .gray-border {
+                    border: 3px solid #696969;
+                    background: radial-gradient(ellipse at center, #2d2d2d, #161616);
+                }
+
+                /* 카드 랭크 아이콘 */
+                .identity-rank {
+                    position: absolute;
+                    top: 5px;
+                    left: 5px;
+                    z-index: 2;
+                }
+
+                .rank-symbol {
+                    color: #ffd700;
+                    font-size: 14px;
+                    text-shadow: 0 0 3px #000000;
+                }
+
+                /* 인격 이미지 */
+                .identity-image-container {
+                    width: 100%;
+                    height: 65%;
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .identity-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                /* 인격 정보 영역 */
+                .identity-info {
+                    padding: 5px;
+                    text-align: center;
+                    background: rgba(0, 0, 0, 0.6);
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                }
+
+                .identity-level {
+                    font-size: 14px;
+                    color: #ffd700;
+                    margin-bottom: 2px;
+                }
+
+                .identity-type {
+                    font-size: 12px;
+                    color: #ffffff;
+                    margin-bottom: 2px;
+                }
+
+                .identity-name {
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: #ffcc00;
+                }
+
+                /* 우측 자원 표시 영역 */
+                .resources-container {
+                    position: absolute;
+                    right: 10px;
+                    top: 50px;
+                    width: 150px;
+                    background: rgba(0, 0, 0, 0.7);
+                    border: 2px solid #8a7248;
+                    border-radius: 8px;
+                    padding: 10px;
+                }
+
+                .ego-resources-title {
+                    text-align: center;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #e0d0a0;
+                    margin-bottom: 10px;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid #8a7248;
+                }
+
+                .resource-items {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+
+                .resource-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+
+                .resource-icon img {
+                    width: 24px;
+                    height: 24px;
+                }
+
+                .resource-count {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                /* 자원 색상 */
+                .resource-item.red .resource-count { color: #ff3333; }
+                .resource-item.orange .resource-count { color: #ff9933; }
+                .resource-item.yellow .resource-count { color: #ffcc00; }
+                .resource-item.green .resource-count { color: #66cc33; }
+                .resource-item.blue .resource-count { color: #3399ff; }
+                .resource-item.aqua .resource-count { color: #33cccc; }
+                .resource-item.purple .resource-count { color: #cc66ff; }
+
+                /* 하단 네비게이션 버튼 */
+                .bottom-navigation {
+                    position: absolute;
+                    bottom: 15px;
+                    right: 15px;
+                    display: flex;
+                    gap: 10px;
+                }
+
+                .nav-button {
+                    padding: 10px 20px;
+                    background: linear-gradient(to bottom, #594d33, #362e20);
+                    border: 1px solid #8a7248;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #e0d0a0;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .nav-button:hover {
+                    background: linear-gradient(to bottom, #705e3e, #463a29);
+                }
+
+                .nav-button.back img {
+                    width: 24px;
+                    height: 24px;
+                }
+
+                /* 모바일 반응형 */
+                @media (max-width: 992px) {
+                    .identity-row {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                    }
+
+                    .identity-card {
+                        width: 110px;
+                        height: 180px;
+                    }
+
+                    .resources-container {
+                        position: relative;
+                        right: auto;
+                        top: auto;
+                        width: 100%;
+                        margin-top: 20px;
+                    }
+
+                    .resource-items {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                    }
+
+                    .resource-item {
+                        width: 48%;
+                    }
+                }
+            </style>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // 카드 클릭 이벤트
+                    const cards = document.querySelectorAll('.identity-card');
+                    cards.forEach(card => {
+                        card.addEventListener('click', function() {
+                            // 카드 선택 효과 또는 상세 정보 표시
+                            const selected = document.querySelector('.selected');
+                            if (selected) {
+                                selected.classList.remove('selected');
+                            }
+                            this.classList.add('selected');
+
+                            // 선택된 카드 정보 가져오기
+                            const cardType = this.querySelector('.identity-type').textContent;
+                            const cardName = this.querySelector('.identity-name').textContent;
+                            console.log(`선택된 인격: ${cardType} ${cardName}`);
+                        });
+                    });
+
+                    // 상세 버튼 이벤트
+                    const detailButton = document.querySelector('.nav-button.detail');
+                    detailButton.addEventListener('click', function() {
+                        const selected = document.querySelector('.identity-card.selected');
+                        if (selected) {
+                            const cardType = selected.querySelector('.identity-type').textContent;
+                            const cardName = selected.querySelector('.identity-name').textContent;
+                            // 상세 페이지로 이동 또는 상세 정보 표시
+                            console.log(`상세 정보 표시: ${cardType} ${cardName}`);
+                        } else {
+                            alert('인격을 선택해주세요.');
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </main>
+</div>
+
+<!-- 푸터 영역 -->
+<footer class="wiki-footer">
+    <div class="footer-links">
+        <a href="#" class="footer-link">이용약관</a>
+        <a href="#" class="footer-link">개인정보 처리방침</a>
+        <a href="#" class="footer-link">위키 기여하기</a>
+        <a href="#" class="footer-link">연락처</a>
+    </div>
+    <div class="footer-info">
+        <p>Limbus Company Wiki는 Project Moon의 공식 사이트가 아닙니다.</p>
+        <p>모든 게임 관련 콘텐츠와 자료는 Project Moon에 저작권이 있습니다.</p>
+        <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Limbus Company Wiki | 최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
