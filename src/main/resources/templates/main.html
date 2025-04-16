@@ -295,16 +295,100 @@
     <main class="character-selection">
         <ul class="character-grid" id="characterGrid">
             <!-- Characters will be loaded dynamically via REST API -->
-            <li th:each="character : ${characters}"
-                class="character-card"
-                th:data-id="${character.id}"
-                th:data-type="${character.type}"
-                onclick="openCharacterModal(this)">
-                <div class="character-frame" th:class="${'character-frame ' + character.rarity}">
-                    <img th:src="@{${character.imagePath}}" th:alt="${character.name}">
-                    <div class="character-level">Lv. <span th:text="${character.level}">50</span></div>
-                    <div class="character-type" th:text="${character.type}">피쿼드호 일등 항해사</div>
-                    <div class="character-name" th:text="${character.name}">이상</div>
+<!--            <li th:each="character : ${characters}"-->
+<!--                class="character-card"-->
+<!--                th:data-id="${character.id}"-->
+<!--                th:data-type="${character.type}"-->
+<!--                onclick="openCharacterModal(this)">-->
+<!--                <div class="character-frame" th:class="${'character-frame ' + character.rarity}">-->
+<!--                    <img th:src="@{../static/sinners/yisang/112px-YiSang01.webp}" th:alt="${character.name}">-->
+<!--                    <div class="character-level">Lv. <span th:text="${character.level}">50</span></div>-->
+<!--                    <div class="character-type" th:text="${character.type}">피쿼드호 일등 항해사</div>-->
+<!--                    <div class="character-name" th:text="${character.name}">이상</div>-->
+<!--                </div>-->
+<!--            </li>-->
+            <li class="character-card">
+                <div class="character-frame yisang character-frame r1">
+                    <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >이상</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame faust character-frame r1">
+                    <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >파우스트</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame donquixote character-frame r1">
+                    <img th:src="@{/sinners/donquixote/112px-Donquixote03.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >돈키호테</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame ryoshu character-frame r1">
+                    <img th:src="@{/sinners/ryoshu/112px-Ryoshu04.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >료슈</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame meursault character-frame r1">
+                    <img th:src="@{/sinners/meursault/112px-Meursault05.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >뫼르소</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame honglu character-frame r1">
+                    <img th:src="@{/sinners/honglu/112px-Honglu06.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >홍루</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame heathcliff character-frame r1">
+                    <img th:src="@{/sinners/heathcliff/112px-Heathcliff07.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >히스클리프</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame ishmael character-frame r1">
+                    <img th:src="@{/sinners/ishmael/112px-Ishmael08.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >이스마엘</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame rodion character-frame r1">
+                    <img th:src="@{/sinners/rodion/112px-Rodion09.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >로쟈</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame sinclair character-frame r1">
+                    <img th:src="@{/sinners/sinclair/112px-Sinclair11.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >싱클레어</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame outis character-frame r1">
+                    <img th:src="@{/sinners/outis/112px-Outis12.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >오티스</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame gregor character-frame r1">
+                    <img th:src="@{/sinners/gregor/112px-Gregor13.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >그레고르</div>
                 </div>
             </li>
         </ul>
