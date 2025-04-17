@@ -1,17 +1,19 @@
 package io.keede.mylimbus.domains.personality.entity;
 
+import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author keede
@@ -22,6 +24,7 @@ import java.util.Set;
 @DynamicUpdate
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class Personality {
 
     @Id
@@ -94,5 +97,33 @@ public class Personality {
         this.defend = defend;
         this.passives.addAll(passives);
         this.releaseDate = releaseDate;
+    }
+
+    public GetPersonalityResponseDto toDto() {
+        return new GetPersonalityResponseDto(
+                this.id,
+                this.name,
+                this.grade,
+                this.defend,
+                this.firstSkill,
+                this.secondSkill,
+                this.thirdSkill,
+                this.passives.stream()
+                        .map(Passive::toDto)
+                        .collect(Collectors.toSet()),
+                this.releaseDate
+        );
+    }
+
+    public boolean isMatchKeyword(String keyword) {
+        return this.keywords
+                .stream()
+                .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
+    }
+
+    public boolean isMatchSkillSin(Sin sin) {
+        return this.firstSkill.isMatchSin(sin)
+                || this.secondSkill.isMatchSin(sin)
+                || this.thirdSkill.isMatchSin(sin);
     }
 }

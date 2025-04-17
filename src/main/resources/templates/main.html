@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limbus Company</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        /* Main Layout */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: 1fr 250px;
+            grid-template-rows: auto 1fr;
+            grid-template-areas:
+        "header header"
+        "main sidebar";
+            height: 100vh;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Header Styles */
+        .game-header {
+            grid-area: header;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(to bottom, #303030, #1a1a1a);
+            border-bottom: 2px solid #c0945c;
+        }
+
+        .nav-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #e0e0e0;
+        }
+
+        .edit-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .edit-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button,
+        .detail-button {
+            padding: 8px 15px;
+            background-color: #2a2a2a;
+            border: 1px solid #c0945c;
+            color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Main Content Area */
+        .character-selection {
+            grid-area: main;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #161616;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .character-card {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .character-card:hover {
+            transform: scale(1.05);
+        }
+
+        .character-frame {
+            position: relative;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #2a2a2a;
+        }
+
+        /* Different rarity borders */
+        .character-frame.r3 {
+            border-color: #ff9900; /* Gold for high rarity */
+            background: linear-gradient(to bottom, #332200, #221100);
+        }
+
+        .character-frame.r2 {
+            border-color: #ff3300; /* Red for medium rarity */
+            background: linear-gradient(to bottom, #331100, #220a00);
+        }
+
+        .character-frame.r1 {
+            border-color: #9966cc; /* Purple for basic rarity */
+            background: linear-gradient(to bottom, #221133, #110a22);
+        }
+
+        .character-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .character-level {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .character-type {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #c0945c;
+            padding: 3px 0;
+            text-align: center;
+            font-size: 0.7rem;
+        }
+
+        .character-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 3px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Resources Panel */
+        .resources-panel {
+            grid-area: sidebar;
+            padding: 20px;
+            background-color: #1c1c1c;
+            border-left: 1px solid #333;
+        }
+
+        .ego-support {
+            padding: 10px;
+            background-color: #2a2a2a;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        .resource-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #2a2a2a;
+            border-radius: 5px;
+        }
+
+        .resource-item img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .resource-count {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            padding: 20px;
+            border: 2px solid #c0945c;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #c0945c;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-grid {
+            margin-top: 20px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .game-container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+            "header"
+            "main"
+            "sidebar";
+            }
+
+            .character-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Main Container -->
+<div class="game-container">
+    <!-- Header Area -->
+    <header class="game-header">
+        <div class="nav-title">
+            <h1>조합 시뮬레이터</h1>
+            <button class="edit-button"><img th:src="@{/images/icons/edit.png}" alt="Edit"></button>
+        </div>
+        <div class="nav-controls">
+            <button class="nav-button prev-button">&lt;&lt;</button>
+            <button class="detail-button">상세</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Character Grid -->
+    <main class="character-selection">
+        <ul class="character-grid" id="characterGrid">
+            <!-- Characters will be loaded dynamically via REST API -->
+<!--            <li th:each="character : ${characters}"-->
+<!--                class="character-card"-->
+<!--                th:data-id="${character.id}"-->
+<!--                th:data-type="${character.type}"-->
+<!--                onclick="openCharacterModal(this)">-->
+<!--                <div class="character-frame" th:class="${'character-frame ' + character.rarity}">-->
+<!--                    <img th:src="@{../static/sinners/yisang/112px-YiSang01.webp}" th:alt="${character.name}">-->
+<!--                    <div class="character-level">Lv. <span th:text="${character.level}">50</span></div>-->
+<!--                    <div class="character-type" th:text="${character.type}">피쿼드호 일등 항해사</div>-->
+<!--                    <div class="character-name" th:text="${character.name}">이상</div>-->
+<!--                </div>-->
+<!--            </li>-->
+            <li class="character-card" onclick="openCharacterModal(this)">
+                <div class="character-frame yisang character-frame r1">
+                    <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >이상</div>
+                </div>
+            </li>
+            <li class="character-card " onclick="openCharacterModal(this)">
+                <div class="character-frame faust character-frame r1">
+                    <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >파우스트</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame donquixote character-frame r1">
+                    <img th:src="@{/sinners/donquixote/112px-Donquixote03.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >돈키호테</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame ryoshu character-frame r1">
+                    <img th:src="@{/sinners/ryoshu/112px-Ryoshu04.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >료슈</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame meursault character-frame r1">
+                    <img th:src="@{/sinners/meursault/112px-Meursault05.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >뫼르소</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame honglu character-frame r1">
+                    <img th:src="@{/sinners/honglu/112px-Honglu06.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >홍루</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame heathcliff character-frame r1">
+                    <img th:src="@{/sinners/heathcliff/112px-Heathcliff07.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >히스클리프</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame ishmael character-frame r1">
+                    <img th:src="@{/sinners/ishmael/112px-Ishmael08.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >이스마엘</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame rodion character-frame r1">
+                    <img th:src="@{/sinners/rodion/112px-Rodion09.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >로쟈</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame sinclair character-frame r1">
+                    <img th:src="@{/sinners/sinclair/112px-Sinclair11.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >싱클레어</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame outis character-frame r1">
+                    <img th:src="@{/sinners/outis/112px-Outis12.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >오티스</div>
+                </div>
+            </li>
+            <li class="character-card">
+                <div class="character-frame gregor character-frame r1">
+                    <img th:src="@{/sinners/gregor/112px-Gregor13.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >그레고르</div>
+                </div>
+            </li>
+        </ul>
+    </main>
+
+    <!-- Right Sidebar - Resources -->
+    <aside class="resources-panel">
+        <div class="ego-support">
+            <span>E.G.O 지원</span>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <img th:src="@{/sin/Wrath.webp}" alt="Red Resource">
+<!--                <span class="resource-count">x<span th:text="${resources.red.current}">6</span>/<span th:text="${resources.red.max}">22</span></span>-->
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sin/Lust.webp}" alt="Orange Resource">
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sin/Sloth.webp}" alt="Yellow Resource">
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sin/Gluttony.webp}" alt="Green Resource">
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sin/Gloom.webp}" alt="Blue Resource">
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sin/Pride.webp}" alt="Indigo Resource">
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sin/Envy.webp}" alt="Violet Resource">
+                <span class="resource-count">
+                    <span>6</span>/<span>22</span>
+                </span>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Character Selection Modal -->
+    <div id="characterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeCharacterModal()">&times;</span>
+            <h2>인격 선택</h2>
+            <ul class="character-grid modal-grid" id="modalCharacterGrid">
+                <!-- Alternative characters will be loaded here via REST API -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script th:inline="javascript">
+    // Function to open character selection modal
+    function openCharacterModal(characterElement) {
+        const characterId = characterElement.getAttribute('data-id');
+        const characterType = characterElement.getAttribute('data-type');
+        const modal = document.getElementById('characterModal');
+
+        // Show modal
+        modal.style.display = 'block';
+
+        // Fetch alternative characters via REST API
+        fetchAlternativeCharacters(characterId, characterType);
+    }
+
+    // Function to close character selection modal
+    function closeCharacterModal() {
+        const modal = document.getElementById('characterModal');
+        modal.style.display = 'none';
+    }
+
+    // Function to fetch alternative characters from API
+    function fetchAlternativeCharacters(characterId, characterType) {
+        // Clear previous content
+        const modalGrid = document.getElementById('modalCharacterGrid');
+        modalGrid.innerHTML = '';
+
+        // Example API call - replace with actual endpoint
+        fetch(`/api/characters/alternatives?id=${characterId}&type=${characterType}`)
+            .then(response => response.json())
+            .then(data => {
+                // Populate modal with character alternatives
+                data.forEach(character => {
+                    const li = document.createElement('li');
+                    li.className = 'character-card';
+                    li.setAttribute('data-id', character.id);
+                    li.onclick = function() { selectCharacter(character); };
+
+                    li.innerHTML = `
+                            <div class="character-frame ${character.rarity}">
+                                <img src="${character.imagePath}" alt="${character.name}">
+                                <div class="character-level">Lv. ${character.level}</div>
+                                <div class="character-type">${character.type}</div>
+                                <div class="character-name">${character.name}</div>
+                            </div>
+                        `;
+
+                    modalGrid.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching character alternatives:', error);
+                modalGrid.innerHTML = '<p>인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
+            });
+    }
+
+    // Function to select a character from modal and update main grid
+    function selectCharacter(character) {
+        // Find the original character element that was clicked
+        const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
+
+        if (originalCharacterSlot) {
+            // Update the original character slot with the new character data
+            originalCharacterSlot.querySelector('img').src = character.imagePath;
+            originalCharacterSlot.querySelector('.character-level span').textContent = character.level;
+            originalCharacterSlot.querySelector('.character-type').textContent = character.type;
+            originalCharacterSlot.querySelector('.character-name').textContent = character.name;
+            originalCharacterSlot.setAttribute('data-id', character.id);
+
+            // Remove the selected attribute
+            originalCharacterSlot.removeAttribute('data-selected');
+
+            // Close the modal
+            closeCharacterModal();
+
+            // Send update to server (optional)
+            updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
+        }
+    }
+
+    // Function to update character selection on the server
+    function updateCharacterSelection(characterId, position) {
+        fetch('/api/characters/update-selection', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                characterId: characterId,
+                position: position
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Character selection updated:', data);
+            })
+            .catch(error => {
+                console.error('Error updating character selection:', error);
+            });
+    }
+
+    // When a character is clicked, mark it as selected before opening modal
+    document.querySelectorAll('.character-card').forEach(card => {
+        card.addEventListener('click', function() {
+            // Remove previous selection
+            document.querySelectorAll('.character-card[data-selected="true"]').forEach(selected => {
+                selected.removeAttribute('data-selected');
+            });
+
+            // Mark this card as selected
+            this.setAttribute('data-selected', 'true');
+        });
+    });
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('characterModal');
+        if (event.target === modal) {
+            closeCharacterModal();
+        }
+    };
+</script>
+</body>
+</html>
