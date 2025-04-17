@@ -80,6 +80,8 @@ public class Personality {
 
     private LocalDate releaseDate;
 
+    private String imgUrl;
+
     public Personality(
             int rarity,
             String baseName,
@@ -104,6 +106,32 @@ public class Personality {
         this.releaseDate = releaseDate;
     }
 
+    public Personality(
+            int rarity,
+            String baseName,
+            String personalityName,
+            List<PersonalityKeyword> keywords,
+            PersonalitySkill firstSkill,
+            PersonalitySkill secondSkill,
+            PersonalitySkill thirdSkill,
+            String defend,
+            Set<Passive> passives,
+            LocalDate releaseDate,
+            String imgUrl
+    ) {
+        this.rarity = rarity;
+        this.baseName = baseName;
+        this.personalityName = personalityName;
+        this.keywords = keywords;
+        this.firstSkill = firstSkill;
+        this.secondSkill = secondSkill;
+        this.thirdSkill = thirdSkill;
+        this.defend = defend;
+        this.passives.addAll(passives);
+        this.releaseDate = releaseDate;
+        this.imgUrl = imgUrl;
+    }
+
     public GetPersonalityResponseDto toDto() {
         return new GetPersonalityResponseDto(
                 this.id,
@@ -117,7 +145,8 @@ public class Personality {
                 this.passives.stream()
                         .map(Passive::toDto)
                         .collect(Collectors.toSet()),
-                this.releaseDate
+                this.releaseDate,
+                "/sinners/yisang/125px-Effloresced_E.webp"
         );
     }
 

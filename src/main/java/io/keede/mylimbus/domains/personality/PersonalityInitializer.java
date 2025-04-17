@@ -45,7 +45,8 @@ public class PersonalityInitializer {
                                 new Passive(GLOOM, 4, MAIN, RESONANCE),
                                 new Passive(GLOOM, 4, SUPPORT, POSSESSION)
                         ),
-                        LocalDate.of(2023, 2,27)
+                        LocalDate.of(2023, 2,27),
+                        "/sinners/yisang/125px-Effloresced_E.webp"
                 ), // 우울4 공명, 우울4 보유, 230227
                 new Personality(3, YISANG, "검계 살수 이상", List.of(조직, 검계),
                         new PersonalitySkill(1, PRIDE, SLASH),

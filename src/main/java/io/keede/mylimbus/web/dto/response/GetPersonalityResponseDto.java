@@ -21,6 +21,7 @@ public record GetPersonalityResponseDto(
     PersonalitySkill thirdSkill,
     Set<PassiveDto> passives,
 
-    LocalDate releaseDate
+    LocalDate releaseDate,
+    String imgUrl
 ) {}
 
