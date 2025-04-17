@@ -274,6 +274,34 @@
                 margin: 10% auto;
             }
         }
+
+        /* 푸터 스타일 */
+        .wiki-footer {
+            background-color: var(--header-bg-color);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
+        }
+
+        .footer-link {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-info {
+            color: #7a7a7a;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -457,6 +485,20 @@
         </div>
     </div>
 </div>
+
+<footer class="wiki-footer">
+    <div class="footer-links">
+        <a href="#" class="footer-link">이용약관</a>
+        <a href="#" class="footer-link">개인정보 처리방침</a>
+        <a href="#" class="footer-link">위키 기여하기</a>
+        <a href="#" class="footer-link">연락처</a>
+    </div>
+    <div class="footer-info">
+        <p>해당 페이지는 Project Moon의 공식 사이트가 아닙니다.</p>
+        <p>모든 게임 관련 콘텐츠와 자료는 Project Moon에 저작권이 있습니다.</p>
+        <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Limbus Company Wiki | 최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>
+    </div>
+</footer>
 
 <!-- JavaScript -->
 <script th:inline="javascript">
