@@ -34,8 +34,11 @@ public class Personality {
     @Column(name = "personality_keywords")
     private List<PersonalityKeyword> keywords;
 
+    @Column(name = "base_name")
+    private String baseName;
+
     @Column(nullable = false, name = "personality_name")
-    private String name;
+    private String personalityName; // 인격 이름
 
     @Embedded
     @AttributeOverrides(
@@ -79,7 +82,8 @@ public class Personality {
 
     public Personality(
             int grade,
-            String name,
+            String baseName,
+            String personalityName,
             List<PersonalityKeyword> keywords,
             PersonalitySkill firstSkill,
             PersonalitySkill secondSkill,
@@ -89,7 +93,8 @@ public class Personality {
             LocalDate releaseDate
     ) {
         this.grade = grade;
-        this.name = name;
+        this.baseName = baseName;
+        this.personalityName = personalityName;
         this.keywords = keywords;
         this.firstSkill = firstSkill;
         this.secondSkill = secondSkill;
@@ -102,7 +107,7 @@ public class Personality {
     public GetPersonalityResponseDto toDto() {
         return new GetPersonalityResponseDto(
                 this.id,
-                this.name,
+                this.personalityName,
                 this.grade,
                 this.defend,
                 this.firstSkill,
@@ -126,4 +131,9 @@ public class Personality {
                 || this.secondSkill.isMatchSin(sin)
                 || this.thirdSkill.isMatchSin(sin);
     }
+
+    public boolean isMatchName(String name) {
+        return this.baseName.equals(name);
+    }
+
 }
