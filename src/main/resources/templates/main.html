@@ -282,7 +282,7 @@
     <!-- Header Area -->
     <header class="game-header">
         <div class="nav-title">
-            <h1>질투 · 호흡 · 출혈 · 거울 던전</h1>
+            <h1>조합 시뮬레이터</h1>
             <button class="edit-button"><img th:src="@{/images/icons/edit.png}" alt="Edit"></button>
         </div>
         <div class="nav-controls">
@@ -307,14 +307,14 @@
 <!--                    <div class="character-name" th:text="${character.name}">이상</div>-->
 <!--                </div>-->
 <!--            </li>-->
-            <li class="character-card">
+            <li class="character-card" onclick="openCharacterModal(this)">
                 <div class="character-frame yisang character-frame r1">
                     <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이상</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " onclick="openCharacterModal(this)">
                 <div class="character-frame faust character-frame r1">
                     <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
                     <div class="character-type" >기본</div>
@@ -401,32 +401,32 @@
         </div>
         <ul class="resource-list">
             <li class="resource-item">
-                <img th:src="@{/images/resources/red.png}" alt="Red Resource">
+                <img th:src="@{/sin/Wrath.webp}" alt="Red Resource">
 <!--                <span class="resource-count">x<span th:text="${resources.red.current}">6</span>/<span th:text="${resources.red.max}">22</span></span>-->
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
             <li class="resource-item">
-                <img th:src="@{/images/resources/orange.png}" alt="Orange Resource">
+                <img th:src="@{/sin/Lust.webp}" alt="Orange Resource">
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
             <li class="resource-item">
-                <img th:src="@{/images/resources/yellow.png}" alt="Yellow Resource">
+                <img th:src="@{/sin/Sloth.webp}" alt="Yellow Resource">
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
             <li class="resource-item">
-                <img th:src="@{/images/resources/green.png}" alt="Green Resource">
+                <img th:src="@{/sin/Gluttony.webp}" alt="Green Resource">
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
             <li class="resource-item">
-                <img th:src="@{/images/resources/blue.png}" alt="Blue Resource">
+                <img th:src="@{/sin/Gloom.webp}" alt="Blue Resource">
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
             <li class="resource-item">
-                <img th:src="@{/images/resources/indigo.png}" alt="Indigo Resource">
+                <img th:src="@{/sin/Pride.webp}" alt="Indigo Resource">
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
             <li class="resource-item">
-                <img th:src="@{/images/resources/violet.png}" alt="Violet Resource">
+                <img th:src="@{/sin/Envy.webp}" alt="Violet Resource">
                 <span class="resource-count">x<span>6</span>/<span>22</span></span>
             </li>
         </ul>
