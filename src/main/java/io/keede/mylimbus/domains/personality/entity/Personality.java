@@ -70,7 +70,7 @@ public class Personality {
     )
     private PersonalitySkill thirdSkill;
 
-    private int grade;
+    private int rarity;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "personality_id")
@@ -81,7 +81,7 @@ public class Personality {
     private LocalDate releaseDate;
 
     public Personality(
-            int grade,
+            int rarity,
             String baseName,
             String personalityName,
             List<PersonalityKeyword> keywords,
@@ -92,7 +92,7 @@ public class Personality {
             Set<Passive> passives,
             LocalDate releaseDate
     ) {
-        this.grade = grade;
+        this.rarity = rarity;
         this.baseName = baseName;
         this.personalityName = personalityName;
         this.keywords = keywords;
@@ -107,8 +107,9 @@ public class Personality {
     public GetPersonalityResponseDto toDto() {
         return new GetPersonalityResponseDto(
                 this.id,
+                this.baseName,
                 this.personalityName,
-                this.grade,
+                this.rarity,
                 this.defend,
                 this.firstSkill,
                 this.secondSkill,

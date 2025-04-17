@@ -11,8 +11,9 @@ import java.util.Set;
 */
 public record GetPersonalityResponseDto(
     Long id,
-    String name,
-    int grade,
+    String baseName,
+    String personalityName,
+    int rarity,
     String defend,
 
     PersonalitySkill firstSkill,

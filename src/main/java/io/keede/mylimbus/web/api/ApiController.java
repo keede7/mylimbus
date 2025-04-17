@@ -2,6 +2,7 @@ package io.keede.mylimbus.web.api;
 
 import io.keede.mylimbus.domains.personality.service.PersonalityQueryService;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
+import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,5 +40,10 @@ public class ApiController {
     @GetMapping("/personality/skill/sin")
     public List<GetPersonalityResponseDto> getPersonalityBySkillSin(RequestPersonalityBySkillSinDto dto) {
         return this.personalityQueryService.getPersonalityBySkillSin(dto);
+    }
+
+    @GetMapping("/personality/base")
+    public List<GetPersonalityResponseDto> getPersonalityByBaseName(RequestPersonalityByBaseName dto) {
+        return this.personalityQueryService.getPersonalityByBaseName(dto);
     }
 }
