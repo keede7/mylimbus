@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limbus Company</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/main.css}">-->
+    <link rel="stylesheet" >
     <style>
         /* Main Layout */
         body {
@@ -132,11 +133,11 @@
 
         .character-frame img {
             width: 100%;
-            height: auto;
+            height: 250px;
             display: block;
         }
 
-        .character-level {
+        .character-rarity {
             position: absolute;
             top: 5px;
             right: 5px;
@@ -274,6 +275,34 @@
                 margin: 10% auto;
             }
         }
+
+        /* 푸터 스타일 */
+        .wiki-footer {
+            background-color: var(--header-bg-color);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
+        }
+
+        .footer-link {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-info {
+            color: #7a7a7a;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -302,91 +331,103 @@
 <!--                onclick="openCharacterModal(this)">-->
 <!--                <div class="character-frame" th:class="${'character-frame ' + character.rarity}">-->
 <!--                    <img th:src="@{../static/sinners/yisang/112px-YiSang01.webp}" th:alt="${character.name}">-->
-<!--                    <div class="character-level">Lv. <span th:text="${character.level}">50</span></div>-->
+<!--                    <div class="character-rarity">Lv. <span th:text="${character.level}">50</span></div>-->
 <!--                    <div class="character-type" th:text="${character.type}">피쿼드호 일등 항해사</div>-->
 <!--                    <div class="character-name" th:text="${character.name}">이상</div>-->
 <!--                </div>-->
 <!--            </li>-->
-            <li class="character-card" onclick="openCharacterModal(this)">
-                <div class="character-frame yisang character-frame r1">
+            <li class="character-card" th:data-base="이상" th:data-type="YiSang" onclick="openCharacterModal(this)">
+                <div class="character-frame character-frame r1">
                     <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이상</div>
                 </div>
             </li>
-            <li class="character-card " onclick="openCharacterModal(this)">
+            <li class="character-card " th:data-base="파우스트" th:data-type="Faust" onclick="openCharacterModal(this)">
                 <div class="character-frame faust character-frame r1">
                     <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >파우스트</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="돈키호테" th:data-type="Donquixote" onclick="openCharacterModal(this)">
                 <div class="character-frame donquixote character-frame r1">
                     <img th:src="@{/sinners/donquixote/112px-Donquixote03.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >돈키호테</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="료슈" th:data-type="Ryoshu" onclick="openCharacterModal(this)">
                 <div class="character-frame ryoshu character-frame r1">
                     <img th:src="@{/sinners/ryoshu/112px-Ryoshu04.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >료슈</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="뫼르소" th:data-type="Meursault" onclick="openCharacterModal(this)">
                 <div class="character-frame meursault character-frame r1">
                     <img th:src="@{/sinners/meursault/112px-Meursault05.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >뫼르소</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="홍루" th:data-type="Honglu" onclick="openCharacterModal(this)">
                 <div class="character-frame honglu character-frame r1">
                     <img th:src="@{/sinners/honglu/112px-Honglu06.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >홍루</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="히스클리프" th:data-type="Heathcliff" onclick="openCharacterModal(this)">
                 <div class="character-frame heathcliff character-frame r1">
                     <img th:src="@{/sinners/heathcliff/112px-Heathcliff07.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >히스클리프</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="이스마엘" th:data-type="Ishmael" onclick="openCharacterModal(this)">
                 <div class="character-frame ishmael character-frame r1">
                     <img th:src="@{/sinners/ishmael/112px-Ishmael08.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이스마엘</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="로쟈" th:data-type="Rodion" onclick="openCharacterModal(this)">
                 <div class="character-frame rodion character-frame r1">
                     <img th:src="@{/sinners/rodion/112px-Rodion09.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >로쟈</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="싱클레어" th:data-type="Sinclair" onclick="openCharacterModal(this)">
                 <div class="character-frame sinclair character-frame r1">
                     <img th:src="@{/sinners/sinclair/112px-Sinclair11.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >싱클레어</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="오티스" th:data-type="Outis" onclick="openCharacterModal(this)">
                 <div class="character-frame outis character-frame r1">
                     <img th:src="@{/sinners/outis/112px-Outis12.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >오티스</div>
                 </div>
             </li>
-            <li class="character-card">
+            <li class="character-card " th:data-base="그레고르" th:data-type="Gregor" onclick="openCharacterModal(this)">
                 <div class="character-frame gregor character-frame r1">
                     <img th:src="@{/sinners/gregor/112px-Gregor13.webp}" >
+                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >그레고르</div>
                 </div>
@@ -458,19 +499,33 @@
     </div>
 </div>
 
+<footer class="wiki-footer">
+    <div class="footer-links">
+        <a href="#" class="footer-link">이용약관</a>
+        <a href="#" class="footer-link">개인정보 처리방침</a>
+        <a href="#" class="footer-link">위키 기여하기</a>
+        <a href="#" class="footer-link">연락처</a>
+    </div>
+    <div class="footer-info">
+        <p>해당 페이지는 Project Moon의 공식 사이트가 아닙니다.</p>
+        <p>모든 게임 관련 콘텐츠와 자료는 Project Moon에 저작권이 있습니다.</p>
+        <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Limbus Company Wiki | 최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>
+    </div>
+</footer>
+
 <!-- JavaScript -->
 <script th:inline="javascript">
     // Function to open character selection modal
     function openCharacterModal(characterElement) {
         const characterId = characterElement.getAttribute('data-id');
-        const characterType = characterElement.getAttribute('data-type');
+        const characterBase = characterElement.getAttribute('data-base');
         const modal = document.getElementById('characterModal');
 
         // Show modal
         modal.style.display = 'block';
 
         // Fetch alternative characters via REST API
-        fetchAlternativeCharacters(characterId, characterType);
+        fetchAlternativeCharacters(characterId, characterBase);
     }
 
     // Function to close character selection modal
@@ -479,14 +534,55 @@
         modal.style.display = 'none';
     }
 
-    // Function to fetch alternative characters from API
-    function fetchAlternativeCharacters(characterId, characterType) {
+    // // Function to fetch alternative characters from API
+    // function fetchAlternativeCharacters(characterId, characterType) {
+    //     // Clear previous content
+    //     const modalGrid = document.getElementById('modalCharacterGrid');
+    //     modalGrid.innerHTML = '';
+    //
+    //     // Example API call - replace with actual endpoint
+    //     fetch(`/api/characters/alternatives?id=${characterId}&type=${characterType}`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // Populate modal with character alternatives
+    //             data.forEach(character => {
+    //                 const li = document.createElement('li');
+    //                 li.className = 'character-card';
+    //                 li.setAttribute('data-id', character.id);
+    //                 li.onclick = function() { selectCharacter(character); };
+    //
+    //                 li.innerHTML = `
+    //                         <div class="character-frame ${character.rarity}">
+    //                             <img src="${character.imagePath}" alt="${character.name}">
+    //                             <div class="character-rarity">Lv. ${character.level}</div>
+    //                             <div class="character-type">${character.type}</div>
+    //                             <div class="character-name">${character.name}</div>
+    //                         </div>
+    //                     `;
+    //
+    //                 modalGrid.appendChild(li);
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching character alternatives:', error);
+    //             modalGrid.innerHTML = '<p>인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
+    //         });
+    // }
+
+    // characterId는 안쓰는중
+    function fetchAlternativeCharacters(characterId, baseNameKor) {
         // Clear previous content
         const modalGrid = document.getElementById('modalCharacterGrid');
         modalGrid.innerHTML = '';
 
-        // Example API call - replace with actual endpoint
-        fetch(`/api/characters/alternatives?id=${characterId}&type=${characterType}`)
+        // Create form data for ModelAttribute
+        const formData = new FormData();
+        formData.append('baseName', baseNameKor);
+
+        // Updated API endpoint with ModelAttribute approach
+        fetch(`/api/personality/base?baseName=${baseNameKor}`, {
+            method: 'GET'
+        })
             .then(response => response.json())
             .then(data => {
                 // Populate modal with character alternatives
@@ -496,14 +592,19 @@
                     li.setAttribute('data-id', character.id);
                     li.onclick = function() { selectCharacter(character); };
 
+                    // Convert rarity number to r1, r2, r3 format
+                    const rarityClass = `character-frame r${character.rarity}`;
+
+                    // Updated inner HTML with converted rarity class
                     li.innerHTML = `
-                            <div class="character-frame ${character.rarity}">
-                                <img src="${character.imagePath}" alt="${character.name}">
-                                <div class="character-level">Lv. ${character.level}</div>
-                                <div class="character-type">${character.type}</div>
-                                <div class="character-name">${character.name}</div>
-                            </div>
-                        `;
+                    <div class="character-frame ${rarityClass}">
+<!--                        <img src="/sinners/yisang/112px-YiSang01.webp" alt="${character.baseName}">-->
+                        <img src="${character.imgUrl}" alt="${character.baseName}">
+                        <div class="character-rarity">${character.rarity}</div>
+                        <div class="character-type">${character.personalityName}</div>
+                        <div class="character-name">${character.baseName}</div>
+                    </div>
+                `;
 
                     modalGrid.appendChild(li);
                 });
@@ -514,18 +615,57 @@
             });
     }
 
-    // Function to select a character from modal and update main grid
+    // // Function to select a character from modal and update main grid
+    // function selectCharacter(character) {
+    //     // Find the original character element that was clicked
+    //     const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
+    //
+    //     if (originalCharacterSlot) {
+    //         // Update the original character slot with the new character data
+    //         originalCharacterSlot.querySelector('img').src = character.imagePath;
+    //         originalCharacterSlot.querySelector('.character-rarity span').textContent = character.level;
+    //         originalCharacterSlot.querySelector('.character-type').textContent = character.type;
+    //         originalCharacterSlot.querySelector('.character-name').textContent = character.name;
+    //         originalCharacterSlot.setAttribute('data-id', character.id);
+    //
+    //         // Remove the selected attribute
+    //         originalCharacterSlot.removeAttribute('data-selected');
+    //
+    //         // Close the modal
+    //         closeCharacterModal();
+    //
+    //         // Send update to server (optional)
+    //         updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
+    //     }
+    // }
+
     function selectCharacter(character) {
         // Find the original character element that was clicked
         const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
+        console.log(character);
+        console.log(originalCharacterSlot);
 
         if (originalCharacterSlot) {
+
+            console.log("originalCharacterSlot");
+            console.log(originalCharacterSlot);
+
             // Update the original character slot with the new character data
-            originalCharacterSlot.querySelector('img').src = character.imagePath;
-            originalCharacterSlot.querySelector('.character-level span').textContent = character.level;
-            originalCharacterSlot.querySelector('.character-type').textContent = character.type;
-            originalCharacterSlot.querySelector('.character-name').textContent = character.name;
+
+            // originalCharacterSlot.querySelector('img').src = '/sinners/yisang/112px-YiSang01.webp';
+            originalCharacterSlot.querySelector('img').src = character.imgUrl;
+
+            const frameTag = originalCharacterSlot.querySelector('.character-frame')
+            // Remove existing rarity class (r1, r2, r3, etc.)
+            frameTag.className = frameTag.className.replace(/\br\d\b/g, '');
+            // Add new rarity class
+            frameTag.className = `character-frame r${character.rarity}`;
+
+            originalCharacterSlot.querySelector('.character-rarity').textContent = character.rarity;
+            originalCharacterSlot.querySelector('.character-type').textContent = character.personalityName;
+            originalCharacterSlot.querySelector('.character-name').textContent = character.baseName;
             originalCharacterSlot.setAttribute('data-id', character.id);
+
 
             // Remove the selected attribute
             originalCharacterSlot.removeAttribute('data-selected');
@@ -534,9 +674,10 @@
             closeCharacterModal();
 
             // Send update to server (optional)
-            updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
+            // updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
         }
     }
+
 
     // Function to update character selection on the server
     function updateCharacterSelection(characterId, position) {
