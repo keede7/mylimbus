@@ -146,7 +146,7 @@ public class Personality {
                         .map(Passive::toDto)
                         .collect(Collectors.toSet()),
                 this.releaseDate,
-                "/sinners/yisang/125px-Effloresced_E.webp"
+                this.imgUrl
         );
     }
 
