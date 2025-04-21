@@ -534,41 +534,6 @@
         modal.style.display = 'none';
     }
 
-    // // Function to fetch alternative characters from API
-    // function fetchAlternativeCharacters(characterId, characterType) {
-    //     // Clear previous content
-    //     const modalGrid = document.getElementById('modalCharacterGrid');
-    //     modalGrid.innerHTML = '';
-    //
-    //     // Example API call - replace with actual endpoint
-    //     fetch(`/api/characters/alternatives?id=${characterId}&type=${characterType}`)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // Populate modal with character alternatives
-    //             data.forEach(character => {
-    //                 const li = document.createElement('li');
-    //                 li.className = 'character-card';
-    //                 li.setAttribute('data-id', character.id);
-    //                 li.onclick = function() { selectCharacter(character); };
-    //
-    //                 li.innerHTML = `
-    //                         <div class="character-frame ${character.rarity}">
-    //                             <img src="${character.imagePath}" alt="${character.name}">
-    //                             <div class="character-rarity">Lv. ${character.level}</div>
-    //                             <div class="character-type">${character.type}</div>
-    //                             <div class="character-name">${character.name}</div>
-    //                         </div>
-    //                     `;
-    //
-    //                 modalGrid.appendChild(li);
-    //             });
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching character alternatives:', error);
-    //             modalGrid.innerHTML = '<p>인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
-    //         });
-    // }
-
     // characterId는 안쓰는중
     function fetchAlternativeCharacters(characterId, baseNameKor) {
         // Clear previous content
@@ -598,7 +563,6 @@
                     // Updated inner HTML with converted rarity class
                     li.innerHTML = `
                     <div class="character-frame ${rarityClass}">
-<!--                        <img src="/sinners/yisang/112px-YiSang01.webp" alt="${character.baseName}">-->
                         <img src="${character.imgUrl}" alt="${character.baseName}">
                         <div class="character-rarity">${character.rarity}</div>
                         <div class="character-type">${character.personalityName}</div>
@@ -615,30 +579,6 @@
             });
     }
 
-    // // Function to select a character from modal and update main grid
-    // function selectCharacter(character) {
-    //     // Find the original character element that was clicked
-    //     const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
-    //
-    //     if (originalCharacterSlot) {
-    //         // Update the original character slot with the new character data
-    //         originalCharacterSlot.querySelector('img').src = character.imagePath;
-    //         originalCharacterSlot.querySelector('.character-rarity span').textContent = character.level;
-    //         originalCharacterSlot.querySelector('.character-type').textContent = character.type;
-    //         originalCharacterSlot.querySelector('.character-name').textContent = character.name;
-    //         originalCharacterSlot.setAttribute('data-id', character.id);
-    //
-    //         // Remove the selected attribute
-    //         originalCharacterSlot.removeAttribute('data-selected');
-    //
-    //         // Close the modal
-    //         closeCharacterModal();
-    //
-    //         // Send update to server (optional)
-    //         updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
-    //     }
-    // }
-
     function selectCharacter(character) {
         // Find the original character element that was clicked
         const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
@@ -652,7 +592,6 @@
 
             // Update the original character slot with the new character data
 
-            // originalCharacterSlot.querySelector('img').src = '/sinners/yisang/112px-YiSang01.webp';
             originalCharacterSlot.querySelector('img').src = character.imgUrl;
 
             const frameTag = originalCharacterSlot.querySelector('.character-frame')
@@ -666,6 +605,18 @@
             originalCharacterSlot.querySelector('.character-name').textContent = character.baseName;
             originalCharacterSlot.setAttribute('data-id', character.id);
 
+            // 이전에 선택된 캐릭터의 스킬 카운트 감소 (이전 캐릭터 정보 필요)
+            // 이 부분은 이전 캐릭터 정보를 어떻게 관리하는지에 따라 달라질 수 있음
+            const previousCharacterId = originalCharacterSlot.getAttribute('data-previous-id');
+            if (previousCharacterId) {
+                decreaseSkillCounts(previousCharacterId);
+            }
+
+            // 새로 선택된 캐릭터의 스킬 카운트 증가
+            increaseSkillCounts(character);
+
+            // 현재 선택된 캐릭터 ID를 저장해 나중에 감소시킬 때 사용
+            originalCharacterSlot.setAttribute('data-previous-id', character.id);
 
             // Remove the selected attribute
             originalCharacterSlot.removeAttribute('data-selected');
@@ -679,24 +630,96 @@
     }
 
 
-    // Function to update character selection on the server
-    function updateCharacterSelection(characterId, position) {
-        fetch('/api/characters/update-selection', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                characterId: characterId,
-                position: position
-            })
-        })
+    // // Function to update character selection on the server
+    // function updateCharacterSelection(characterId, position) {
+    //     fetch('/api/characters/update-selection', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             characterId: characterId,
+    //             position: position
+    //         })
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log('Character selection updated:', data);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error updating character selection:', error);
+    //         });
+    // }
+
+    // 스킬 카운트 증가 함수
+    function increaseSkillCounts(character) {
+        if (!character) return;
+
+        // 스킬 타입에 따라 해당 리소스 카운트 증가
+        updateSkillCount(character.firstSkill?.sinType, 1);
+        updateSkillCount(character.secondSkill?.sinType, 1);
+        updateSkillCount(character.thirdSkill?.sinType, 1);
+    }
+
+    // 스킬 카운트 업데이트 함수 (증가/감소)
+    function updateSkillCount(skillType, change) {
+        if (!skillType) return;
+
+        // 스킬 타입에 맞는 리소스 아이템 찾기
+        const resourceItem = findResourceItemBySkillType(skillType);
+        if (!resourceItem) return;
+
+        // 현재 카운트 값 가져오기
+        const countSpan = resourceItem.querySelector('.resource-count span:first-child');
+        if (!countSpan) return;
+
+        // 현재 값을 가져와서 증감시키기
+        let currentCount = parseInt(countSpan.textContent, 10);
+        currentCount += change;
+
+        // 최소값은 0, 최대값은 22로 제한
+        const maxCount = parseInt(resourceItem.querySelector('.resource-count span:last-child').textContent, 10) || 22;
+        currentCount = Math.max(0, Math.min(currentCount, maxCount));
+
+        // 업데이트된 값 적용
+        countSpan.textContent = currentCount;
+    }
+
+    // 스킬 카운트 감소 함수
+    function decreaseSkillCounts(characterId) {
+        // 서버에서 해당 캐릭터의 스킬 정보를 가져온 후 카운트 감소
+        fetch(`/api/character/${characterId}`)
             .then(response => response.json())
-            .then(data => {
-                console.log('Character selection updated:', data);
+            .then(character => {
+                updateSkillCount(character.firstSkill?.sinType, -1);
+                updateSkillCount(character.secondSkill?.sinType, -1);
+                updateSkillCount(character.thirdSkill?.sinType, -1);
             })
             .catch(error => {
-                console.error('Error updating character selection:', error);
+                console.error('Error fetching previous character skills:', error);
+            });
+    }
+
+    // 스킬 타입에 해당하는 리소스 아이템 찾기
+    function findResourceItemBySkillType(skillType) {
+        const skillToImageMap = {
+            'WRATH': 'Wrath.webp',
+            'LUST': 'Lust.webp',
+            'SLOTH': 'Sloth.webp',
+            'GLUTTONY': 'Gluttony.webp',
+            'GLOOM': 'Gloom.webp',
+            'PRIDE': 'Pride.webp',
+            'ENVY': 'Envy.webp'
+        };
+
+        const imageName = skillToImageMap[skillType];
+        if (!imageName) return null;
+
+        // 이미지 경로에 해당 이름이 포함된 리소스 아이템 찾기
+        return Array.from(document.querySelectorAll('.resource-item'))
+            .find(item => {
+                const imgSrc = item.querySelector('img').getAttribute('src');
+                return imgSrc && imgSrc.includes(imageName);
             });
     }
 

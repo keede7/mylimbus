@@ -44,7 +44,7 @@ public class Personality {
     @AttributeOverrides(
             value = {
 //                    @AttributeOverride(name = "skillSequence", column = @Column(name = "first_skill_sequence")),
-                    @AttributeOverride(name = "sin", column = @Column(name = "first_skill_sin")),
+                    @AttributeOverride(name = "sinType", column = @Column(name = "first_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "first_skill_attack_type")),
             }
     )
@@ -54,7 +54,7 @@ public class Personality {
     @AttributeOverrides(
             value = {
 //                    @AttributeOverride(name = "skillSequence", column = @Column(name = "second_skill_sequence")),
-                    @AttributeOverride(name = "sin", column = @Column(name = "second_skill_sin")),
+                    @AttributeOverride(name = "sinType", column = @Column(name = "second_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "second_skill_attack_type")),
             }
     )
@@ -64,7 +64,7 @@ public class Personality {
     @AttributeOverrides(
             value = {
 //                    @AttributeOverride(name = "skillSequence", column = @Column(name = "third_skill_sequence")),
-                    @AttributeOverride(name = "sin", column = @Column(name = "third_skill_sin")),
+                    @AttributeOverride(name = "sinType", column = @Column(name = "third_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "third_skill_attack_type")),
             }
     )

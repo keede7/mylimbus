@@ -60,4 +60,11 @@ public class PersonalityQueryService {
                 .map(Personality::toDto)
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public GetPersonalityResponseDto getPersonalityById(Long id) {
+        return this.personalityRepository.findPersonalityById(id)
+                .map(Personality::toDto)
+                .orElseThrow(() -> new RuntimeException("없는 캐릭터입니다."));
+    }
 }

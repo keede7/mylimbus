@@ -16,22 +16,22 @@ public final class PersonalitySkill {
 
 //    private int skillSequence;
 
-    private Sin sin;
+    private Sin sinType;
 
     private AttackType attackType;
 
     public PersonalitySkill(
             int skillSequence,
-            Sin sin,
+            Sin sinType,
             AttackType attackType
     ) {
 //        this.skillSequence = skillSequence;
-        this.sin = sin;
+        this.sinType = sinType;
         this.attackType = attackType;
     }
 
     public boolean isMatchSin(Sin sin) {
-        return this.sin == sin;
+        return this.sinType == sin;
     }
 
 }
