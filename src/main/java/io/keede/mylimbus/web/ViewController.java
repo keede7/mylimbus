@@ -11,4 +11,8 @@ public class ViewController {
         return "main";
     }
 
+    @GetMapping("/mainTest")
+    public String mainTest() {
+        return "mainTest";
+    }
 }

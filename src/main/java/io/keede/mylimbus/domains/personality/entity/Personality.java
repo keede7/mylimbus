@@ -156,10 +156,28 @@ public class Personality {
                 .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
     }
 
+    public boolean isMatchKeyword(List<PersonalityKeyword> targetKeywords) {
+
+        for(PersonalityKeyword keyword : this.keywords) {
+            for (PersonalityKeyword targetKeyword : targetKeywords) {
+                if(keyword == targetKeyword) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public boolean isMatchSkillSin(Sin sin) {
         return this.firstSkill.isMatchSin(sin)
                 || this.secondSkill.isMatchSin(sin)
                 || this.thirdSkill.isMatchSin(sin);
+    }
+
+    public boolean isMatchSkillType(List<AttackType> attackTypes) {
+        return attackTypes.stream()
+                .anyMatch(s -> this.firstSkill.getAttackType() == s || this.secondSkill.getAttackType() == s || this.thirdSkill.getAttackType() == s);
     }
 
     public boolean isMatchName(String name) {

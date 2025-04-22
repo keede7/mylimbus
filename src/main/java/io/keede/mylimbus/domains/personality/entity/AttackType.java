@@ -26,6 +26,13 @@ public enum AttackType {
                 .orElse(null);
     }
 
+    public static AttackType match(AttackType type) {
+        return Arrays.stream(values())
+                .filter(attackType -> attackType == type)
+                .findFirst()
+                .orElse(null);
+    }
+
     public String getType() {
         return this.type;
     }

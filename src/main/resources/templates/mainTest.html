@@ -891,8 +891,33 @@
             });
             // Close the modal
             closeCharacterModal();
+
+            // Send update to server (optional)
+            // updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
         }
     }
+
+
+    // // Function to update character selection on the server
+    // function updateCharacterSelection(characterId, position) {
+    //     fetch('/api/characters/update-selection', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             characterId: characterId,
+    //             position: position
+    //         })
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log('Character selection updated:', data);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error updating character selection:', error);
+    //         });
+    // }
 
     // 스킬 카운트 증가 함수
     function increaseSkillCounts(character) {
@@ -998,11 +1023,13 @@
             document.querySelectorAll('input[name="keyword"]:checked')
         ).map(checkbox => checkbox.value);
 
+        console.log(selectedKeywords)
         // Get all selected attack types
         const selectedAttackTypes = Array.from(
             document.querySelectorAll('input[name="attackType"]:checked')
         ).map(checkbox => checkbox.value);
 
+        console.log(selectedAttackTypes)
         // Build query parameters
         const queryParams = new URLSearchParams();
 
@@ -1015,6 +1042,9 @@
         if (selectedAttackTypes.length > 0) {
             queryParams.append('personalityAttackTypes', selectedAttackTypes.join(','));
         }
+
+        console.log("queryParams..");
+        console.log(queryParams);
 
         // Only proceed if we have filters selected
         if (selectedKeywords.length > 0 || selectedAttackTypes.length > 0) {
@@ -1073,6 +1103,29 @@
             gridElement.appendChild(li);
         });
     }
+
+    // Event listeners for filter buttons
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     // Apply filters button
+    //     const applyButton = document.getElementById('applyFilters');
+    //     if (applyButton) {
+    //         applyButton.addEventListener('click', filterCharacters);
+    //     }
+    //
+    //     // Reset filters button
+    //     const resetButton = document.getElementById('resetFilters');
+    //     if (resetButton) {
+    //         resetButton.addEventListener('click', function() {
+    //             // Uncheck all checkboxes
+    //             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    //                 checkbox.checked = false;
+    //             });
+    //
+    //             // Reset to original data
+    //             fetchAlternativeCharacters(currentPersonalityId, currentBaseNameKor);
+    //         });
+    //     }
+    // });
 
 </script>
 </body>

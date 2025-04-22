@@ -828,7 +828,7 @@ public class PersonalityInitializer {
                                 new Passive(ENVY, 5, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2023, 2,27),
-                        "/sinners/healthcliff/125px-LCB_Sinner_Heathcliff.webp"
+                        "/sinners/heathcliff/125px-LCB_Sinner_Heathcliff.webp"
                 ), // 질투4공명, 질투5보유, 230227
                 new Personality(3, HEATHCLIFF,"R사 제4무리 토끼팀 히스클리프", List.of(R사),
                         new PersonalitySkill(1, WRATH, PIERCE),
@@ -840,7 +840,7 @@ public class PersonalityInitializer {
                                 new Passive(WRATH, 5, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2023, 2,27),
-                        "/sinners/healthcliff/125px-R_Corp.webp"
+                        "/sinners/heathcliff/125px-R_Corp.webp"
                 ), // 분노3공명, 분노5보유, 230227
                 new Personality(2, HEATHCLIFF,"남부 세븐 협회 4과 히스클리프", List.of(해결사, 세븐_협회),
                         new PersonalitySkill(1, WRATH, SLASH),
@@ -852,7 +852,7 @@ public class PersonalityInitializer {
                                 new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2023, 2,27),
-                        "/sinners/healthcliff/125px-Seven_Assoc.webp"
+                        "/sinners/heathcliff/125px-Seven_Assoc.webp"
                 ), // 탐식4보유, 탐식4보유, 230907
                 new Personality(3, HEATHCLIFF,"피쿼드호 작살잡이 히스클리프", List.of(피쿼드호),
                         new PersonalitySkill(1, PRIDE, PIERCE),
@@ -864,7 +864,7 @@ public class PersonalityInitializer {
                                 new Passive(ENVY, 5, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2023, 12,7),
-                        "/sinners/healthcliff/125px-The_Pequod_Harpooneer_Heathcliff_Uptied.webp"
+                        "/sinners/heathcliff/125px-The_Pequod_Harpooneer_Heathcliff_Uptied.webp"
                 ), // 질투5보유, 질투5보유, 231207
                 new Personality(2, HEATHCLIFF,"멀티크랙 사무소 해결사 히스클리프", List.of(해결사, 멀티크랙_사무소),
                         new PersonalitySkill(1, WRATH, SLASH),
@@ -876,7 +876,7 @@ public class PersonalityInitializer {
                                 new Passive(ENVY, 7, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2024, 8,8),
-                        "/sinners/healthcliff/125px-MultiCrack_Office_Fixer_Heathcliff_Uptied.webp"
+                        "/sinners/heathcliff/125px-MultiCrack_Office_Fixer_Heathcliff_Uptied.webp"
                 ), // 질투3보유, 질투7보유, 240808
                 new Personality(3, HEATHCLIFF,"와일드헌트 히스클리프", List.of(워더링하이츠, 와일드헌트),
                         new PersonalitySkill(1, WRATH, SLASH),
@@ -888,7 +888,7 @@ public class PersonalityInitializer {
                                 new Passive(GLOOM, 3, SUPPORT, RESONANCE)
                         ),
                         LocalDate.of(2024, 8,22),
-                        "/sinners/healthcliff/125px-Wild_Hunt_Heathcliff_Uptied.webp"
+                        "/sinners/heathcliff/125px-Wild_Hunt_Heathcliff_Uptied.webp"
                 ), //질투5보유, 우울3공명, 240822
                 new Personality(3, HEATHCLIFF, "마침표 사무소 해결사 히스클리프", List.of(해결사, 마침표_사무소),
                         new PersonalitySkill(1, GLOOM, PIERCE),
@@ -900,7 +900,7 @@ public class PersonalityInitializer {
                                 new Passive(PRIDE, 5, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2025, 1,9),
-                        "/sinners/healthcliff/125px-Full-Stop_Office_Fixer_Heathcliff_Uptied.webp"
+                        "/sinners/heathcliff/125px-Full-Stop_Office_Fixer_Heathcliff_Uptied.webp"
                 ),// 오만2공명, 오만5보유, 250109
                 new Personality(3, HEATHCLIFF,"흑운회 와카슈 히스클리프", List.of(조직, 흑운회),
                         new PersonalitySkill(1, WRATH, SLASH),
@@ -912,7 +912,7 @@ public class PersonalityInitializer {
                                 new Passive(LUST, 5, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2024, 2,6),
-                        "/sinners/healthcliff/125px-Kurokumo_Clan_Wakashu_Heathcliff_Uptied.webp"
+                        "/sinners/heathcliff/125px-Kurokumo_Clan_Wakashu_Heathcliff_Uptied.webp"
                 ), // 색욕3공명, 색욕5보유, 240206
                 new Personality(2, HEATHCLIFF,"남부 시 협회 5과 히스클리프", List.of(해결사, 시_협회),
                         new PersonalitySkill(1, LUST, SLASH),
@@ -924,7 +924,7 @@ public class PersonalityInitializer {
                                 new Passive(WRATH, 3, SUPPORT, RESONANCE)
                         ),
                         LocalDate.of(2023, 2,27),
-                        "/sinners/healthcliff/125px-Shi_Assoc.webp"
+                        "/sinners/heathcliff/125px-Shi_Assoc.webp"
                 ), // 분노3공명, 분노3공명, 230227
                 new Personality(2, HEATHCLIFF,"N사 작은 망치 히스클리프", List.of(N사, N사_광신도),
                         new PersonalitySkill(1, ENVY, PIERCE),
@@ -936,7 +936,7 @@ public class PersonalityInitializer {
                                 new Passive(LUST, 4, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2023, 3,23),
-                        "/sinners/healthcliff/125px-N_Corp.webp"
+                        "/sinners/heathcliff/125px-N_Corp.webp"
                 ),// 질투2보유, 색욕4보유, 230323
                 new Personality(3, HEATHCLIFF,"로보토미 E.G.O::여우비 히스클리프", List.of(로보토미_본사),
                         new PersonalitySkill(1, ENVY, BLUNT),
@@ -948,7 +948,7 @@ public class PersonalityInitializer {
                                 new Passive(ENVY, 3, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2023, 6,8),
-                        "/sinners/healthcliff/125px-Lobotomy_E.webp"
+                        "/sinners/heathcliff/125px-Lobotomy_E.webp"
                 ), // 질투3보유, 질투3보유, 230608
                 new Personality(1, ISHMAEL, "LCB 수감자 이스마엘", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, WRATH, BLUNT),
