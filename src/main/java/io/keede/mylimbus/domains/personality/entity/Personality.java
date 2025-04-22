@@ -70,6 +70,8 @@ public class Personality {
     )
     private PersonalitySkill thirdSkill;
 
+    private Affinity affinity;
+
     private int rarity;
 
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -132,6 +134,34 @@ public class Personality {
         this.imgUrl = imgUrl;
     }
 
+    public Personality(
+            int rarity,
+            String baseName,
+            String personalityName,
+            List<PersonalityKeyword> keywords,
+            PersonalitySkill firstSkill,
+            PersonalitySkill secondSkill,
+            PersonalitySkill thirdSkill,
+            Affinity affinity,
+            String defend,
+            Set<Passive> passives,
+            LocalDate releaseDate,
+            String imgUrl
+    ) {
+        this.rarity = rarity;
+        this.baseName = baseName;
+        this.personalityName = personalityName;
+        this.keywords = keywords;
+        this.firstSkill = firstSkill;
+        this.secondSkill = secondSkill;
+        this.thirdSkill = thirdSkill;
+        this.affinity = affinity;
+        this.defend = defend;
+        this.passives.addAll(passives);
+        this.releaseDate = releaseDate;
+        this.imgUrl = imgUrl;
+    }
+
     public GetPersonalityResponseDto toDto() {
         return new GetPersonalityResponseDto(
                 this.id,
@@ -142,6 +172,7 @@ public class Personality {
                 this.firstSkill,
                 this.secondSkill,
                 this.thirdSkill,
+                this.affinity,
                 this.passives.stream()
                         .map(Passive::toDto)
                         .collect(Collectors.toSet()),
@@ -156,17 +187,9 @@ public class Personality {
                 .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
     }
 
-    public boolean isMatchKeyword(List<PersonalityKeyword> targetKeywords) {
-
-        for(PersonalityKeyword keyword : this.keywords) {
-            for (PersonalityKeyword targetKeyword : targetKeywords) {
-                if(keyword == targetKeyword) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+    public boolean isMatchAffinity(List<Affinity> targetAffinities) {
+        return targetAffinities.stream()
+                .anyMatch(targetAffinity -> this.affinity == targetAffinity);
     }
 
     public boolean isMatchSkillSin(Sin sin) {

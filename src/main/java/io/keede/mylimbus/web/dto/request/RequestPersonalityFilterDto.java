@@ -1,7 +1,7 @@
 package io.keede.mylimbus.web.dto.request;
 
+import io.keede.mylimbus.domains.personality.entity.Affinity;
 import io.keede.mylimbus.domains.personality.entity.AttackType;
-import io.keede.mylimbus.domains.personality.entity.PersonalityKeyword;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,27 +14,27 @@ import java.util.Objects;
  */
 public record RequestPersonalityFilterDto(
         String personalityKRName,
-        PersonalityKeyword[] personalityAttackKeyword,
-        AttackType[] personalityAttackTypes
+        Affinity[] personalityAffinities,
+        AttackType[] personalitySkillTypes
 ) {
 
-    public List<PersonalityKeyword> toAttackKeyword() {
-        if(this.personalityAttackKeyword == null || this.personalityAttackKeyword.length == 0) {
+    public List<Affinity> toAttackAffinities() {
+        if(this.personalityAffinities == null || this.personalityAffinities.length == 0) {
             return Collections.emptyList();
         }
 
-        return Arrays.stream(this.personalityAttackKeyword)
-                .map(PersonalityKeyword::match)
+        return Arrays.stream(this.personalityAffinities)
+                .map(Affinity::match)
                 .filter(Objects::nonNull)
                 .toList();
     }
 
-    public List<AttackType> toSkillKeyword() {
-        if(this.personalityAttackTypes == null || this.personalityAttackTypes.length == 0) {
+    public List<AttackType> toSkillTypes() {
+        if(this.personalitySkillTypes == null || this.personalitySkillTypes.length == 0) {
             return Collections.emptyList();
         }
 
-        return Arrays.stream(this.personalityAttackTypes)
+        return Arrays.stream(this.personalitySkillTypes)
                 .map(AttackType::match)
                 .filter(Objects::nonNull)
                 .toList();

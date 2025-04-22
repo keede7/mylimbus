@@ -63,13 +63,6 @@ public enum PersonalityKeyword {
     R사("R사"),
     워더링하이츠("워더링하이츠"),
     와일드헌트("와일드헌트"),
-    BURN("화상"),
-    BLEED("출혈"),
-    TREMOR("진동"),
-    RUPTURE("파열"),
-    SINKING("침잠"),
-    POISE("호흡"),
-    CHARGE("충전"),
     ;
 
     private final String name;

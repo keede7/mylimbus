@@ -1,8 +1,8 @@
 package io.keede.mylimbus.domains.personality.service;
 
+import io.keede.mylimbus.domains.personality.entity.Affinity;
 import io.keede.mylimbus.domains.personality.entity.AttackType;
 import io.keede.mylimbus.domains.personality.entity.Personality;
-import io.keede.mylimbus.domains.personality.entity.PersonalityKeyword;
 import io.keede.mylimbus.domains.personality.entity.PersonalityRepository;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
@@ -12,8 +12,10 @@ import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author keede
@@ -73,35 +75,37 @@ public class PersonalityQueryService {
     }
 
     @Transactional(readOnly = true)
-    public Set<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
+    public List<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
         String personalityKRName = dto.personalityKRName();
-        List<PersonalityKeyword> attackKeyword = dto.toAttackKeyword();
-        List<AttackType> skillKeyword = dto.toSkillKeyword();
+        List<Affinity> affinities = dto.toAttackAffinities();
+        List<AttackType> skillTypes = dto.toSkillTypes();
 
         Set<Personality> response = new HashSet<>();
         List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName);
 
         System.out.println("personalities = " + personalities);
 
-        List<Personality> personalitiesByAttackKeywords = personalities.stream()
-                .filter(personality -> personality.isMatchKeyword(attackKeyword))
+        List<Personality> personalitiesByAffinities = personalities.stream()
+                .filter(personality -> personality.isMatchAffinity(affinities))
                 .toList();
 
-        System.out.println("personalitiesByAttackKeywords = " + personalitiesByAttackKeywords);
+        System.out.println("personalitiesByAffinities = " + personalitiesByAffinities);
 
-        List<Personality> personalitiesBySkillKeywords = personalities.stream()
-                .filter(personality -> personality.isMatchSkillType(skillKeyword))
+        List<Personality> personalitiesBySkillTypes = personalities.stream()
+                .filter(personality -> personality.isMatchSkillType(skillTypes))
                 .toList();
 
-        System.out.println("personalitiesBySkillKeywords = " + personalitiesBySkillKeywords);
+        System.out.println("personalitiesBySkillTypes = " + personalitiesBySkillTypes);
 
-        response.addAll(personalitiesBySkillKeywords);
-        response.addAll(personalitiesByAttackKeywords);
+        response.addAll(personalitiesByAffinities);
+        response.addAll(personalitiesBySkillTypes);
 
         return response
                 .stream()
+                .sorted(Comparator.comparing(Personality::getRarity).reversed()
+                        .thenComparing(Personality::getPersonalityName))
                 .map(Personality::toDto)
-                .collect(Collectors.toSet());
+                .toList();
     }
 
 }

@@ -1,5 +1,6 @@
 package io.keede.mylimbus.web.dto.response;
 
+import io.keede.mylimbus.domains.personality.entity.Affinity;
 import io.keede.mylimbus.domains.personality.entity.PersonalitySkill;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public record GetPersonalityResponseDto(
     PersonalitySkill firstSkill,
     PersonalitySkill secondSkill,
     PersonalitySkill thirdSkill,
+    Affinity affinity,
     Set<PassiveDto> passives,
 
     LocalDate releaseDate,

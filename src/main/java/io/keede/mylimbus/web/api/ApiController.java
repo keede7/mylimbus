@@ -6,10 +6,12 @@ import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 /**
 * @author keede
@@ -58,7 +60,7 @@ public class ApiController {
     }
 
     @GetMapping("/personality/filter")
-    public Set<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
+    public List<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
         System.out.println("getPersonalityFilter");
         System.out.println("dto = " + dto);
         return this.personalityQueryService.getPersonalityFilter(dto);
