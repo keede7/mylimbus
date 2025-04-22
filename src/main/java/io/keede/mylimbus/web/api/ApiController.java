@@ -4,12 +4,12 @@ import io.keede.mylimbus.domains.personality.service.PersonalityQueryService;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
+import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
 * @author keede
@@ -49,5 +49,18 @@ public class ApiController {
     public List<GetPersonalityResponseDto> getPersonalityByBaseName(RequestPersonalityByBaseName dto) {
         System.out.println("getPersonalityByBaseName...");
         return this.personalityQueryService.getPersonalityByBaseName(dto);
+    }
+
+    @GetMapping("/personality/{id}")
+    public GetPersonalityResponseDto getPersonality(@PathVariable("id") Long id) {
+        System.out.println("getPersonalityById");
+        return this.personalityQueryService.getPersonalityById(id);
+    }
+
+    @GetMapping("/personality/filter")
+    public Set<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
+        System.out.println("getPersonalityFilter");
+        System.out.println("dto = " + dto);
+        return this.personalityQueryService.getPersonalityFilter(dto);
     }
 }

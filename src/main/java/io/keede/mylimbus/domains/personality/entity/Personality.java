@@ -44,7 +44,7 @@ public class Personality {
     @AttributeOverrides(
             value = {
 //                    @AttributeOverride(name = "skillSequence", column = @Column(name = "first_skill_sequence")),
-                    @AttributeOverride(name = "sin", column = @Column(name = "first_skill_sin")),
+                    @AttributeOverride(name = "sinType", column = @Column(name = "first_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "first_skill_attack_type")),
             }
     )
@@ -54,7 +54,7 @@ public class Personality {
     @AttributeOverrides(
             value = {
 //                    @AttributeOverride(name = "skillSequence", column = @Column(name = "second_skill_sequence")),
-                    @AttributeOverride(name = "sin", column = @Column(name = "second_skill_sin")),
+                    @AttributeOverride(name = "sinType", column = @Column(name = "second_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "second_skill_attack_type")),
             }
     )
@@ -64,7 +64,7 @@ public class Personality {
     @AttributeOverrides(
             value = {
 //                    @AttributeOverride(name = "skillSequence", column = @Column(name = "third_skill_sequence")),
-                    @AttributeOverride(name = "sin", column = @Column(name = "third_skill_sin")),
+                    @AttributeOverride(name = "sinType", column = @Column(name = "third_skill_sin")),
                     @AttributeOverride(name = "attackType", column = @Column(name = "third_skill_attack_type")),
             }
     )
@@ -146,7 +146,7 @@ public class Personality {
                         .map(Passive::toDto)
                         .collect(Collectors.toSet()),
                 this.releaseDate,
-                "/sinners/yisang/125px-Effloresced_E.webp"
+                this.imgUrl
         );
     }
 
@@ -156,10 +156,28 @@ public class Personality {
                 .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
     }
 
+    public boolean isMatchKeyword(List<PersonalityKeyword> targetKeywords) {
+
+        for(PersonalityKeyword keyword : this.keywords) {
+            for (PersonalityKeyword targetKeyword : targetKeywords) {
+                if(keyword == targetKeyword) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public boolean isMatchSkillSin(Sin sin) {
         return this.firstSkill.isMatchSin(sin)
                 || this.secondSkill.isMatchSin(sin)
                 || this.thirdSkill.isMatchSin(sin);
+    }
+
+    public boolean isMatchSkillType(List<AttackType> attackTypes) {
+        return attackTypes.stream()
+                .anyMatch(s -> this.firstSkill.getAttackType() == s || this.secondSkill.getAttackType() == s || this.thirdSkill.getAttackType() == s);
     }
 
     public boolean isMatchName(String name) {

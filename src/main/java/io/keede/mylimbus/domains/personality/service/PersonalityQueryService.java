@@ -1,15 +1,19 @@
 package io.keede.mylimbus.domains.personality.service;
 
+import io.keede.mylimbus.domains.personality.entity.AttackType;
 import io.keede.mylimbus.domains.personality.entity.Personality;
+import io.keede.mylimbus.domains.personality.entity.PersonalityKeyword;
 import io.keede.mylimbus.domains.personality.entity.PersonalityRepository;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
+import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author keede
@@ -60,4 +64,44 @@ public class PersonalityQueryService {
                 .map(Personality::toDto)
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public GetPersonalityResponseDto getPersonalityById(Long id) {
+        return this.personalityRepository.findPersonalityById(id)
+                .map(Personality::toDto)
+                .orElseThrow(() -> new RuntimeException("없는 캐릭터입니다."));
+    }
+
+    @Transactional(readOnly = true)
+    public Set<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
+        String personalityKRName = dto.personalityKRName();
+        List<PersonalityKeyword> attackKeyword = dto.toAttackKeyword();
+        List<AttackType> skillKeyword = dto.toSkillKeyword();
+
+        Set<Personality> response = new HashSet<>();
+        List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName);
+
+        System.out.println("personalities = " + personalities);
+
+        List<Personality> personalitiesByAttackKeywords = personalities.stream()
+                .filter(personality -> personality.isMatchKeyword(attackKeyword))
+                .toList();
+
+        System.out.println("personalitiesByAttackKeywords = " + personalitiesByAttackKeywords);
+
+        List<Personality> personalitiesBySkillKeywords = personalities.stream()
+                .filter(personality -> personality.isMatchSkillType(skillKeyword))
+                .toList();
+
+        System.out.println("personalitiesBySkillKeywords = " + personalitiesBySkillKeywords);
+
+        response.addAll(personalitiesBySkillKeywords);
+        response.addAll(personalitiesByAttackKeywords);
+
+        return response
+                .stream()
+                .map(Personality::toDto)
+                .collect(Collectors.toSet());
+    }
+
 }
