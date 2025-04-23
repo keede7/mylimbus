@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import static io.keede.mylimbus.domains.Characters.*;
+import static io.keede.mylimbus.domains.personality.entity.Affinity.*;
 import static io.keede.mylimbus.domains.personality.entity.AttackType.*;
 import static io.keede.mylimbus.domains.personality.entity.PassiveCondition.*;
 import static io.keede.mylimbus.domains.personality.entity.PassiveType.*;
@@ -40,6 +41,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, SLASH),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, SLOTH, SLASH),
+                        NONE,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 4, MAIN, RESONANCE),
@@ -52,6 +54,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, SLASH),
                         new PersonalitySkill(2, WRATH, SLASH),
                         new PersonalitySkill(3, ENVY, SLASH),
+                        POISE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 4, MAIN, RESONANCE),
@@ -64,6 +67,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, GLUTTONY, PIERCE),
                         new PersonalitySkill(3, GLOOM, PIERCE),
+                        CHARGE,
                         "우울",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -76,6 +80,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, BLUNT),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, POSSESSION),
@@ -88,6 +93,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, PIERCE),
                         new PersonalitySkill(2, GLUTTONY, PIERCE),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        RUPTURE,
                        "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, RESONANCE),
@@ -100,6 +106,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, PIERCE),
                         new PersonalitySkill(2, SLOTH, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 3, MAIN, POSSESSION),
@@ -112,6 +119,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        BLEED,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 4, MAIN, POSSESSION),
@@ -124,6 +132,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, PIERCE),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        SINKING,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 3, MAIN, POSSESSION),
@@ -136,6 +145,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, PIERCE),
                         new PersonalitySkill(2, SLOTH, BLUNT),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        SINKING,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 4, MAIN, POSSESSION),
@@ -148,6 +158,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, PIERCE),
                         new PersonalitySkill(2, LUST, PIERCE),
                         new PersonalitySkill(3, SLOTH, PIERCE),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 4, MAIN, POSSESSION),
@@ -160,6 +171,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, SLOTH, PIERCE),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -172,6 +184,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, SLOTH, BLUNT),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        NONE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, RESONANCE),
@@ -184,6 +197,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, PIERCE),
                         new PersonalitySkill(2, LUST, PIERCE),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 4, MAIN, RESONANCE),
@@ -196,6 +210,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, SLASH),
                         new PersonalitySkill(2, GLOOM, SLASH),
                         new PersonalitySkill(3, GLUTTONY, SLASH),
+                        RUPTURE,
                         "색욕",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, RESONANCE),
@@ -208,6 +223,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        TREMOR,
                         "우울",
                         Set.of(
                                 new Passive(WRATH, 6, MAIN, POSSESSION),
@@ -220,6 +236,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, PRIDE, PIERCE),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        POISE,
                         "우울",
                         Set.of(
                                 new Passive(PRIDE, 4, MAIN, POSSESSION),
@@ -232,6 +249,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, SLASH),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, WRATH, SLASH),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 4, MAIN, POSSESSION),
@@ -244,6 +262,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        CHARGE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -256,6 +275,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BURN,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, POSSESSION),
@@ -268,6 +288,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, ENVY, SLASH),
+                        NONE,
                         "질투",
                         Set.of(
                                 new Passive(LUST, 2, MAIN, RESONANCE),
@@ -280,6 +301,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, PIERCE),
                         new PersonalitySkill(2, GLOOM, SLASH),
                         new PersonalitySkill(3, LUST, SLASH),
+                        NONE,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 4, MAIN, POSSESSION),
@@ -292,6 +314,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, GLOOM, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        CHARGE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 4, MAIN, POSSESSION),
@@ -304,6 +327,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, PIERCE),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        NONE,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, RESONANCE),
@@ -316,6 +340,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, ENVY, SLASH),
+                        CHARGE,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -328,6 +353,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, PRIDE, BLUNT),
+                        BLEED,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 4, MAIN, POSSESSION),
@@ -340,6 +366,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, ENVY, SLASH),
                         new PersonalitySkill(3, SLOTH, SLASH),
+                        POISE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, RESONANCE),
@@ -352,6 +379,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 5, MAIN, POSSESSION),
@@ -364,6 +392,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 4, MAIN, POSSESSION),
@@ -376,6 +405,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, PIERCE),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        BURN,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 2, MAIN, POSSESSION),
@@ -388,6 +418,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, PIERCE),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, POSSESSION),
@@ -400,6 +431,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, LUST, SLASH),
                         new PersonalitySkill(3, GLOOM, PIERCE),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -412,6 +444,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, ENVY, SLASH),
                         new PersonalitySkill(3, LUST, SLASH),
+                        POISE,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -424,6 +457,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, LUST, SLASH),
                         new PersonalitySkill(3, PRIDE, SLASH),
+                        NONE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, RESONANCE),
@@ -436,6 +470,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, ENVY, SLASH),
+                        CHARGE,
                         "색욕",
                         Set.of(
                                 new Passive(PRIDE, 5, MAIN, POSSESSION),
@@ -448,6 +483,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, LUST, SLASH),
+                        BURN,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 4, MAIN, POSSESSION),
@@ -460,6 +496,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, WRATH, SLASH),
+                        POISE,
                         "색욕",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, POSSESSION),
@@ -472,6 +509,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, GLOOM, BLUNT),
                         new PersonalitySkill(3, LUST, BLUNT),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, POSSESSION),
@@ -485,6 +523,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, GLUTTONY, SLASH),
                         new PersonalitySkill(3, PRIDE, SLASH),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, POSSESSION),
@@ -497,6 +536,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, GLUTTONY, SLASH),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 5, MAIN, POSSESSION),
@@ -509,6 +549,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        POISE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 2, MAIN, POSSESSION),
@@ -521,6 +562,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, PIERCE),
                         new PersonalitySkill(2, PRIDE, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, POSSESSION),
@@ -533,6 +575,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, LUST, SLASH),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 5, MAIN, POSSESSION),
@@ -545,6 +588,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, SLOTH, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 3, MAIN, RESONANCE),
@@ -557,6 +601,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        NONE,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 2, MAIN, POSSESSION),
@@ -569,6 +614,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, SLOTH, BLUNT),
                         new PersonalitySkill(3, WRATH, PIERCE),
+                        BURN,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 4, MAIN, POSSESSION),
@@ -581,6 +627,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BLEED,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -593,6 +640,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, WRATH, SLASH),
+                        POISE,
                         "질투",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, RESONANCE),
@@ -605,6 +653,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, SLOTH, PIERCE),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 2, MAIN, RESONANCE),
@@ -617,6 +666,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, GLUTTONY, PIERCE),
                         new PersonalitySkill(3, GLOOM, PIERCE),
+                        RUPTURE,
                         "우울",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, RESONANCE),
@@ -630,6 +680,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        CHARGE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 5, MAIN, POSSESSION),
@@ -642,6 +693,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        BLEED,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 4, MAIN, RESONANCE),
@@ -654,6 +706,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, SLASH),
                         new PersonalitySkill(2, GLOOM, SLASH),
                         new PersonalitySkill(3, PRIDE, SLASH),
+                        CHARGE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -666,6 +719,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(GLOOM, 5, MAIN, POSSESSION),
@@ -678,6 +732,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, BLUNT),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, RESONANCE),
@@ -690,6 +745,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, SLOTH, SLASH),
                         new PersonalitySkill(3, LUST, BLUNT),
+                        NONE,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 2, MAIN, RESONANCE),
@@ -702,6 +758,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, SLASH),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, SLOTH, SLASH),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 5, MAIN, POSSESSION),
@@ -714,6 +771,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, PIERCE),
                         new PersonalitySkill(2, LUST, PIERCE),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        BLEED,
                         "오만",
                         Set.of(
                                 new Passive(LUST, 5, MAIN, POSSESSION),
@@ -726,6 +784,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, GLOOM, SLASH),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -738,6 +797,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, SLOTH, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 6, MAIN, POSSESSION),
@@ -750,6 +810,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        POISE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 5, MAIN, POSSESSION),
@@ -762,6 +823,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, SLASH),
+                        CHARGE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, POSSESSION),
@@ -774,6 +836,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BURN,
                         "우울",
                         Set.of(
                                 new Passive(WRATH, 4, MAIN, POSSESSION),
@@ -786,6 +849,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        RUPTURE,
                         "분노",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -798,6 +862,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, SLOTH, SLASH),
+                        BLEED,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 3, MAIN, RESONANCE),
@@ -810,6 +875,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, SLASH),
                         new PersonalitySkill(2, LUST, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, SLASH),
+                        BLEED,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 2, MAIN, RESONANCE),
@@ -822,6 +888,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, LUST, BLUNT),
+                        NONE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 4, MAIN, RESONANCE),
@@ -834,6 +901,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, PIERCE),
                         new PersonalitySkill(2, GLUTTONY, PIERCE),
                         new PersonalitySkill(3, ENVY, PIERCE),
+                        CHARGE,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -846,6 +914,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, SLASH),
+                        RUPTURE,
                         "분노",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -858,6 +927,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, ENVY, PIERCE),
+                        BLEED,
                         "분노",
                         Set.of(
                                 new Passive(ENVY, 5, MAIN, POSSESSION),
@@ -870,6 +940,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        CHARGE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -894,6 +965,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, PIERCE),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        POISE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, RESONANCE),
@@ -906,6 +978,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, LUST, SLASH),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, RESONANCE),
@@ -918,6 +991,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, ENVY, SLASH),
+                        POISE,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -930,6 +1004,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, PIERCE),
                         new PersonalitySkill(2, GLOOM, BLUNT),
                         new PersonalitySkill(3, LUST, BLUNT),
+                        BLEED,
                         "우울",
                         Set.of(
                                 new Passive(ENVY, 2, MAIN, POSSESSION),
@@ -942,6 +1017,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, GLOOM, BLUNT),
                         new PersonalitySkill(3, SLOTH, PIERCE),
+                        SINKING,
                         "분노",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -954,6 +1030,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, BLUNT),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        NONE,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, POSSESSION),
@@ -966,6 +1043,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, ENVY, BLUNT),
+                        BURN,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -978,6 +1056,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, PIERCE),
                         new PersonalitySkill(2, PRIDE, PIERCE),
                         new PersonalitySkill(3, WRATH, PIERCE),
+                        BLEED,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, RESONANCE),
@@ -990,6 +1069,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, GLUTTONY, BLUNT),
+                        TREMOR,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 5, MAIN, POSSESSION),
@@ -1002,6 +1082,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, LUST, SLASH),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, RESONANCE),
@@ -1014,6 +1095,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        CHARGE,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -1026,6 +1108,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, GLUTTONY, SLASH),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 5, MAIN, POSSESSION),
@@ -1038,6 +1121,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, GLOOM, BLUNT),
                         new PersonalitySkill(3, PRIDE, BLUNT),
+                        TREMOR,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, RESONANCE),
@@ -1050,6 +1134,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, PIERCE),
                         new PersonalitySkill(2, LUST, SLASH),
                         new PersonalitySkill(3, WRATH, SLASH),
+                        POISE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 2, MAIN, POSSESSION),
@@ -1062,6 +1147,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, GLUTTONY, BLUNT),
+                        TREMOR,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, POSSESSION),
@@ -1074,6 +1160,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, SLOTH, PIERCE),
                         new PersonalitySkill(3, GLOOM, PIERCE),
+                        SINKING,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, POSSESSION),
@@ -1086,6 +1173,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, WRATH, SLASH),
+                        NONE,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 5, MAIN, POSSESSION),
@@ -1098,6 +1186,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 5, MAIN, POSSESSION),
@@ -1110,6 +1199,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, WRATH, SLASH),
                         new PersonalitySkill(3, GLUTTONY, SLASH),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -1122,6 +1212,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, POSSESSION),
@@ -1136,6 +1227,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, ENVY, BLUNT),
+                        NONE,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, RESONANCE),
@@ -1148,6 +1240,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BLEED,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 5, MAIN, POSSESSION),
@@ -1160,6 +1253,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, SLASH),
                         new PersonalitySkill(2, LUST, SLASH),
                         new PersonalitySkill(3, PRIDE, SLASH),
+                        BLEED,
                         "오만",
                         Set.of(
                                 new Passive(LUST, 4, MAIN, POSSESSION),
@@ -1172,6 +1266,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, ENVY, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(PRIDE, 4, MAIN, POSSESSION),
@@ -1184,6 +1279,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, BLUNT),
                         new PersonalitySkill(2, SLOTH, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        POISE,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, POSSESSION),
@@ -1196,6 +1292,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        BURN,
                         "분노",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -1208,6 +1305,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, ENVY, SLASH),
+                        NONE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, RESONANCE),
@@ -1220,6 +1318,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BURN,
                         "오만",
                         Set.of(
                                 new Passive(WRATH, 2, MAIN, POSSESSION),
@@ -1232,6 +1331,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, PIERCE),
                         new PersonalitySkill(2, PRIDE, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        POISE,
                         "탐식",
                         Set.of(
                                 new Passive(PRIDE, 5, MAIN, POSSESSION),
@@ -1244,6 +1344,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, SLASH),
                         new PersonalitySkill(2, ENVY, SLASH),
                         new PersonalitySkill(3, WRATH, PIERCE),
+                        BURN,
                         "색욕",
                         Set.of(
                                 new Passive(WRATH, 5, MAIN, POSSESSION),
@@ -1256,6 +1357,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -1268,6 +1370,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -1280,6 +1383,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, PIERCE),
                         new PersonalitySkill(2, WRATH, SLASH),
                         new PersonalitySkill(3, PRIDE, SLASH),
+                        POISE,
                         "분노",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, RESONANCE),
@@ -1292,6 +1396,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        TREMOR,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 2, MAIN, RESONANCE),
@@ -1304,6 +1409,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, ENVY, BLUNT),
+                        BLEED,
                         "질투",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -1316,6 +1422,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, RESONANCE),
@@ -1328,6 +1435,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLOOM, BLUNT),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        TREMOR,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 4, MAIN, POSSESSION),
@@ -1340,6 +1448,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, GLOOM, SLASH),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 5, MAIN, POSSESSION),
@@ -1352,6 +1461,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, PRIDE, SLASH),
                         new PersonalitySkill(3, GLOOM, PIERCE),
+                        NONE,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 4, MAIN, POSSESSION),
@@ -1364,6 +1474,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        TREMOR,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 5, MAIN, POSSESSION),
@@ -1376,6 +1487,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, PRIDE, PIERCE),
+                        BURN,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, POSSESSION),
@@ -1388,6 +1500,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, GLOOM, BLUNT),
                         new PersonalitySkill(3, LUST, BLUNT),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -1400,6 +1513,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, PIERCE),
                         new PersonalitySkill(2, WRATH, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 4, MAIN, POSSESSION),
@@ -1412,6 +1526,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, ENVY, BLUNT),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        CHARGE,
                         "오만",
                         Set.of(
                                 new Passive(ENVY, 3, MAIN, POSSESSION),
@@ -1424,6 +1539,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, LUST, SLASH),
                         new PersonalitySkill(3, WRATH, SLASH),
+                        BLEED,
                         "탐식",
                         Set.of(
                                 new Passive(LUST, 3, MAIN, RESONANCE),
@@ -1436,6 +1552,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, GLUTTONY, SLASH),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 3, MAIN, POSSESSION),
@@ -1448,6 +1565,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, PRIDE, PIERCE),
                         new PersonalitySkill(2, GLOOM, PIERCE),
                         new PersonalitySkill(3, LUST, PIERCE),
+                       POISE,
                        "오만",
                         Set.of(
                                 new Passive(PRIDE, 3, MAIN, POSSESSION),
@@ -1460,6 +1578,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, LUST, PIERCE),
                         new PersonalitySkill(3, PRIDE, SLASH),
+                        POISE,
                         "오만",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, RESONANCE),
@@ -1472,6 +1591,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, GLUTTONY, BLUNT),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        SINKING,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 2, MAIN, RESONANCE),
@@ -1480,10 +1600,24 @@ public class PersonalityInitializer {
                         LocalDate.of(2023, 2,27),
                         "/sinners/outis/125px-G_Corp.webp"
                 ),// 나태2공명, 나태4보유, 230227
+                new Personality(3, OUTIS,"남부 세븐 협회 6과 오티스", List.of(해결사, 세븐_협회),
+                        new PersonalitySkill(1, GLUTTONY, BLUNT),
+                        new PersonalitySkill(2, SLOTH, SLASH),
+                        new PersonalitySkill(3, LUST, BLUNT),
+                        RUPTURE,
+                        "탐식",
+                        Set.of(
+                                new Passive(GLUTTONY, 3, MAIN, RESONANCE),
+                                new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2023, 4,6),
+                        "/sinners/outis/125px-Seven_Assoc.webp"
+                ),// 탐식3공명, 탐식4보유, 230406
                 new Personality(1, GREGOR, "LCB 수감자 그레고르", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, GLOOM, SLASH),
                         new PersonalitySkill(2, GLUTTONY, PIERCE),
                         new PersonalitySkill(3, SLOTH, PIERCE),
+                        NONE,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, POSSESSION),
@@ -1496,6 +1630,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, BLUNT),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, SLOTH, BLUNT),
+                        BURN,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 3, MAIN, POSSESSION),
@@ -1508,6 +1643,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, PRIDE, PIERCE),
                         new PersonalitySkill(3, GLOOM, PIERCE),
+                        POISE,
                         "우울",
                         Set.of(
                                 new Passive(PRIDE, 2, MAIN, POSSESSION),
@@ -1520,6 +1656,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, ENVY, SLASH),
                         new PersonalitySkill(2, GLOOM, SLASH),
                         new PersonalitySkill(3, LUST, SLASH),
+                        SINKING,
                         "우울",
                         Set.of(
                                 new Passive(GLOOM, 3, MAIN, RESONANCE),
@@ -1532,6 +1669,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, BLUNT),
                         new PersonalitySkill(2, PRIDE, BLUNT),
                         new PersonalitySkill(3, LUST, BLUNT),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(LUST, 5, MAIN, POSSESSION),
@@ -1544,6 +1682,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, LUST, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
                         new PersonalitySkill(3, WRATH, BLUNT),
+                        BURN,
                         "우울",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -1556,6 +1695,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, SLOTH, SLASH),
                         new PersonalitySkill(3, LUST, PIERCE),
+                        RUPTURE,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -1568,6 +1708,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, LUST, BLUNT),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        BLEED,
                         "색욕",
                         Set.of(
                                 new Passive(WRATH, 3, MAIN, RESONANCE),
@@ -1580,6 +1721,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        TREMOR,
                         "탐식",
                         Set.of(
                                 new Passive(GLUTTONY, 4, MAIN, POSSESSION),
@@ -1592,6 +1734,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, GLUTTONY, SLASH),
                         new PersonalitySkill(3, GLOOM, SLASH),
+                        NONE,
                         "나태",
                         Set.of(
                                 new Passive(SLOTH, 5, MAIN, POSSESSION),

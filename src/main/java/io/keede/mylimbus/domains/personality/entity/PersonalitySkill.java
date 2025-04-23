@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public final class PersonalitySkill {
 
-//    private int skillSequence;
-
     private Sin sinType;
 
     private AttackType attackType;
@@ -25,7 +23,6 @@ public final class PersonalitySkill {
             Sin sinType,
             AttackType attackType
     ) {
-//        this.skillSequence = skillSequence;
         this.sinType = sinType;
         this.attackType = attackType;
     }
