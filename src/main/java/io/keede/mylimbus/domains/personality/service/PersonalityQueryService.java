@@ -1,9 +1,6 @@
 package io.keede.mylimbus.domains.personality.service;
 
-import io.keede.mylimbus.domains.personality.entity.Affinity;
-import io.keede.mylimbus.domains.personality.entity.AttackType;
-import io.keede.mylimbus.domains.personality.entity.Personality;
-import io.keede.mylimbus.domains.personality.entity.PersonalityRepository;
+import io.keede.mylimbus.domains.personality.entity.*;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
@@ -77,28 +74,18 @@ public class PersonalityQueryService {
     @Transactional(readOnly = true)
     public List<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
         String personalityKRName = dto.personalityKRName();
-        List<Affinity> affinities = dto.toAttackAffinities();
+        List<Affinity> affinities = dto.toAffinitiesEffects();
         List<AttackType> skillTypes = dto.toSkillTypes();
+        List<Sin> skillSinAttributes = dto.toSkillSin();
 
-        Set<Personality> response = new HashSet<>();
-        List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName);
-
-        System.out.println("personalities = " + personalities);
-
-        List<Personality> personalitiesByAffinities = personalities.stream()
+        List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName)
+                .stream()
                 .filter(personality -> personality.isMatchAffinity(affinities))
-                .toList();
-
-        System.out.println("personalitiesByAffinities = " + personalitiesByAffinities);
-
-        List<Personality> personalitiesBySkillTypes = personalities.stream()
                 .filter(personality -> personality.isMatchSkillType(skillTypes))
+                .filter(personality -> personality.isMatchSkillSin(skillSinAttributes))
                 .toList();
 
-        System.out.println("personalitiesBySkillTypes = " + personalitiesBySkillTypes);
-
-        response.addAll(personalitiesByAffinities);
-        response.addAll(personalitiesBySkillTypes);
+        Set<Personality> response = new HashSet<>(personalities);
 
         return response
                 .stream()

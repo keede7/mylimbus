@@ -327,8 +327,10 @@
         }
 
         .checkbox-custom img {
-            width: 20px;
-            height: 20px;
+            /*width: 20px;*/
+            /*height: 20px;*/
+            size: 25px;
+            width: 25px;
             margin-right: 5px;
         }
 
@@ -681,22 +683,78 @@
                         <label class="filter-checkbox">
                             <input type="checkbox" name="skillType" value="SLASH">
                             <span class="checkbox-custom">
-                            <img th:src="@{/attribute/slash.webp}" style="size: 25px; width: 25px;" alt="참격">
+                            <img th:src="@{/attribute/slash.webp}" alt="참격">
                             <span class="filter-text">참격</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" name="skillType" value="PIERCE">
                             <span class="checkbox-custom">
-                            <img th:src="@{/attribute/pierce.webp}" style="size: 25px; width: 25px;" alt="관통">
+                            <img th:src="@{/attribute/pierce.webp}" alt="관통">
                             <span class="filter-text">관통</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" name="skillType" value="BLUNT">
                             <span class="checkbox-custom">
-                            <img th:src="@{/attribute/blunt.webp}" style="size: 25px; width: 25px;" alt="타격">
+                            <img th:src="@{/attribute/blunt.webp}" alt="타격">
                             <span class="filter-text">타격</span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- New Filter Group for Skill Attributes -->
+                <div class="filter-group">
+                    <div>스킬속성</div>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="WRATH">
+                            <span class="checkbox-custom">
+                            <img  data- th:src="@{/sin/wrath.webp}" alt="분노">
+                            <span class="filter-text">분노</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="LUST">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/lust.webp}" alt="색욕">
+                            <span class="filter-text">색욕</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="SLOTH">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/sloth.webp}"  alt="나태">
+                            <span class="filter-text">나태</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="GLUTTONY">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/gluttony.webp}" alt="탐식">
+                            <span class="filter-text">탐식</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="GLOOM">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/gloom.webp}"  alt="우울">
+                            <span class="filter-text">우울</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="PRIDE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/pride.webp}" alt="오만">
+                            <span class="filter-text">오만</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="ENVY">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/envy.webp}" alt="질투">
+                            <span class="filter-text">질투</span>
                         </span>
                         </label>
                     </div>
@@ -894,33 +952,8 @@
 
             // Close the modal
             closeCharacterModal();
-
-            // Send update to server (optional)
-            // updateCharacterSelection(character.id, originalCharacterSlot.getAttribute('data-position'));
         }
     }
-
-
-    // // Function to update character selection on the server
-    // function updateCharacterSelection(characterId, position) {
-    //     fetch('/api/characters/update-selection', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             characterId: characterId,
-    //             position: position
-    //         })
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log('Character selection updated:', data);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error updating character selection:', error);
-    //         });
-    // }
 
     // 스킬 카운트 증가 함수
     function increaseSkillCounts(character) {
@@ -1015,10 +1048,8 @@
         }
     };
 
-    // Function to handle character filtering
     function filterCharacters() {
         // Get all selected keywords
-
         const modalGrid = document.getElementById('modalCharacterGrid');
         const personalityKRName = modalGrid.getAttribute('data-kr-name');
 
@@ -1026,13 +1057,16 @@
             document.querySelectorAll('input[name="affinity"]:checked')
         ).map(checkbox => checkbox.value);
 
-        console.log(selectedKeywords)
         // Get all selected attack types
         const selectedSkillTypes = Array.from(
             document.querySelectorAll('input[name="skillType"]:checked')
         ).map(checkbox => checkbox.value);
 
-        console.log(selectedSkillTypes)
+        // Get all selected skill sin attributes - Added new code here
+        const selectedSkillSins = Array.from(
+            document.querySelectorAll('input[name="skillSin"]:checked')
+        ).map(checkbox => checkbox.value);
+
         // Build query parameters
         const queryParams = new URLSearchParams();
 
@@ -1046,11 +1080,13 @@
             queryParams.append('personalitySkillTypes', selectedSkillTypes.join(','));
         }
 
-        console.log("queryParams..");
-        console.log(queryParams);
+        // Add the skillSin parameters - Added new code here
+        if (selectedSkillSins.length > 0) {
+            queryParams.append('personalitySkillSins', selectedSkillSins.join(','));
+        }
 
         // Only proceed if we have filters selected
-        if (selectedKeywords.length > 0 || selectedSkillTypes.length > 0) {
+        if (selectedKeywords.length > 0 || selectedSkillTypes.length > 0 || selectedSkillSins.length > 0) {
             // Clear existing grid
             const modalGrid = document.getElementById('modalCharacterGrid');
             modalGrid.innerHTML = '<p>데이터를 불러오는 중...</p>';
@@ -1108,29 +1144,6 @@
             gridElement.appendChild(li);
         });
     }
-
-    // Event listeners for filter buttons
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     // Apply filters button
-    //     const applyButton = document.getElementById('applyFilters');
-    //     if (applyButton) {
-    //         applyButton.addEventListener('click', filterCharacters);
-    //     }
-    //
-    //     // Reset filters button
-    //     const resetButton = document.getElementById('resetFilters');
-    //     if (resetButton) {
-    //         resetButton.addEventListener('click', function() {
-    //             // Uncheck all checkboxes
-    //             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-    //                 checkbox.checked = false;
-    //             });
-    //
-    //             // Reset to original data
-    //             fetchAlternativeCharacters(currentPersonalityId, currentBaseNameKor);
-    //         });
-    //     }
-    // });
 
 </script>
 </body>

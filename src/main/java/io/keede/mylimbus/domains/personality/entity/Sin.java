@@ -30,6 +30,13 @@ public enum Sin {
                 .orElse(null);
     }
 
+    public static Sin match(Sin type) {
+        return Arrays.stream(values())
+                .filter(sin -> sin == type)
+                .findFirst()
+                .orElse(null);
+    }
+
     public String getType() {
         return this.type;
     }

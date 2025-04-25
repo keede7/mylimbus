@@ -2,6 +2,7 @@ package io.keede.mylimbus.web.dto.request;
 
 import io.keede.mylimbus.domains.personality.entity.Affinity;
 import io.keede.mylimbus.domains.personality.entity.AttackType;
+import io.keede.mylimbus.domains.personality.entity.Sin;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,10 +16,11 @@ import java.util.Objects;
 public record RequestPersonalityFilterDto(
         String personalityKRName,
         Affinity[] personalityAffinities,
-        AttackType[] personalitySkillTypes
+        AttackType[] personalitySkillTypes,
+        Sin[] personalitySkillSins
 ) {
 
-    public List<Affinity> toAttackAffinities() {
+    public List<Affinity> toAffinitiesEffects() {
         if(this.personalityAffinities == null || this.personalityAffinities.length == 0) {
             return Collections.emptyList();
         }
@@ -36,6 +38,17 @@ public record RequestPersonalityFilterDto(
 
         return Arrays.stream(this.personalitySkillTypes)
                 .map(AttackType::match)
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    public List<Sin> toSkillSin() {
+        if(this.personalitySkillSins == null || this.personalitySkillSins.length == 0) {
+            return Collections.emptyList();
+        }
+
+        return Arrays.stream(this.personalitySkillSins)
+                .map(Sin::match)
                 .filter(Objects::nonNull)
                 .toList();
     }
