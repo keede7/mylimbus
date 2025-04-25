@@ -1,0 +1,422 @@
+/* Main Layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "main sidebar";
+    height: 100vh;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Header Styles */
+.game-header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #303030, #1a1a1a);
+    border-bottom: 2px solid #c0945c;
+}
+
+.nav-title {
+    display: flex;
+    align-items: center;
+}
+
+.nav-title h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #e0e0e0;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.edit-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-button,
+.detail-button {
+    padding: 8px 15px;
+    background-color: #2a2a2a;
+    border: 1px solid #c0945c;
+    color: #e0e0e0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Main Content Area */
+.character-selection {
+    grid-area: main;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #161616;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.character-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.character-card:hover {
+    transform: scale(1.05);
+}
+
+.character-frame {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #2a2a2a;
+}
+
+/* Different rarity borders */
+.character-frame.r3 {
+    border-color: #ff9900; /* Gold for high rarity */
+    background: linear-gradient(to bottom, #332200, #221100);
+}
+
+.character-frame.r2 {
+    border-color: #ff3300; /* Red for medium rarity */
+    background: linear-gradient(to bottom, #331100, #220a00);
+}
+
+.character-frame.r1 {
+    border-color: #9966cc; /* Purple for basic rarity */
+    background: linear-gradient(to bottom, #221133, #110a22);
+}
+
+.character-frame img {
+    width: 100%;
+    height: 250px;
+    display: block;
+}
+
+.character-rarity {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.character-type {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #c0945c;
+    padding: 3px 0;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.character-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Resources Panel */
+.resources-panel {
+    grid-area: sidebar;
+    /*padding: 20px;*/
+    /* 25-04-22 수정 */
+    padding: 15px 10px; /* 패딩 줄임 */
+    background-color: #1c1c1c;
+    border-left: 1px solid #333;
+}
+
+.ego-support {
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #e0e0e0;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ego-title {
+    display: block;
+}
+
+.ego-count {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: normal;
+    color: #bbbbbb;
+}
+
+.resource-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    /* 25-04-22 수정 */
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+}
+
+.resource-item img {
+    width: 24px;
+    height: 24px;
+    /*margin-right: 10px;*/
+    /* 25-04-22 수정 */
+    margin-right: 0; /* 오른쪽 마진 제거 */
+}
+
+.resource-count {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    /* 25-04-22 수정 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #1a1a1a;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid #c0945c;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 900px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #c0945c;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Filter styles */
+.filter-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #252525;
+    border-radius: 8px;
+    border: 1px solid #3a3a3a;
+}
+
+.filter-section {
+    margin-bottom: 15px;
+}
+
+.filter-section h3 {
+    color: #c0945c;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px 0px;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-custom {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.checkbox-custom img {
+    /*width: 20px;*/
+    /*height: 20px;*/
+    size: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+
+.filter-text {
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* Checked state styling */
+.filter-checkbox input:checked + .checkbox-custom {
+    background-color: #493e2d;
+    border-color: #c0945c;
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.filter-button {
+    padding: 8px 16px;
+    background-color: #c0945c;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+    background-color: #d6a567;
+}
+
+.filter-button.reset {
+    background-color: #444;
+    color: #ddd;
+}
+
+.filter-button.reset:hover {
+    background-color: #555;
+}
+
+.modal-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .game-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar";
+    }
+
+    .character-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+/* 푸터 스타일 */
+.wiki-footer {
+    background-color: var(--header-bg-color);
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    color: var(--link-color);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    color: #7a7a7a;
+    font-size: 0.8rem;
+}
