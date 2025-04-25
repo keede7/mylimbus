@@ -202,6 +202,15 @@ public class Personality {
                 || this.thirdSkill.isMatchSin(sin);
     }
 
+    public boolean isMatchSkillSin(List<Sin> sins) {
+        if(sins.isEmpty()) {
+            return true;
+        }
+
+        return sins.stream()
+                .anyMatch(this::isMatchSkillSin);
+    }
+
     public boolean isMatchSkillType(List<AttackType> attackTypes) {
         if(attackTypes.isEmpty()) {
             return true;
