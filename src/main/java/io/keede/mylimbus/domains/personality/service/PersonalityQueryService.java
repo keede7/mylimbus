@@ -80,25 +80,13 @@ public class PersonalityQueryService {
         List<Affinity> affinities = dto.toAttackAffinities();
         List<AttackType> skillTypes = dto.toSkillTypes();
 
-        Set<Personality> response = new HashSet<>();
-        List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName);
-
-        System.out.println("personalities = " + personalities);
-
-        List<Personality> personalitiesByAffinities = personalities.stream()
+        List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName)
+                .stream()
                 .filter(personality -> personality.isMatchAffinity(affinities))
-                .toList();
-
-        System.out.println("personalitiesByAffinities = " + personalitiesByAffinities);
-
-        List<Personality> personalitiesBySkillTypes = personalities.stream()
                 .filter(personality -> personality.isMatchSkillType(skillTypes))
                 .toList();
 
-        System.out.println("personalitiesBySkillTypes = " + personalitiesBySkillTypes);
-
-        response.addAll(personalitiesByAffinities);
-        response.addAll(personalitiesBySkillTypes);
+        Set<Personality> response = new HashSet<>(personalities);
 
         return response
                 .stream()

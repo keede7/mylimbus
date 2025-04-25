@@ -188,6 +188,10 @@ public class Personality {
     }
 
     public boolean isMatchAffinity(List<Affinity> targetAffinities) {
+        if(targetAffinities.isEmpty()) {
+            return true;
+        }
+
         return targetAffinities.stream()
                 .anyMatch(targetAffinity -> this.affinity == targetAffinity);
     }
@@ -199,6 +203,10 @@ public class Personality {
     }
 
     public boolean isMatchSkillType(List<AttackType> attackTypes) {
+        if(attackTypes.isEmpty()) {
+            return true;
+        }
+
         return attackTypes.stream()
                 .anyMatch(s -> this.firstSkill.getAttackType() == s || this.secondSkill.getAttackType() == s || this.thirdSkill.getAttackType() == s);
     }
