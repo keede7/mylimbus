@@ -23,7 +23,6 @@
             <li class="character-card" th:data-kr-name="이상" th:data-type="YiSang" onclick="openCharacterModal(this)">
                 <div class="character-frame character-frame r1">
                     <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이상</div>
                 </div>
@@ -31,7 +30,6 @@
             <li class="character-card " th:data-kr-name="파우스트" th:data-type="Faust" onclick="openCharacterModal(this)">
                 <div class="character-frame faust character-frame r1">
                     <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >파우스트</div>
                 </div>
@@ -39,7 +37,6 @@
             <li class="character-card " th:data-kr-name="돈키호테" th:data-type="Donquixote" onclick="openCharacterModal(this)">
                 <div class="character-frame donquixote character-frame r1">
                     <img th:src="@{/sinners/donquixote/112px-Donquixote03.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >돈키호테</div>
                 </div>
@@ -47,7 +44,6 @@
             <li class="character-card " th:data-kr-name="료슈" th:data-type="Ryoshu" onclick="openCharacterModal(this)">
                 <div class="character-frame ryoshu character-frame r1">
                     <img th:src="@{/sinners/ryoshu/112px-Ryoshu04.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >료슈</div>
                 </div>
@@ -55,7 +51,6 @@
             <li class="character-card " th:data-kr-name="뫼르소" th:data-type="Meursault" onclick="openCharacterModal(this)">
                 <div class="character-frame meursault character-frame r1">
                     <img th:src="@{/sinners/meursault/112px-Meursault05.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >뫼르소</div>
                 </div>
@@ -63,7 +58,6 @@
             <li class="character-card " th:data-kr-name="홍루" th:data-type="Honglu" onclick="openCharacterModal(this)">
                 <div class="character-frame honglu character-frame r1">
                     <img th:src="@{/sinners/honglu/112px-Honglu06.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >홍루</div>
                 </div>
@@ -71,7 +65,6 @@
             <li class="character-card " th:data-kr-name="히스클리프" th:data-type="Heathcliff" onclick="openCharacterModal(this)">
                 <div class="character-frame heathcliff character-frame r1">
                     <img th:src="@{/sinners/heathcliff/112px-Heathcliff07.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >히스클리프</div>
                 </div>
@@ -79,7 +72,6 @@
             <li class="character-card " th:data-kr-name="이스마엘" th:data-type="Ishmael" onclick="openCharacterModal(this)">
                 <div class="character-frame ishmael character-frame r1">
                     <img th:src="@{/sinners/ishmael/112px-Ishmael08.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이스마엘</div>
                 </div>
@@ -87,7 +79,6 @@
             <li class="character-card " th:data-kr-name="로쟈" th:data-type="Rodion" onclick="openCharacterModal(this)">
                 <div class="character-frame rodion character-frame r1">
                     <img th:src="@{/sinners/rodion/112px-Rodion09.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >로쟈</div>
                 </div>
@@ -95,7 +86,6 @@
             <li class="character-card " th:data-kr-name="싱클레어" th:data-type="Sinclair" onclick="openCharacterModal(this)">
                 <div class="character-frame sinclair character-frame r1">
                     <img th:src="@{/sinners/sinclair/112px-Sinclair11.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >싱클레어</div>
                 </div>
@@ -103,7 +93,6 @@
             <li class="character-card " th:data-kr-name="오티스" th:data-type="Outis" onclick="openCharacterModal(this)">
                 <div class="character-frame outis character-frame r1">
                     <img th:src="@{/sinners/outis/112px-Outis12.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >오티스</div>
                 </div>
@@ -111,12 +100,36 @@
             <li class="character-card " th:data-kr-name="그레고르" th:data-type="Gregor" onclick="openCharacterModal(this)">
                 <div class="character-frame gregor character-frame r1">
                     <img th:src="@{/sinners/gregor/112px-Gregor13.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >그레고르</div>
                 </div>
             </li>
         </ul>
+
+        <!-- 구분선 -->
+        <div class="separator"></div>
+
+        <!-- 새로운 특별 카드 그리드 -->
+        <ul class="character-grid">
+            <li class="character-card">
+                <div class="special-card">
+                    <div class="special-card-header">
+                        <div class="card-symbol"></div>
+                        <div class="card-icon">
+                            <img th:src="@{/sin/Envy.webp}" alt="Envy Icon">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row">오감도 III</div>
+                        <div class="letter-row">ㅇ</div>
+                        <div class="letter-row">ㄱ</div>
+                        <div class="letter-row">ㅗ</div>
+                        <div class="letter-row">ㅁ</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
     </main>
 
     <!-- Right Sidebar - Resources -->
