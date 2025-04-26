@@ -110,15 +110,15 @@
     box-shadow: 0 0 50px rgba(192, 148, 92, 0.5);
 }
 
-/* 모달 내부 레이아웃 */
+/* 모달 내부 레이아웃 - 조정된 그리드 */
 .ego-modal-inner {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 2fr;  /* 오른쪽 열을 고정 너비로 */
+    grid-template-rows: auto 1fr;   /* 두 행 모두 250px 고정 */
     grid-template-areas:
         "frame identity"
         "frame egolist";
-    gap: 20px;
+    gap: 15px;
     height: 70vh;
 }
 
@@ -131,7 +131,7 @@
     padding: 20px;
 }
 
-/* 인격 사진영역 - 크기 조정 및 오른쪽 정렬 */
+/* 인격 사진영역 */
 .identity-area {
     grid-area: identity;
     background-color: #1a1a1a;
@@ -140,7 +140,6 @@
     padding: 10px;
     width: 250px;
     height: 300px;
-    margin-left: auto;  /* 오른쪽 정렬을 위해 추가 */
 }
 
 .identity-header {
@@ -165,7 +164,7 @@
     object-fit: cover;
 }
 
-/* E.G.O 목록 영역 - 크기 조정 및 오른쪽 정렬 */
+/* E.G.O 목록 영역 */
 .ego-list-area {
     grid-area: egolist;
     background-color: #1a1a1a;
@@ -174,7 +173,6 @@
     padding: 10px;
     width: 250px;
     height: 250px;
-    margin-left: auto;  /* 오른쪽 정렬을 위해 추가 */
 }
 
 .ego-list-header {
