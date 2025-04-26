@@ -255,6 +255,7 @@ document.querySelectorAll('.character-card').forEach(card => {
 // Close modal when clicking outside of it
 window.onclick = function (event) {
     const modal = document.getElementById('characterModal');
+    console.log(event.target === modal)
     if (event.target === modal) {
         closeCharacterModal();
     }

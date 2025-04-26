@@ -112,24 +112,23 @@
         <!-- 새로운 특별 카드 그리드 -->
         <ul class="character-grid">
             <li class="character-card">
-                <div class="special-card">
+                <div class="special-card" onclick="openEGOModal()">
                     <div class="special-card-header">
-                        <div class="card-symbol"></div>
+                        <!-- card-symbol 제거 -->
                         <div class="card-icon">
                             <img th:src="@{/sin/Envy.webp}" alt="Envy Icon">
                         </div>
                     </div>
                     <div class="korean-letters">
-                        <div class="letter-row">오감도 III</div>
-                        <div class="letter-row">ㅇ</div>
-                        <div class="letter-row">ㄱ</div>
-                        <div class="letter-row">ㅗ</div>
-                        <div class="letter-row">ㅁ</div>
+                        <div class="letter-row">ZAYIN</div>    <!-- 오감도 III에서 변경 -->
+                        <div class="letter-row">HE</div>       <!-- ㅇ에서 변경 -->
+                        <div class="letter-row">TETH</div>     <!-- ㄱ에서 변경 -->
+                        <div class="letter-row">WAW</div>      <!-- ㅗ에서 변경 -->
+                        <div class="letter-row">ALPRE</div>    <!-- ㅁ에서 변경 -->
                     </div>
                 </div>
             </li>
         </ul>
-
     </main>
 
     <!-- Right Sidebar - Resources -->
@@ -185,6 +184,84 @@
             </li>
         </ul>
     </aside>
+
+    <!-- E.G.O Modal -->
+    <div id="egoModal" class="ego-modal">
+        <div class="ego-modal-content">
+            <span class="close-button" onclick="closeEGOModal()">&times;</span>
+            <div class="ego-modal-inner">
+                <!-- 1. E.G.O 프레임 영역 (좌측) -->
+                <div class="ego-frame-area">
+                    <div class="ego-grid">
+                        <div class="ego-card">
+                            <div class="ego-frame">
+                                <div class="ego-effect"></div>
+                                <div class="ego-circle">
+                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}" alt="어우러">
+                                </div>
+                                <div class="ego-nameplate">
+                                    <div class="ego-nameplate-tier">l</div>
+                                    <div class="ego-name">오감도</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ego-grid">
+                        <div class="ego-card">
+                            <div class="ego-frame">
+                                <div class="ego-effect"></div>
+                                <div class="ego-circle">
+                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}" alt="어우러">
+                                </div>
+                                <div class="ego-nameplate">
+                                    <div class="ego-nameplate-tier">l</div>
+                                    <div class="ego-name">오감도</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 인격 사진영역 (우측상단) -->
+                <div class="identity-area">
+                    <div class="identity-header">인격</div>
+                    <div class="identity-frame">
+                        <img class="identity-image" th:src="@{/sinners/yisang/112px-YiSang01.webp}" alt="캐릭터 인격">
+                    </div>
+                </div>
+
+                <!-- 3. E.G.O 목록 영역 (우측하단) -->
+                <div class="ego-list-area">
+                    <div class="ego-list-header">E.G.O</div>
+                    <div class="ego-list-items">
+                        <div class="ego-list-row">
+                            <span class="ego-tier-icon">T</span>
+                            <span class="ego-name">오감도</span>
+                            <span class="ego-level">III</span>
+                        </div>
+                        <div class="ego-list-row">
+                            <span class="ego-tier-icon">b</span>
+                            <span class="ego-name">TETH</span>
+                        </div>
+                        <div class="ego-list-row">
+                            <span class="ego-tier-icon">h</span>
+                            <span class="ego-name">차원찢개</span>
+                            <span class="ego-level">III</span>
+                        </div>
+                        <div class="ego-list-row">
+                            <span class="ego-tier-icon">l</span>
+                            <span class="ego-name">어우러</span>
+                            <span class="ego-level">IV</span>
+                        </div>
+                        <div class="ego-list-row">
+                            <span class="ego-tier-icon">w</span>
+                            <span class="ego-name">ALEPH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Character Selection Modal -->
     <div id="characterModal" class="modal">

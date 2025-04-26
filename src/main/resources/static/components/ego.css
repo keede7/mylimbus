@@ -10,10 +10,9 @@
 /* 새로운 카드 스타일 */
 .special-card {
     position: relative;
-    width: 150px;
     height: 250px;
     background-color: #1a1a1a;
-    border: 3px solid #c0945c;
+    border: 2px solid #c0945c;  /* 3px에서 2px로 변경 */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -35,7 +34,7 @@
     border-bottom: 2px solid #c0945c;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;  /* space-between에서 flex-end로 변경 */
     padding: 0 10px;
     box-sizing: border-box;
 }
@@ -80,7 +79,241 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 0.9rem;  /* 1.3rem에서 0.9rem으로 변경 */
     color: #c0945c;
     font-weight: bold;
+}
+
+/* E.G.O Modal Styles */
+.ego-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.ego-modal-content {
+    position: relative;
+    background-color: #0a0a0a;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid #c0945c;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 50px rgba(192, 148, 92, 0.5);
+}
+
+/* 모달 내부 레이아웃 */
+.ego-modal-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "frame identity"
+        "frame egolist";
+    gap: 20px;
+    height: 70vh;
+}
+
+/* E.G.O 프레임 영역 */
+.ego-frame-area {
+    grid-area: frame;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 인격 사진영역 - 크기 조정 및 오른쪽 정렬 */
+.identity-area {
+    grid-area: identity;
+    background-color: #1a1a1a;
+    border: 2px solid #c0945c;
+    border-radius: 8px;
+    padding: 10px;
+    width: 250px;
+    height: 300px;
+    margin-left: auto;  /* 오른쪽 정렬을 위해 추가 */
+}
+
+.identity-header {
+    text-align: center;
+    color: #c0945c;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.identity-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #c0945c;
+    border-radius: 5px;
+    height: calc(100% - 40px);  /* 헤더 높이를 고려한 프레임 높이 */
+}
+
+.identity-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* E.G.O 목록 영역 - 크기 조정 및 오른쪽 정렬 */
+.ego-list-area {
+    grid-area: egolist;
+    background-color: #1a1a1a;
+    border: 2px solid #c0945c;
+    border-radius: 8px;
+    padding: 10px;
+    width: 250px;
+    height: 250px;
+    margin-left: auto;  /* 오른쪽 정렬을 위해 추가 */
+}
+
+.ego-list-header {
+    text-align: center;
+    color: #c0945c;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ego-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: calc(100% - 30px);  /* 헤더 높이를 고려한 목록 영역 높이 */
+    overflow-y: auto;  /* 내용이 많을 경우 스크롤 추가 */
+}
+
+.ego-list-row {
+    background-color: #222222;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #c0945c;
+    font-weight: bold;
+}
+
+.ego-tier-icon {
+    color: #ffaa66;
+    margin-right: 10px;
+}
+
+.ego-level {
+    color: #e0e0e0;
+}
+
+/**/
+
+.ego-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.ego-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ego-card:hover {
+    transform: scale(1.05);
+}
+
+.ego-frame {
+    position: relative;
+    width: 200px;
+    height: 260px;
+}
+
+.ego-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #c0945c;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(192, 148, 92, 0.3);
+}
+
+.ego-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ego-nameplate {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(to bottom, #c0945c, #8a6941);
+    border: 2px solid #d4a76a;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    box-shadow: 0 0 10px rgba(192, 148, 92, 0.5);
+    z-index: 1;
+}
+
+.ego-name {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    margin: 0 auto;
+}
+
+.ego-nameplate-tier {
+    color: #ffaa66;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: absolute;
+    left: 15px;
+}
+
+.ego-effect {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    border: 1px solid rgba(192, 148, 92, 0.3);
+    top: -5px;
+    left: -5px;
+    animation: pulseEffect 2s infinite;
+}
+
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
 }
