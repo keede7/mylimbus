@@ -6,9 +6,24 @@
     background-color: #c0945c;
     margin: 30px 0;
 }
+/* 그리드는 main으로 옮기기 */
+.ego-main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ego-main-grid {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
 
 /* 새로운 카드 스타일 */
-.special-card {
+.ego-main-card {
     position: relative;
     height: 250px;
     background-color: #1a1a1a;
@@ -20,11 +35,11 @@
     cursor: pointer;
 }
 
-.special-card:hover {
+.ego-main-card:hover {
     transform: scale(1.05);
 }
 
-.special-card-header {
+.ego-main-card-header {
     position: absolute;
     top: 0;
     left: 0;
@@ -37,14 +52,6 @@
     justify-content: flex-end;  /* space-between에서 flex-end로 변경 */
     padding: 0 10px;
     box-sizing: border-box;
-}
-
-.card-symbol {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #c0945c;
-    transform: rotate(45deg);
-    background-color: #1a1a1a;
 }
 
 .card-icon {
@@ -83,6 +90,7 @@
     color: #c0945c;
     font-weight: bold;
 }
+/**/
 
 /* E.G.O Modal Styles */
 .ego-modal {

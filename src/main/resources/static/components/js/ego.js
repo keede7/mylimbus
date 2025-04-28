@@ -36,6 +36,8 @@ function fetchEGOData(characterType) {
     // 일치하는 special-card 찾기 (data-type 속성 기준)
     // if (specialCard) {
         // 인격 이미지는 일치하는 character-card에서 가져옴
+    console.log("characterType : ");
+    console.log(characterType)
         const matchingCharacterCard = document.querySelector(`.character-card[data-type="${characterType}"]`);
         // if (matchingCharacterCard) {
             const characterImg = matchingCharacterCard.querySelector('img');
@@ -45,9 +47,11 @@ function fetchEGOData(characterType) {
             }
         // }
 
-        const specialCard = document.querySelector(`.special-card[data-type="${characterType}"]`);
+        // 일치하는 ego-main-card 찾기 (data-type 속성 기준)
+        const egoMainCard = document.querySelector(`.ego-main-card[data-type="${characterType}"]`);
+
         // Korean letters를 special-card에서 찾아 EGO 목록으로 사용
-        const letterRows = specialCard.querySelectorAll('.korean-letters .letter-row');
+        const letterRows = egoMainCard.querySelectorAll('.korean-letters .letter-row');
         if (letterRows && letterRows.length > 0) {
             egoListItems.innerHTML = ''; // 기존 내용 제거
 
