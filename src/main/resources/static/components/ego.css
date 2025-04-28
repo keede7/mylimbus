@@ -123,7 +123,7 @@
 
 /* 모달 내부 레이아웃 - 조정된 그리드 */
 .ego-modal-inner {
-    display: grid;
+    /*display: grid;*/
     /*grid-template-columns: 2fr;  !* 오른쪽 열을 고정 너비로 *!*/
     grid-template-columns: 2fr 1fr;  /* 오른쪽 열을 더 넓게 */
     grid-template-rows: auto 1fr;   /* 두 행 모두 250px 고정 */
@@ -133,6 +133,10 @@
     gap: 15px;
     /*height: 70vh;*/
     height: 75vh; /* 높이 증가 */
+
+    display: flex;
+    justify-content: space-between;
+    /*gap: 20px;*/
 }
 
 /* E.G.O 프레임 영역 */
@@ -153,6 +157,14 @@
     padding: 10px;
     overflow-y: auto;  /* 세로 스크롤 추가 */
     overflow-x: hidden;  /* 가로 스크롤 숨김 */
+    flex: 1;
+}
+
+.right-column {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 /* 인격 사진영역 */
@@ -162,10 +174,10 @@
     border: 2px solid #c0945c;
     border-radius: 8px;
     padding: 10px;
-    /*width: 250px;*/
+    width: 250px;
     /*height: 320px;*/
 
-    width: 300px; /* 더 넓게 */
+    /*width: 300px; !* 더 넓게 *!*/
     height: 360px; /* 더 높게 */
 }
 
@@ -180,7 +192,7 @@
 .identity-frame {
     position: relative;
     overflow: hidden;
-    border: 1px solid #c0945c;
+    /*border: 1px solid #c0945c;*/
     border-radius: 5px;
     height: calc(100% - 30px);  /* 헤더 높이를 고려한 프레임 높이 */
 
@@ -194,12 +206,16 @@
     /*height: 100%;*/
     /*object-fit: cover;*/
 
-    width: auto; /* 원본 비율 유지를 위해 변경 */
-    height: auto; /* 원본 비율 유지를 위해 변경 */
-    max-width: 100%; /* 프레임을 넘지 않도록 제한 */
-    max-height: 100%; /* 프레임을 넘지 않도록 제한 */
-    object-fit: contain; /* cover에서 contain으로 변경 */
+    /*width: auto; !* 원본 비율 유지를 위해 변경 *!*/
+    /*height: auto; !* 원본 비율 유지를 위해 변경 *!*/
+    /*max-width: 100%; !* 프레임을 넘지 않도록 제한 *!*/
+    /*max-height: 100%; !* 프레임을 넘지 않도록 제한 *!*/
+    /*object-fit: contain; !* cover에서 contain으로 변경 *!*/
+    width: 90%;
+    height: 300px;
+    border: 1px solid #c0945c;
 }
+
 
 /* E.G.O 목록 영역 */
 .ego-list-area {
@@ -208,10 +224,10 @@
     border: 2px solid #c0945c;
     border-radius: 8px;
     padding: 10px;
-    /*width: 250px;*/
+    width: 250px;
     /*min-height: 270px;*/
 
-    width: 300px; /* 넓이 증가 */
+    /*width: 300px; !* 넓이 증가 *!*/
     min-height: 290px; /* 높이 증가 */
 }
 
@@ -433,5 +449,52 @@
 
     .ego-nameplate-tier {
         font-size: 0.8rem;
+    }
+}
+
+/* 4-28 EGO MODAL 반응형 */
+@media (max-width: 1200px) {
+    .ego-grid {
+        grid-template-columns: repeat(3, 1fr); /* 4열에서 3열로 변경 */
+    }
+}
+
+@media (max-width: 1024px) {
+    .ego-modal-inner {
+        flex-direction: column; /* 가로 배치에서 세로 배치로 변경 */
+    }
+
+    .right-column {
+        width: 100%; /* 전체 너비로 변경 */
+        flex-direction: row; /* 가로 배치로 변경 */
+    }
+
+    .identity-area, .ego-list-area {
+        width: 50%; /* 각각 50% 너비 */
+    }
+}
+
+@media (max-width: 768px) {
+    .right-column {
+        flex-direction: column; /* 다시 세로 배치로 */
+    }
+
+    .identity-area, .ego-list-area {
+        width: 100%; /* 전체 너비 */
+    }
+
+    .ego-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1열로 변경 */
+    }
+}
+
+@media (max-width: 480px) {
+    .ego-modal-content {
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
     }
 }
