@@ -14,7 +14,7 @@ body {
     grid-template-areas:
         "header header"
         "main sidebar";
-    height: 100vh;
+    height: 145vh;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
