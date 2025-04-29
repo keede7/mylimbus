@@ -217,6 +217,35 @@
 }
 
 
+/* 인격 정보 컨테이너 */
+.identity-info-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.5) 70%, transparent);
+    padding: 10px 0 5px 0;
+    text-align: center;
+}
+
+.identity-type {
+    display: inline-block;
+    background-color: rgba(153, 102, 204, 0.7);  /* r1 색상과 유사하게 */
+    color: white;
+    font-size: 0.9rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.identity-name {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+
 /* E.G.O 목록 영역 */
 .ego-list-area {
     grid-area: egolist;
@@ -236,13 +265,13 @@
     color: #c0945c;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin: 5px 0 10px 0;
 }
 
 .ego-list-items {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     height: calc(100% - 30px);  /* 헤더 높이를 고려한 목록 영역 높이 */
     overflow-y: auto;  /* 내용이 많을 경우 스크롤 추가 */
 }
