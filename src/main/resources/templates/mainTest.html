@@ -110,21 +110,69 @@
         <div class="separator"></div>
 
         <!-- 새로운 특별 카드 그리드 -->
-        <ul class="character-grid">
-            <li class="character-card">
-                <div class="special-card" onclick="openEGOModal()">
-                    <div class="special-card-header">
-                        <!-- card-symbol 제거 -->
+<!--        <ul class="character-grid">-->
+<!--            <li class="character-card">-->
+<!--                <div class="special-card" onclick="openEGOModal('Yisang')" data-type="Yisang">-->
+<!--                    <div class="special-card-header">-->
+<!--                        &lt;!&ndash; card-symbol 제거 &ndash;&gt;-->
+<!--                        <div class="card-icon">-->
+<!--                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" alt="Envy Icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="korean-letters">-->
+<!--                        <div class="letter-row">-->
+<!--                            <div class="ego-nameplate-tier">Z</div>-->
+<!--                            <div class="ego-name">ZAYIN</div>-->
+<!--                        </div>-->
+<!--                        <div class="letter-row">-->
+<!--                            <div class="ego-nameplate-tier">H</div>-->
+<!--                            <div class="ego-name">HE</div>-->
+<!--                        </div>-->
+<!--                        <div class="letter-row">-->
+<!--                            <div class="ego-nameplate-tier">T</div>-->
+<!--                            <div class="ego-name">TETH</div>-->
+<!--                        </div>-->
+<!--                        <div class="letter-row">-->
+<!--                            <div class="ego-nameplate-tier">W</div>-->
+<!--                            <div class="ego-name">WAW</div>-->
+<!--                        </div>-->
+<!--                        <div class="letter-row">-->
+<!--                            <div class="ego-nameplate-tier">A</div>-->
+<!--                            <div class="ego-name">ALEPH</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+        <ul class="ego-main-grid">
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal('YiSang')" data-type="YiSang">
+                    <div class="ego-main-card-header">
                         <div class="card-icon">
-                            <img th:src="@{/sin/Envy.webp}" alt="Envy Icon">
+                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" alt="Envy Icon">
                         </div>
                     </div>
                     <div class="korean-letters">
-                        <div class="letter-row">ZAYIN</div>    <!-- 오감도 III에서 변경 -->
-                        <div class="letter-row">HE</div>       <!-- ㅇ에서 변경 -->
-                        <div class="letter-row">TETH</div>     <!-- ㄱ에서 변경 -->
-                        <div class="letter-row">WAW</div>      <!-- ㅗ에서 변경 -->
-                        <div class="letter-row">ALPRE</div>    <!-- ㅁ에서 변경 -->
+                        <div class="letter-row">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -190,155 +238,31 @@
         <div class="ego-modal-content">
             <span class="close-button" onclick="closeEGOModal()">&times;</span>
             <div class="ego-modal-inner">
-                <!-- 1. E.G.O 프레임 영역 (좌측) -->
-                <!-- 1. E.G.O 프레임 영역 (좌측) -->
                 <div class="ego-frame-area">
-                    <div class="ego-grid">
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}" alt="어우러">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">l</div>
-                                    <div class="ego-name">오감도</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 2">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">T</div>
-                                    <div class="ego-name">E.G.O 2</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 3">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">b</div>
-                                    <div class="ego-name">E.G.O 3</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 4">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">h</div>
-                                    <div class="ego-name">E.G.O 4</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 5">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">l</div>
-                                    <div class="ego-name">E.G.O 5</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 6">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">w</div>
-                                    <div class="ego-name">E.G.O 6</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 6">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">w</div>
-                                    <div class="ego-name">E.G.O 6</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 7">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">T</div>
-                                    <div class="ego-name">E.G.O 7</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ego-card">
-                            <div class="ego-frame">
-                                <div class="ego-effect"></div>
-                                <div class="ego-circle">
-                                    <img class="ego-image" th:src="@{/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp}"  alt="E.G.O 8">
-                                </div>
-                                <div class="ego-nameplate">
-                                    <div class="ego-nameplate-tier">h</div>
-                                    <div class="ego-name">E.G.O 8</div>
-                                </div>
+                    <!-- 동적으로 채워질 EGO 카드 그리드 -->
+                    <div class="ego-grid" id="egoGrid">
+                        <!-- 여기에 동적으로 ego-card 요소들이 추가됩니다 -->
+                    </div>
+                </div>
+                <div class="right-column">
+                    <!-- 2. 인격 사진영역 (우측상단) -->
+                    <div class="identity-area">
+                        <div class="identity-header">인격</div>
+                        <div class="identity-frame">
+    <!--                        <img class="identity-image" id="identityImage" th:src="@{/sinners/yisang/112px-YiSang01.webp}" alt="캐릭터 인격">-->
+                            <img class="identity-image" id="identityImage" alt="캐릭터 인격">
+                            <div class="identity-info-container">
+                                <div class="identity-type" id="identityType">기본</div>
+                                <div class="identity-name" id="identityName">이상</div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 2. 인격 사진영역 (우측상단) -->
-                <div class="identity-area">
-                    <div class="identity-header">인격</div>
-                    <div class="identity-frame">
-                        <img class="identity-image" th:src="@{/sinners/yisang/112px-YiSang01.webp}" alt="캐릭터 인격">
-                    </div>
-                </div>
-
-                <!-- 3. E.G.O 목록 영역 (우측하단) -->
-                <div class="ego-list-area">
-                    <div class="ego-list-header">E.G.O</div>
-                    <div class="ego-list-items">
-                        <div class="ego-list-row">
-                            <span class="ego-tier-icon">T</span>
-                            <span class="ego-name">오감도</span>
-                            <span class="ego-level">III</span>
-                        </div>
-                        <div class="ego-list-row">
-                            <span class="ego-tier-icon">b</span>
-                            <span class="ego-name">TETH</span>
-                        </div>
-                        <div class="ego-list-row">
-                            <span class="ego-tier-icon">h</span>
-                            <span class="ego-name">차원찢개</span>
-                            <span class="ego-level">III</span>
-                        </div>
-                        <div class="ego-list-row">
-                            <span class="ego-tier-icon">l</span>
-                            <span class="ego-name">어우러</span>
-                            <span class="ego-level">IV</span>
-                        </div>
-                        <div class="ego-list-row">
-                            <span class="ego-tier-icon">w</span>
-                            <span class="ego-name">ALEPH</span>
+                    <!-- 3. E.G.O 목록 영역 (우측하단) -->
+                    <div class="ego-list-area">
+                        <div class="ego-list-header">E.G.O</div>
+                        <div class="ego-list-items" id="egoListItems">
+                            <!-- 여기에 동적으로 ego-list-row 요소들이 추가됩니다 -->
                         </div>
                     </div>
                 </div>
