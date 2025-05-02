@@ -6,10 +6,14 @@ import io.keede.mylimbus.domains.personality.entity.Sin;
 
 import java.util.List;
 
+/**
+ * @author keede
+ * Created on 2025/05/02
+ */
 public record GetEGOResponseDto (
         Long id,
         String egoName,
-        Sin sin,
+        Sin sinType,
         RiskLevel riskLevel,
         AttackType attackType,
         String imgUrl,
