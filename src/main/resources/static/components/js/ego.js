@@ -121,7 +121,7 @@ function fetchEGOData(characterElement) {
             if (egos && Array.isArray(egos)) {
                 egos.forEach(ego => {
                     // EGO 카드 생성
-                    const egoCard = createEGOCard(ego);
+                    const egoCard = createEGOCard(ego, characterType);
                     egoGrid.appendChild(egoCard);
                 });
             } else {
@@ -134,7 +134,7 @@ function fetchEGOData(characterElement) {
         });
 }
 
-function createEGOCard(ego) {
+function createEGOCard(ego, characterType) {
     const egoCard = document.createElement('div');
     egoCard.className = 'ego-card';
 
@@ -256,6 +256,9 @@ function createEGOCard(ego) {
         //     return;
         // }
 
+        console.log("egoCard")
+        console.log(egoCard)
+
         // 해당 티어와 일치하는 ego-list-row 찾기 - 캐싱 활용
         let matchingListRow = null;
         // DOM 캐싱을 위한 맵 객체가 없으면 초기화
@@ -281,6 +284,18 @@ function createEGOCard(ego) {
             matchingListRow.setAttribute('data-tier-name', getTier(cardTier));
         }
 
+        // 2. data-type이 일치하는 ego-main-grid 찾기
+        const matchingMainGrid = document.querySelector(`.ego-main-card[data-type="${characterType}"]`);
+
+        console.log("matchingMainGrid")
+        console.log(matchingMainGrid)
+
+
+        // letter-row 값을 저장할 맵 초기화 (필요한 경우)
+        if (matchingMainGrid && !window.letterRowOriginalNames) {
+            window.letterRowOriginalNames = {};
+        }
+
         if (!isSelected) {
             // 현재 카드 선택 상태로 변경
             this.setAttribute('data-selected', 'true');
@@ -290,7 +305,8 @@ function createEGOCard(ego) {
             egoCircle.style.border = `3px solid #c0945c`;
 
             // 3. ego-nameplate에서 이름 가져와서 일치하는 ego-list-row에 적용
-            matchingListRow.querySelector('.ego-name').textContent = this.querySelector('.ego-nameplate .ego-name').textContent;
+            const egoName = this.querySelector('.ego-nameplate .ego-name').textContent;
+            matchingListRow.querySelector('.ego-name').textContent = egoName;
 
             // 4. ego-nameplate의 스타일을 ego-list-row에 적용
             const egoNameplate = this.querySelector('.ego-nameplate');
@@ -302,6 +318,29 @@ function createEGOCard(ego) {
             // 선택된 상태를 ego-list-row에도 표시
             matchingListRow.setAttribute('data-card-selected', 'true');
             matchingListRow.setAttribute('data-tier-name', getTier(cardTier));
+
+            // 5. ego-main-grid의 letter-row 업데이트 (해당하는 티어만)
+            if (matchingMainGrid) {
+                const letterRow = matchingMainGrid.querySelector(`.letter-row[data-tier="${cardTier}"]`);
+                if (letterRow) {
+                    // 원래 값 저장 (아직 저장되지 않은 경우)
+                    if (!window.letterRowOriginalNames[cardTier]) {
+                        window.letterRowOriginalNames[cardTier] = letterRow.querySelector('.ego-name').textContent;
+                    }
+
+                    // 선택한 카드의 이름으로 업데이트
+                    letterRow.querySelector('.ego-name').textContent = egoName;
+
+                    // 스타일 변경 (선택사항)
+                    letterRow.style.background = window.getComputedStyle(egoNameplate).background;
+                    letterRow.style.boxShadow = window.getComputedStyle(egoNameplate).boxShadow;
+                    letterRow.style.fontFamily = window.getComputedStyle(egoNameplate).fontFamily;
+
+                    // 선택 상태 표시
+                    letterRow.setAttribute('data-selected', 'true');
+                    // letterRow.setAttribute('data-ego-id', ego.id)
+                }
+            }
 
         } else {
 
@@ -322,6 +361,24 @@ function createEGOCard(ego) {
 
             // 선택 상태 해제
             matchingListRow.setAttribute('data-card-selected', 'false');
+
+            // ego-main-grid의 letter-row 초기화
+            if (matchingMainGrid) {
+                const letterRow = matchingMainGrid.querySelector(`.letter-row[data-tier="${cardTier}"]`);
+                if (letterRow) {
+                    // 원래 값으로 복원
+                    const originalLetterName = window.letterRowOriginalNames[cardTier] || getTier(cardTier);
+                    letterRow.querySelector('.ego-name').textContent = originalLetterName;
+
+                    // 스타일 초기화
+                    letterRow.style.background = '';
+                    letterRow.style.boxShadow = '';
+                    letterRow.style.fontFamily = '';
+
+                    // 선택 상태 해제
+                    letterRow.setAttribute('data-selected', 'false');
+                }
+            }
         }
     });
 
