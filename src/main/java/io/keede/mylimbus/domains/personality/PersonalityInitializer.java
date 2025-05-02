@@ -884,6 +884,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2023, 2,27),
                         "/sinners/honglu/125px-Tingtang_Gang_Gangleader_Hong_Lu_Uptied.webp"
                 ),// 탐식2공명, 탐식5보유, 230227
+                 new Personality(3, HONGLU,"R사 제4무리 순록팀 홍루", List.of(R사),
+                        new PersonalitySkill(1, GLUTTONY, BLUNT),
+                        new PersonalitySkill(2, ENVY, BLUNT),
+                        new PersonalitySkill(3, WRATH, BLUNT),
+                        CHARGE,
+                        "질투",
+                        Set.of(
+                                new Passive(ENVY, 3, MAIN, POSSESSION),
+                                new Passive(ENVY, 3, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 4,30),
+                        "/sinners/honglu/125px-R_Corp.webp"
+                ),// 탐식2공명, 탐식5보유, 230227
                 new Personality(1, HEATHCLIFF, "LCB 수감자 히스클리프", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
