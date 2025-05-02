@@ -2,6 +2,7 @@ package io.keede.mylimbus.domains.ego.entity;
 
 import io.keede.mylimbus.domains.personality.entity.AttackType;
 import io.keede.mylimbus.domains.personality.entity.Sin;
+import io.keede.mylimbus.web.dto.response.GetEGOResponseDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -76,5 +77,20 @@ public class EGO {
         this.imgUrl = imgUrl;
         this.riskLevel = riskLevel;
         this.attackType = attackType;
+    }
+
+    public GetEGOResponseDto toDto() {
+        return new GetEGOResponseDto(
+                this.id,
+                this.egoName,
+                this.sin,
+                this.riskLevel,
+                this.attackType,
+                this.imgUrl,
+                this.egoUseConditions
+                        .stream()
+                        .map(EGOUseCondition::toDto)
+                        .toList()
+        );
     }
 }

@@ -264,7 +264,7 @@ window.onclick = function (event) {
 function filterCharacters() {
     // Get all selected keywords
     const modalGrid = document.getElementById('modalCharacterGrid');
-    const personalityKRName = modalGrid.getAttribute('data-kr-name');
+    const personalityKRName = modalGrid.getAttribute('data-kr-name'); // characterKRName 이 적합.
 
     const selectedKeywords = Array.from(
         document.querySelectorAll('input[name="affinity"]:checked')

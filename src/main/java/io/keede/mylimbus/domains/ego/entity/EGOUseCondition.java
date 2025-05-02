@@ -1,6 +1,7 @@
 package io.keede.mylimbus.domains.ego.entity;
 
 import io.keede.mylimbus.domains.personality.entity.Sin;
+import io.keede.mylimbus.web.dto.response.UseConditionDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -39,5 +40,13 @@ public class EGOUseCondition {
     ) {
         this.sinType = sinType;
         this.consumedQuantity = consumedQuantity;
+    }
+
+    public UseConditionDto toDto() {
+        return new UseConditionDto(
+                this.id,
+                this.sinType,
+                this.consumedQuantity
+        );
     }
 }

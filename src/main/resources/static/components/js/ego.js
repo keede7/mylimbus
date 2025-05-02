@@ -1,10 +1,10 @@
 // 타입에 따라 EGO 모달 열기
-function openEGOModal(characterType) {
+function openEGOModal(characterElement) {
     const modal = document.getElementById('egoModal');
     modal.style.display = 'block';
 
     // 타입 속성을 이용하여 REST API 호출하기
-    fetchEGOData(characterType);
+    fetchEGOData(characterElement);
 }
 
 function closeEGOModal() {
@@ -20,11 +20,14 @@ window.onclick = function(event) {
 }
 
 // 캐릭터 타입에 따라 EGO 데이터 가져오기
-function fetchEGOData(characterType) {
+function fetchEGOData(characterElement) {
     // EGO 그리드와 리스트 요소 초기화
     const egoGrid = document.getElementById('egoGrid');
     const egoListItems = document.getElementById('egoListItems');
     const identityImage = document.getElementById('identityImage');
+
+    const characterKRName = characterElement.getAttribute('data-kr-name');
+    const characterType = characterElement.getAttribute('data-type');
 
     // 초기화
     egoGrid.innerHTML = '';
@@ -100,32 +103,32 @@ function fetchEGOData(characterType) {
     } // EGO List 설정
 
     // API 호출
-    // fetch(`/api/ego/${characterType}`)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error('EGO 데이터를 불러오는 데 실패했습니다.');
-    //         }
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         // 로딩 메시지 제거
-    //         egoGrid.innerHTML = '';
-    //
-    //         // EGO 카드 동적 생성
-    //         if (data.egos && Array.isArray(data.egos)) {
-    //             data.egos.forEach(ego => {
-    //                 // EGO 카드 생성
-    //                 const egoCard = createEGOCard(ego);
-    //                 egoGrid.appendChild(egoCard);
-    //             });
-    //         } else {
-    //             egoGrid.innerHTML = '<div class="no-data">사용 가능한 EGO가 없습니다.</div>';
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.error('Error fetching EGO data:', error);
-    //         egoGrid.innerHTML = `<div class="error">오류 발생: ${error.message}</div>`;
-    //     });
+    fetch(`/api/ego/${characterKRName}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('EGO 데이터를 불러오는 데 실패했습니다.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 로딩 메시지 제거
+            egoGrid.innerHTML = '';
+
+            // EGO 카드 동적 생성
+            if (data.egos && Array.isArray(data.egos)) {
+                data.egos.forEach(ego => {
+                    // EGO 카드 생성
+                    const egoCard = createEGOCard(ego);
+                    egoGrid.appendChild(egoCard);
+                });
+            } else {
+                egoGrid.innerHTML = '<div class="no-data">사용 가능한 EGO가 없습니다.</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching EGO data:', error);
+            egoGrid.innerHTML = `<div class="error">오류 발생: ${error.message}</div>`;
+        });
 }
 
 // EGO 카드 요소 생성 함수

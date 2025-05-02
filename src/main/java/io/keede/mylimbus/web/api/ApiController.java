@@ -1,10 +1,12 @@
 package io.keede.mylimbus.web.api;
 
+import io.keede.mylimbus.domains.ego.service.EgoQueryService;
 import io.keede.mylimbus.domains.personality.service.PersonalityQueryService;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
+import io.keede.mylimbus.web.dto.response.GetEGOResponseDto;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,11 +24,14 @@ import java.util.List;
 public class ApiController {
 
     private final PersonalityQueryService personalityQueryService;
+    private final EgoQueryService egoQueryService;
 
     public ApiController(
-            PersonalityQueryService personalityQueryService
+            final PersonalityQueryService personalityQueryService,
+            final EgoQueryService egoQueryService
     ) {
         this.personalityQueryService = personalityQueryService;
+        this.egoQueryService = egoQueryService;
     }
 
     @GetMapping("/personality")
@@ -65,4 +70,11 @@ public class ApiController {
         System.out.println("dto = " + dto);
         return this.personalityQueryService.getPersonalityFilter(dto);
     }
+
+    @GetMapping("/ego/{characterKRName}")
+    public List<GetEGOResponseDto> getEGOsByCharacterKRName(@PathVariable("characterKRName") String characterKRName) {
+        System.out.println("characterKRName = " + characterKRName);
+        return this.egoQueryService.getEGOsByCharacterKRName(characterKRName);
+    }
+
 }
