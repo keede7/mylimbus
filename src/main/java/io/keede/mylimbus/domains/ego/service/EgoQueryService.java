@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author keede
+ * Created on 2025/05/02
+ */
 @Service
 public class EgoQueryService {
 
