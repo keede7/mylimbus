@@ -44,11 +44,14 @@ public class EGO {
     @JoinColumn(name = "ego_id")
     private List<EGOUseCondition> egoUseConditions;
 
+    private Sin sin;
+
     public EGO(
             String characterName,
             String egoName,
             String imgUrl,
             RiskLevel riskLevel,
+            Sin sin,
             AttackType attackType,
             List<EGOUseCondition> egoUseConditions
     ) {
@@ -56,7 +59,22 @@ public class EGO {
         this.egoName = egoName;
         this.imgUrl = imgUrl;
         this.riskLevel = riskLevel;
+        this.sin = sin;
         this.attackType = attackType;
         this.egoUseConditions = egoUseConditions;
+    }
+
+    public EGO(
+            String characterName,
+            String egoName,
+            String imgUrl,
+            RiskLevel riskLevel,
+            AttackType attackType
+    ) {
+        this.characterName = characterName;
+        this.egoName = egoName;
+        this.imgUrl = imgUrl;
+        this.riskLevel = riskLevel;
+        this.attackType = attackType;
     }
 }

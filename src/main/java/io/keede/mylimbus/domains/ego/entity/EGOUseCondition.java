@@ -34,11 +34,9 @@ public class EGOUseCondition {
     private int consumedQuantity;
 
     public EGOUseCondition(
-            EGO ego,
             Sin sinType,
             int consumedQuantity
     ) {
-        this.ego = ego;
         this.sinType = sinType;
         this.consumedQuantity = consumedQuantity;
     }
