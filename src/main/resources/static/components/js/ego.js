@@ -1,10 +1,10 @@
 // 타입에 따라 EGO 모달 열기
-function openEGOModal(characterType) {
+function openEGOModal(characterElement) {
     const modal = document.getElementById('egoModal');
     modal.style.display = 'block';
 
     // 타입 속성을 이용하여 REST API 호출하기
-    fetchEGOData(characterType);
+    fetchEGOData(characterElement);
 }
 
 function closeEGOModal() {
@@ -20,11 +20,14 @@ window.onclick = function(event) {
 }
 
 // 캐릭터 타입에 따라 EGO 데이터 가져오기
-function fetchEGOData(characterType) {
+function fetchEGOData(characterElement) {
     // EGO 그리드와 리스트 요소 초기화
     const egoGrid = document.getElementById('egoGrid');
     const egoListItems = document.getElementById('egoListItems');
     const identityImage = document.getElementById('identityImage');
+
+    const characterKRName = characterElement.getAttribute('data-kr-name');
+    const characterType = characterElement.getAttribute('data-type');
 
     // 초기화
     egoGrid.innerHTML = '';
@@ -72,6 +75,21 @@ function fetchEGOData(characterType) {
     // 일치하는 ego-main-card 찾기 (data-type 속성 기준)
     const egoMainCard = document.querySelector(`.ego-main-card[data-type="${characterType}"]`);
 
+    // Main Grid에서 선택된 EGO 정보 수집
+    const selectedEGOs = [];
+    if (egoMainCard) {
+        const letterRows = egoMainCard.querySelectorAll('.letter-row[data-selected="true"]');
+
+        letterRows.forEach(row => {
+            const egoId = row.getAttribute('data-ego-id');
+            const tier = row.getAttribute('data-tier');
+            const egoName = row.querySelector('.ego-name').textContent;
+            if (egoId) {
+                selectedEGOs.push({ id: egoId, tier: tier, name: egoName });
+            }
+        });
+    }
+
     // Korean letters를 special-card에서 찾아 EGO 목록으로 사용
     const letterRows = egoMainCard.querySelectorAll('.korean-letters .letter-row');
     if (letterRows && letterRows.length > 0) {
@@ -90,68 +108,316 @@ function fetchEGOData(characterType) {
             const tier = tierElement ? tierElement.textContent.trim() : letterRow.textContent.trim().charAt(0);
             const name = nameElement ? nameElement.textContent.trim() : letterRow.textContent.trim();
 
+            // 설정 추가
+            letterRow.setAttribute("data-tier", tier);
+
             egoListRow.innerHTML = `
                 <span class="ego-tier-icon">${tier}</span>
                 <span class="ego-name">${name}</span>
             `;
+
+            // 색상부여
+            egoListRow.style.background = window.getComputedStyle(letterRow).background;
+            egoListRow.style.boxShadow = window.getComputedStyle(letterRow).boxShadow;
+            egoListRow.style.fontFamily = window.getComputedStyle(letterRow).fontFamily;
+
+            // 선택된 상태 복원
+            if (letterRow.getAttribute('data-selected') === 'true') {
+                egoListRow.setAttribute('data-card-selected', 'true');
+            }
 
             egoListItems.appendChild(egoListRow);
         });
     } // EGO List 설정
 
     // API 호출
-    // fetch(`/api/ego/${characterType}`)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error('EGO 데이터를 불러오는 데 실패했습니다.');
-    //         }
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         // 로딩 메시지 제거
-    //         egoGrid.innerHTML = '';
-    //
-    //         // EGO 카드 동적 생성
-    //         if (data.egos && Array.isArray(data.egos)) {
-    //             data.egos.forEach(ego => {
-    //                 // EGO 카드 생성
-    //                 const egoCard = createEGOCard(ego);
-    //                 egoGrid.appendChild(egoCard);
-    //             });
-    //         } else {
-    //             egoGrid.innerHTML = '<div class="no-data">사용 가능한 EGO가 없습니다.</div>';
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.error('Error fetching EGO data:', error);
-    //         egoGrid.innerHTML = `<div class="error">오류 발생: ${error.message}</div>`;
-    //     });
+    fetch(`/api/ego/${characterKRName}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('EGO 데이터를 불러오는 데 실패했습니다.');
+            }
+            return response.json();
+        })
+        .then(egos => {
+            // 로딩 메시지 제거
+            egoGrid.innerHTML = '';
+
+            // EGO 카드 동적 생성
+            if (egos && Array.isArray(egos)) {
+                egos.forEach(ego => {
+                    // EGO 카드 생성
+                    const egoCard = createEGOCard(ego, characterType);
+
+                    // 이전에 선택된 EGO인지 확인하고 상태 복원
+                    const selectedEGO = selectedEGOs.find(selected => {
+                        return parseInt(selected.id) === parseInt(ego.id)
+                    });
+
+                    if (selectedEGO) {
+                        egoCard.setAttribute('data-selected', 'true');
+                        const egoCircle = egoCard.querySelector('.ego-circle');
+                        egoCircle.style.border = '3px solid #c0945c';
+                    }
+
+                    egoGrid.appendChild(egoCard);
+                });
+            } else {
+                egoGrid.innerHTML = '<div class="no-data">사용 가능한 EGO가 없습니다.</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching EGO data:', error);
+            egoGrid.innerHTML = `<div class="error">오류 발생: ${error.message}</div>`;
+        });
 }
 
-// EGO 카드 요소 생성 함수
-function createEGOCard(ego) {
+function createEGOCard(ego, characterType) {
     const egoCard = document.createElement('div');
     egoCard.className = 'ego-card';
+
+    // 티어 약자 설정 (예: ZAYIN -> Z, WAW -> W)
+    let tierShort = '';
+    switch(ego.riskLevel) {
+        case 'ZAYIN': tierShort = 'Z'; break;
+        case 'TETH': tierShort = 'T'; break;
+        case 'HE': tierShort = 'H'; break;
+        case 'WAW': tierShort = 'W'; break;
+        case 'ALEPH': tierShort = 'A'; break;
+        default: tierShort = ego.riskLevel.charAt(0);
+    }
+
+    // 데이터 속성에 필요한 정보 저장
+    egoCard.setAttribute('data-id', ego.id);
+    egoCard.setAttribute('data-ego-name', ego.egoName);
+    egoCard.setAttribute('data-sin', ego.sinType);
+    egoCard.setAttribute('data-risk-level', ego.riskLevel);
+    egoCard.setAttribute('data-attack-type', ego.attackType);
+    // 추가
+    egoCard.setAttribute('data-tier', tierShort);
+
+    // useConditions 데이터를 JSON 문자열로 변환하여 저장
+    egoCard.setAttribute('data-use-conditions', JSON.stringify(ego.useConditions));
+
+    // sin 값에 따른 네임플레이트 색상 설정
+    let gradientStart = '#c0945c'; // 기본 시작 색상
+    let gradientEnd = '#8a6941';   // 기본 끝 색상
+    let borderColor = '#d4a76a';   // 기본 테두리 색상
+    let shadowColor = 'rgba(192, 148, 92, 0.5)'; // 기본 그림자 색상
+
+    switch(ego.sinType) {
+        case 'WRATH':
+            gradientStart = '#ff0000'; // 빨강 시작
+            gradientEnd = '#990000';   // 빨강 끝
+            borderColor = '#ff4444';   // 빨강 테두리
+            shadowColor = 'rgba(255, 0, 0, 0.5)';
+            break;
+        case 'LUST':
+            gradientStart = '#ff8800'; // 주황 시작
+            gradientEnd = '#cc5500';   // 주황 끝
+            borderColor = '#ffaa44';   // 주황 테두리
+            shadowColor = 'rgba(255, 136, 0, 0.5)';
+            break;
+        case 'SLOTH':
+            gradientStart = '#ffff00'; // 노랑 시작
+            gradientEnd = '#cccc00';   // 노랑 끝
+            borderColor = '#ffff44';   // 노랑 테두리
+            shadowColor = 'rgba(255, 255, 0, 0.5)';
+            break;
+        case 'GLUTTONY':
+            gradientStart = '#00ff00'; // 초록 시작
+            gradientEnd = '#009900';   // 초록 끝
+            borderColor = '#44ff44';   // 초록 테두리
+            shadowColor = 'rgba(0, 255, 0, 0.5)';
+            break;
+        case 'GLOOM':
+            gradientStart = '#00ccff'; // 하늘 시작
+            gradientEnd = '#0099cc';   // 하늘 끝
+            borderColor = '#44ddff';   // 하늘 테두리
+            shadowColor = 'rgba(0, 204, 255, 0.5)';
+            break;
+        case 'PRIDE':
+            gradientStart = '#0000ff'; // 파랑 시작
+            gradientEnd = '#000099';   // 파랑 끝
+            borderColor = '#4444ff';   // 파랑 테두리
+            shadowColor = 'rgba(0, 0, 255, 0.5)';
+            break;
+        case 'ENVY':
+            gradientStart = '#8800ff'; // 보라 시작
+            gradientEnd = '#550099';   // 보라 끝
+            borderColor = '#aa44ff';   // 보라 테두리
+            shadowColor = 'rgba(136, 0, 255, 0.5)';
+            break;
+    }
 
     egoCard.innerHTML = `
         <div class="ego-frame">
             <div class="ego-effect"></div>
             <div class="ego-circle">
-                <img class="ego-image" src="${ego.imageUrl}" alt="${ego.name}">
+                <img class="ego-image" src="${ego.imgUrl}" alt="${ego.egoName}">
             </div>
-            <div class="ego-nameplate">
-                <div class="ego-nameplate-tier">${ego.tier}</div>
-                <div class="ego-name">${ego.name}</div>
+            <div class="ego-nameplate" 
+                style="
+                    background: linear-gradient(to bottom, ${gradientStart}, ${gradientEnd}); 
+                    border: 2px solid ${borderColor}; 
+                    box-shadow: 0 0 10px ${shadowColor};
+                    ">
+                <div class="ego-nameplate-tier">${tierShort}</div>
+                <div class="ego-name">${ego.egoName}</div>
             </div>
         </div>
     `;
 
-    // 클릭 이벤트 (필요한 경우)
-    egoCard.addEventListener('click', () => {
-        selectEGO(ego);
+    // 클릭 이벤트 추가
+    egoCard.addEventListener('click', function() {
+
+        // 1. 선택된 카드인지 확인
+        const isSelected = this.getAttribute('data-selected') === 'true';
+
+        // 현재 카드의 ego-nameplate-tier 값 가져오기
+        const cardTier = this.getAttribute('data-tier');
+
+        // 같은 티어를 가진 모든 EGO 카드 찾기
+        const allEgoCards = document.querySelectorAll('.ego-card');
+
+        // 같은 티어의 다른 선택된 카드들 해제
+        allEgoCards.forEach(card => {
+            if (card.getAttribute('data-tier') === cardTier && card !== this) {
+                if (card.getAttribute('data-selected') === 'true') {
+                    // 카드 선택 해제
+                    card.setAttribute('data-selected', 'false');
+                    const egoCircle = card.querySelector('.ego-circle');
+                    egoCircle.style.border = ''; // border 초기화
+                }
+            }
+        });
+
+        // 해당 티어와 일치하는 ego-list-row 찾기
+        const allListRows = document.querySelectorAll('.ego-list-row');
+        let matchingListRow = null;
+
+        allListRows.forEach(row => {
+            const rowTier = row.querySelector('.ego-tier-icon').textContent.trim();
+            if (rowTier === cardTier) {
+                matchingListRow = row;
+            }
+        });
+
+        // 일치하는 row가 없으면 중단
+        if (!matchingListRow) {
+            console.error(`티어 ${cardTier}에 맞는 ego-list-row를 찾을 수 없습니다.`);
+            return;
+        }
+
+        // 원래 티어 이름 저장 (초기화)
+        if (!matchingListRow.hasAttribute('data-tier-name')) {
+            matchingListRow.setAttribute('data-tier-name', getTier(cardTier));
+        }
+
+        // 2. data-type이 일치하는 ego-main-grid 찾기
+        const matchingMainGrid = document.querySelector(`.ego-main-card[data-type="${characterType}"]`);
+
+        // letter-row 값을 저장할 맵 초기화 (필요한 경우)
+        if (matchingMainGrid && !window.letterRowOriginalNames) {
+            window.letterRowOriginalNames = {};
+        }
+
+        if (!isSelected) {
+            // 현재 카드 선택 상태로 변경
+            this.setAttribute('data-selected', 'true');
+
+            // ego-circle 스타일 변경
+            const egoCircle = this.querySelector('.ego-circle');
+            egoCircle.style.border = `3px solid #c0945c`;
+
+            // 3. ego-nameplate에서 이름 가져와서 일치하는 ego-list-row에 적용
+            const egoName = this.querySelector('.ego-nameplate .ego-name').textContent;
+            matchingListRow.querySelector('.ego-name').textContent = egoName;
+
+            // 4. ego-nameplate의 스타일을 ego-list-row에 적용
+            const egoNameplate = this.querySelector('.ego-nameplate');
+
+            matchingListRow.style.background = window.getComputedStyle(egoNameplate).background;
+            matchingListRow.style.boxShadow = window.getComputedStyle(egoNameplate).boxShadow;
+            matchingListRow.style.fontFamily = window.getComputedStyle(egoNameplate).fontFamily;
+
+            // 선택된 상태를 ego-list-row에도 표시
+            matchingListRow.setAttribute('data-card-selected', 'true');
+            matchingListRow.setAttribute('data-tier-name', getTier(cardTier));
+
+            // 5. ego-main-grid의 letter-row 업데이트 (해당하는 티어만)
+            if (matchingMainGrid) {
+                const letterRow = matchingMainGrid.querySelector(`.letter-row[data-tier="${cardTier}"]`);
+                if (letterRow) {
+                    // 원래 값 저장 (아직 저장되지 않은 경우)
+                    if (!window.letterRowOriginalNames[cardTier]) {
+                        window.letterRowOriginalNames[cardTier] = letterRow.querySelector('.ego-name').textContent;
+                    }
+
+                    // 선택한 카드의 이름으로 업데이트
+                    letterRow.querySelector('.ego-name').textContent = egoName;
+
+                    // 스타일 변경 (선택사항)
+                    letterRow.style.background = window.getComputedStyle(egoNameplate).background;
+                    letterRow.style.boxShadow = window.getComputedStyle(egoNameplate).boxShadow;
+                    letterRow.style.fontFamily = window.getComputedStyle(egoNameplate).fontFamily;
+
+                    // 선택 상태 표시
+                    letterRow.setAttribute('data-selected', 'true');
+                    letterRow.setAttribute('data-ego-id', ego.id)
+                }
+            }
+
+        } else {
+
+            // 5. 이미 선택된 카드를 다시 클릭하면 선택 해제
+            this.setAttribute('data-selected', 'false');
+
+            // ego-circle 스타일 초기화
+            const egoCircle = this.querySelector('.ego-circle');
+            egoCircle.style.border = ''; // 원래 스타일로 복원
+
+            // ego-list-row 원상 복구
+            matchingListRow.querySelector('.ego-name').textContent = matchingListRow.getAttribute('data-tier-name') || '선택되지 않음';
+
+            // ego-list-row의 스타일 초기화
+            matchingListRow.style.background = '';
+            matchingListRow.style.boxShadow = '';
+            matchingListRow.style.fontFamily = '';
+
+            // 선택 상태 해제
+            matchingListRow.setAttribute('data-card-selected', 'false');
+
+            // ego-main-grid의 letter-row 초기화
+            if (matchingMainGrid) {
+                const letterRow = matchingMainGrid.querySelector(`.letter-row[data-tier="${cardTier}"]`);
+                if (letterRow) {
+                    // 원래 값으로 복원
+                    const originalLetterName = window.letterRowOriginalNames[cardTier] || getTier(cardTier);
+                    letterRow.querySelector('.ego-name').textContent = originalLetterName;
+
+                    // 스타일 초기화
+                    letterRow.style.background = '';
+                    letterRow.style.boxShadow = '';
+                    letterRow.style.fontFamily = '';
+
+                    // 선택 상태 해제
+                    letterRow.setAttribute('data-selected', 'false');
+                }
+            }
+        }
     });
 
     return egoCard;
+}
+
+function getTier(tier) {
+    switch(tier) {
+        case 'Z': return  'ZAYIN';
+        case 'T': return 'TETH';
+        case 'H': return 'HE';
+        case 'W': return  'WAW';
+        case 'A': return 'ALEPH';
+    }
 }
 
 // EGO 리스트 항목 생성 함수

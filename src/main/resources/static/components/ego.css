@@ -25,7 +25,7 @@
 /* 새로운 카드 스타일 */
 .ego-main-card {
     position: relative;
-    height: 250px;
+    height: 270px;
     background-color: #1a1a1a;
     border: 2px solid #c0945c;  /* 3px에서 2px로 변경 */
     border-radius: 12px;
@@ -119,6 +119,7 @@
     max-height: 85vh; /* 높이 증가 */
     overflow-y: auto;
     box-shadow: 0 0 50px rgba(192, 148, 92, 0.5);
+    min-height: 680px;
 }
 
 /* 모달 내부 레이아웃 - 조정된 그리드 */
@@ -195,7 +196,7 @@
     /*border: 1px solid #c0945c;*/
     border-radius: 5px;
     height: calc(100% - 30px);  /* 헤더 높이를 고려한 프레임 높이 */
-
+    padding: 0 0 3px 0;
     display: flex; /* 추가 */
     justify-content: center; /* 추가 */
     align-items: center; /* 추가 */
@@ -272,7 +273,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: calc(100% - 30px);  /* 헤더 높이를 고려한 목록 영역 높이 */
+    height: calc(100% - 35px);  /* 헤더 높이를 고려한 목록 영역 높이 */
     overflow-y: auto;  /* 내용이 많을 경우 스크롤 추가 */
 }
 
@@ -286,6 +287,7 @@
     justify-content: space-between;
     color: #c0945c;
     font-weight: bold;
+    height: 39px;
 }
 
 .ego-tier-icon {
@@ -342,10 +344,10 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 3px solid #c0945c;  /* 테두리 두께도 조금 줄임 */
+    border: 0 solid #C0945C4C;  /* 테두리 두께도 조금 줄임 */
     background-color: #1a1a1a;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(192, 148, 92, 0.3);
+    box-shadow: 0 0 5px rgba(192, 148, 92, 0.3);
 }
 
 .ego-image {
@@ -394,9 +396,9 @@
     width: 210px;
     height: 210px;
     border-radius: 50%;
-    border: 1px solid rgba(192, 148, 92, 0.3);
+    /*border: 1px solid rgba(192, 148, 92, 0.3);*/
     left: -5px;
-    animation: pulseEffect 2s infinite;
+    /*animation: pulseEffect 2s infinite;*/
 }
 
 

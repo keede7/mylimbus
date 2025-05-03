@@ -110,66 +110,373 @@
         <div class="separator"></div>
 
         <!-- 새로운 특별 카드 그리드 -->
-<!--        <ul class="character-grid">-->
-<!--            <li class="character-card">-->
-<!--                <div class="special-card" onclick="openEGOModal('Yisang')" data-type="Yisang">-->
-<!--                    <div class="special-card-header">-->
-<!--                        &lt;!&ndash; card-symbol 제거 &ndash;&gt;-->
-<!--                        <div class="card-icon">-->
-<!--                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" alt="Envy Icon">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="korean-letters">-->
-<!--                        <div class="letter-row">-->
-<!--                            <div class="ego-nameplate-tier">Z</div>-->
-<!--                            <div class="ego-name">ZAYIN</div>-->
-<!--                        </div>-->
-<!--                        <div class="letter-row">-->
-<!--                            <div class="ego-nameplate-tier">H</div>-->
-<!--                            <div class="ego-name">HE</div>-->
-<!--                        </div>-->
-<!--                        <div class="letter-row">-->
-<!--                            <div class="ego-nameplate-tier">T</div>-->
-<!--                            <div class="ego-name">TETH</div>-->
-<!--                        </div>-->
-<!--                        <div class="letter-row">-->
-<!--                            <div class="ego-nameplate-tier">W</div>-->
-<!--                            <div class="ego-name">WAW</div>-->
-<!--                        </div>-->
-<!--                        <div class="letter-row">-->
-<!--                            <div class="ego-nameplate-tier">A</div>-->
-<!--                            <div class="ego-name">ALEPH</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--        </ul>-->
         <ul class="ego-main-grid">
             <li class="ego-main-grid-header">
-                <div class="ego-main-card" onclick="openEGOModal('YiSang')" data-type="YiSang">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="YiSang" data-kr-name="이상">
                     <div class="ego-main-card-header">
                         <div class="card-icon">
-                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" alt="Envy Icon">
+                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" >
                         </div>
                     </div>
                     <div class="korean-letters">
-                        <div class="letter-row">
+                        <div class="letter-row" data-tier="Z">
                             <div class="ego-nameplate-tier">Z</div>
                             <div class="ego-name">ZAYIN</div>
                         </div>
-                        <div class="letter-row">
-                            <div class="ego-nameplate-tier">H</div>
-                            <div class="ego-name">HE</div>
-                        </div>
-                        <div class="letter-row">
+                        <div class="letter-row" data-tier="T">
                             <div class="ego-nameplate-tier">T</div>
                             <div class="ego-name">TETH</div>
                         </div>
-                        <div class="letter-row">
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
                             <div class="ego-nameplate-tier">W</div>
                             <div class="ego-name">WAW</div>
                         </div>
-                        <div class="letter-row">
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Faust" data-kr-name="파우스트">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Faust_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Donquixote" data-kr-name="돈키호테">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Don_Quixote_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Ryoshu" data-kr-name="료슈">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Ryoshu_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Meursault" data-kr-name="뫼르소">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Meursault_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Honglu" data-kr-name="홍루">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Hong_Lu_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Heathcliff" data-kr-name="히스클리프">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Heathcliff_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Ishmael" data-kr-name="이스마엘">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Ishmael_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Rodion" data-kr-name="로쟈">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Rodion_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Sinclair" data-kr-name="싱클레어">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Sinclair_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Outis" data-kr-name="오티스">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Outis_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Gregor" data-kr-name="그레고르">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Gregor_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                            </div>
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
                             <div class="ego-nameplate-tier">A</div>
                             <div class="ego-name">ALEPH</div>
                         </div>
@@ -182,14 +489,12 @@
     <!-- Right Sidebar - Resources -->
     <aside class="resources-panel">
         <div class="ego-support">
-            <!--            <span>E.G.O 지원</span>-->
             <span class="ego-title">E.G.O 지원</span>
             <span class="ego-count">획득가능 개수/E.G.O에 필요한 전체 개수</span>
         </div>
         <ul class="resource-list">
             <li class="resource-item">
                 <img th:src="@{/sin/Wrath.webp}" alt="Red Resource">
-                <!--                <span class="resource-count">x<span th:text="${resources.red.current}">6</span>/<span th:text="${resources.red.max}">22</span></span>-->
                 <span class="resource-count">
                     <span>0</span>/<span>0</span>
                 </span>
@@ -249,7 +554,6 @@
                     <div class="identity-area">
                         <div class="identity-header">인격</div>
                         <div class="identity-frame">
-    <!--                        <img class="identity-image" id="identityImage" th:src="@{/sinners/yisang/112px-YiSang01.webp}" alt="캐릭터 인격">-->
                             <img class="identity-image" id="identityImage" alt="캐릭터 인격">
                             <div class="identity-info-container">
                                 <div class="identity-type" id="identityType">기본</div>
