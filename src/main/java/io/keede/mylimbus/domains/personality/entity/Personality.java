@@ -75,7 +75,7 @@ public class Personality {
     private int rarity;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "personality_id")
+    @JoinColumn(name = "personality_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Set<Passive> passives = new HashSet<>();
 
     private String defend;
@@ -83,56 +83,6 @@ public class Personality {
     private LocalDate releaseDate;
 
     private String imgUrl;
-
-    public Personality(
-            int rarity,
-            String baseName,
-            String personalityName,
-            List<PersonalityKeyword> keywords,
-            PersonalitySkill firstSkill,
-            PersonalitySkill secondSkill,
-            PersonalitySkill thirdSkill,
-            String defend,
-            Set<Passive> passives,
-            LocalDate releaseDate
-    ) {
-        this.rarity = rarity;
-        this.baseName = baseName;
-        this.personalityName = personalityName;
-        this.keywords = keywords;
-        this.firstSkill = firstSkill;
-        this.secondSkill = secondSkill;
-        this.thirdSkill = thirdSkill;
-        this.defend = defend;
-        this.passives.addAll(passives);
-        this.releaseDate = releaseDate;
-    }
-
-    public Personality(
-            int rarity,
-            String baseName,
-            String personalityName,
-            List<PersonalityKeyword> keywords,
-            PersonalitySkill firstSkill,
-            PersonalitySkill secondSkill,
-            PersonalitySkill thirdSkill,
-            String defend,
-            Set<Passive> passives,
-            LocalDate releaseDate,
-            String imgUrl
-    ) {
-        this.rarity = rarity;
-        this.baseName = baseName;
-        this.personalityName = personalityName;
-        this.keywords = keywords;
-        this.firstSkill = firstSkill;
-        this.secondSkill = secondSkill;
-        this.thirdSkill = thirdSkill;
-        this.defend = defend;
-        this.passives.addAll(passives);
-        this.releaseDate = releaseDate;
-        this.imgUrl = imgUrl;
-    }
 
     public Personality(
             int rarity,

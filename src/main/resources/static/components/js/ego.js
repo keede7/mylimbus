@@ -162,7 +162,7 @@ function fetchEGOData(characterElement) {
                     egoGrid.appendChild(egoCard);
                 });
             } else {
-                egoGrid.innerHTML = '<div class="no-data">사용 가능한 EGO가 없습니다.</div>';
+                egoGrid.innerHTML = '';
             }
         })
         .catch(error => {

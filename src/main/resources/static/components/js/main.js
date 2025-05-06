@@ -76,7 +76,7 @@ function fetchAlternativeCharacters(personalityId, baseNameKor) {
         })
         .catch(error => {
             console.error('Error fetching character alternatives:', error);
-            modalGrid.innerHTML = '<p>인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
+            modalGrid.innerHTML = '';
         });
 
     const applyButton = document.getElementById('applyFilters');
@@ -299,7 +299,7 @@ function filterCharacters() {
             })
             .catch(error => {
                 console.error('Error fetching filtered characters:', error);
-                modalGrid.innerHTML = '<p>필터링된 인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
+                modalGrid.innerHTML = '';
             });
     } else {
         // If no filters selected, use the original API

@@ -185,6 +185,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2024, 9, 5),
                         "/sinners/yisang/125px-Lobotomy_E.webp"
                 ), // 우울3공명, 우울6보유, 240905
+                new Personality(3, YISANG, "남부 리우 협회 3과 이상", List.of(해결사, 리우_협회),
+                        new PersonalitySkill(1, SLOTH, SLASH),
+                        new PersonalitySkill(2, WRATH, SLASH),
+                        new PersonalitySkill(3, ENVY, SLASH),
+                        BURN,
+                        "화상",
+                        Set.of(
+                                new Passive(WRATH, 4, MAIN, POSSESSION),
+                                new Passive(WRATH, 3, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2025, 2, 20),
+                        "/sinners/yisang/125px-Liu_Assoc.webp"
+                ),
                 new Personality(1, FAUST, "LCB 수감자 파우스트", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, SLOTH, BLUNT),
@@ -971,6 +984,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(1, WRATH, SLASH),
                         new PersonalitySkill(2, ENVY, SLASH),
                         new PersonalitySkill(3, GLOOM, BLUNT),
+                        SINKING,
                         "색욕",
                         Set.of(
                                 new Passive(ENVY, 5, MAIN, POSSESSION),
@@ -1225,6 +1239,19 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2024, 9, 19),
                         "/sinners/rodion/125px-Devyat'_Assoc.webp"
+                ),
+                new Personality(3, RODION, "남부 디에치 협회 4과 로쟈", List.of(해결사, 디에치_협회),
+                        new PersonalitySkill(1, GLOOM, BLUNT),
+                        new PersonalitySkill(2, ENVY, BLUNT),
+                        new PersonalitySkill(3, SLOTH, BLUNT),
+                        SINKING,
+                        "우울",
+                        Set.of(
+                                new Passive(GLOOM, 3, MAIN, POSSESSION),
+                                new Passive(GLOOM, 5, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2024, 9, 19),
+                        "/sinners/rodion/125px-Dieci_Assoc.webp"
                 ), // 탐식4보유, 탐식6보유, 240919
                 new Personality(3, RODION, "라만차랜드 공주 로쟈", List.of(제2권속, 혈귀, 라만차랜드),
                         new PersonalitySkill(1, PRIDE, PIERCE),

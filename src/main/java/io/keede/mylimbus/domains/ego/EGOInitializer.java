@@ -156,6 +156,28 @@ public class EGOInitializer {
                         )
                 ),
                 new EGO(
+                        YISANG,
+                        "4번째 성냥불",
+                        "/ego/yisang/280px-4th_Match_Flame_Yi_Sang.webp",
+                        TETH,
+                        WRATH,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        WRATH,
+                                        5
+                                ),
+                                new EGOUseCondition(
+                                        SLOTH,
+                                        1
+                                ),
+                                new EGOUseCondition(
+                                        GLUTTONY,
+                                        1
+                                )
+                        )
+                ),
+                new EGO(
                         FAUST,
                         "물주머니",
                         "/ego/faust/280px-Fluid_Sac_Faust.webp",
