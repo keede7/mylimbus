@@ -4,430 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limbus Company</title>
-    <!--    <link rel="stylesheet" th:href="@{/css/main.css}">-->
-    <link rel="stylesheet" >
-    <style>
-        /* Main Layout */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-        }
-
-        .game-container {
-            display: grid;
-            grid-template-columns: 1fr 250px;
-            grid-template-rows: auto 1fr;
-            grid-template-areas:
-        "header header"
-        "main sidebar";
-            height: 100vh;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            background-color: #1a1a1a;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Header Styles */
-        .game-header {
-            grid-area: header;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background: linear-gradient(to bottom, #303030, #1a1a1a);
-            border-bottom: 2px solid #c0945c;
-        }
-
-        .nav-title {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-title h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #e0e0e0;
-        }
-
-        .edit-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .edit-button img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .nav-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .nav-button,
-        .detail-button {
-            padding: 8px 15px;
-            background-color: #2a2a2a;
-            border: 1px solid #c0945c;
-            color: #e0e0e0;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        /* Main Content Area */
-        .character-selection {
-            grid-area: main;
-            padding: 20px;
-            overflow-y: auto;
-            background-color: #161616;
-        }
-
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .character-card {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .character-card:hover {
-            transform: scale(1.05);
-        }
-
-        .character-frame {
-            position: relative;
-            border: 3px solid transparent;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #2a2a2a;
-        }
-
-        /* Different rarity borders */
-        .character-frame.r3 {
-            border-color: #ff9900; /* Gold for high rarity */
-            background: linear-gradient(to bottom, #332200, #221100);
-        }
-
-        .character-frame.r2 {
-            border-color: #ff3300; /* Red for medium rarity */
-            background: linear-gradient(to bottom, #331100, #220a00);
-        }
-
-        .character-frame.r1 {
-            border-color: #9966cc; /* Purple for basic rarity */
-            background: linear-gradient(to bottom, #221133, #110a22);
-        }
-
-        .character-frame img {
-            width: 100%;
-            height: 250px;
-            display: block;
-        }
-
-        .character-rarity {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        .character-type {
-            position: absolute;
-            bottom: 25px;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #c0945c;
-            padding: 3px 0;
-            text-align: center;
-            font-size: 0.7rem;
-        }
-
-        .character-name {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 3px 0;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        /* Resources Panel */
-        .resources-panel {
-            grid-area: sidebar;
-            /*padding: 20px;*/
-            /* 25-04-22 수정 */
-            padding: 15px 10px; /* 패딩 줄임 */
-            background-color: #1c1c1c;
-            border-left: 1px solid #333;
-        }
-
-        .ego-support {
-            padding: 10px;
-            background-color: #2a2a2a;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            text-align: center;
-            color: #e0e0e0;
-            font-weight: bold;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .ego-title {
-            display: block;
-        }
-
-        .ego-count {
-            display: block;
-            font-size: 0.7rem;
-            font-weight: normal;
-            color: #bbbbbb;
-        }
-
-        .resource-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .resource-item {
-            display: flex;
-            align-items: center;
-            /* 25-04-22 수정 */
-            justify-content: space-evenly;
-            margin-bottom: 10px;
-            padding: 8px;
-            background-color: #2a2a2a;
-            border-radius: 5px;
-        }
-
-        .resource-item img {
-            width: 24px;
-            height: 24px;
-            /*margin-right: 10px;*/
-            /* 25-04-22 수정 */
-            margin-right: 0; /* 오른쪽 마진 제거 */
-        }
-
-        .resource-count {
-            color: #e0e0e0;
-            font-size: 0.9rem;
-            /* 25-04-22 수정 */
-            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: #1a1a1a;
-            margin: 5% auto;
-            padding: 20px;
-            border: 2px solid #c0945c;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 900px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: #c0945c;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-
-        /* Filter styles */
-        .filter-container {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #252525;
-            border-radius: 8px;
-            border: 1px solid #3a3a3a;
-        }
-
-        .filter-section {
-            margin-bottom: 15px;
-        }
-
-        .filter-section h3 {
-            color: #c0945c;
-            margin-bottom: 10px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .filter-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 5px 0px;
-        }
-
-        .filter-checkbox {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .filter-checkbox input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
-
-        .checkbox-custom {
-            display: flex;
-            align-items: center;
-            padding: 5px 10px;
-            background-color: #333;
-            border: 1px solid #555;
-            border-radius: 5px;
-            transition: all 0.2s ease;
-        }
-
-        .checkbox-custom img {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-        }
-
-        .filter-text {
-            color: #ddd;
-            font-size: 14px;
-        }
-
-        /* Checked state styling */
-        .filter-checkbox input:checked + .checkbox-custom {
-            background-color: #493e2d;
-            border-color: #c0945c;
-        }
-
-        .filter-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .filter-button {
-            padding: 8px 16px;
-            background-color: #c0945c;
-            color: #1a1a1a;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-
-        .filter-button:hover {
-            background-color: #d6a567;
-        }
-
-        .filter-button.reset {
-            background-color: #444;
-            color: #ddd;
-        }
-
-        .filter-button.reset:hover {
-            background-color: #555;
-        }
-
-        .modal-grid {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .game-container {
-                grid-template-columns: 1fr;
-                grid-template-areas:
-            "header"
-            "main"
-            "sidebar";
-            }
-
-            .character-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-            }
-        }
-
-        /* 푸터 스타일 */
-        .wiki-footer {
-            background-color: var(--header-bg-color);
-            padding: 15px 20px;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            margin-bottom: 10px;
-        }
-
-        .footer-link {
-            color: var(--link-color);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-
-        .footer-info {
-            color: #7a7a7a;
-            font-size: 0.8rem;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/components/main.css}">
+    <link rel="stylesheet" th:href="@{/components/ego.css}">
 </head>
 <body>
 <!-- Main Container -->
@@ -437,32 +15,14 @@
         <div class="nav-title">
             <h1>조합 시뮬레이터</h1>
         </div>
-        <!--        <div class="nav-controls">-->
-        <!--            <button class="nav-button prev-button">&lt;&lt;</button>-->
-        <!--            <button class="detail-button">상세</button>-->
-        <!--        </div>-->
     </header>
 
     <!-- Main Content Area - Character Grid -->
     <main class="character-selection">
         <ul class="character-grid" id="characterGrid">
-            <!-- Characters will be loaded dynamically via REST API -->
-            <!--            <li th:each="character : ${characters}"-->
-            <!--                class="character-card"-->
-            <!--                th:data-id="${character.id}"-->
-            <!--                th:data-type="${character.type}"-->
-            <!--                onclick="openCharacterModal(this)">-->
-            <!--                <div class="character-frame" th:class="${'character-frame ' + character.rarity}">-->
-            <!--                    <img th:src="@{../static/sinners/yisang/112px-YiSang01.webp}" th:alt="${character.name}">-->
-            <!--                    <div class="character-rarity">Lv. <span th:text="${character.level}">50</span></div>-->
-            <!--                    <div class="character-type" th:text="${character.type}">피쿼드호 일등 항해사</div>-->
-            <!--                    <div class="character-name" th:text="${character.name}">이상</div>-->
-            <!--                </div>-->
-            <!--            </li>-->
             <li class="character-card" th:data-kr-name="이상" th:data-type="YiSang" onclick="openCharacterModal(this)">
                 <div class="character-frame character-frame r1">
                     <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이상</div>
                 </div>
@@ -470,7 +30,6 @@
             <li class="character-card " th:data-kr-name="파우스트" th:data-type="Faust" onclick="openCharacterModal(this)">
                 <div class="character-frame faust character-frame r1">
                     <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >파우스트</div>
                 </div>
@@ -478,7 +37,6 @@
             <li class="character-card " th:data-kr-name="돈키호테" th:data-type="Donquixote" onclick="openCharacterModal(this)">
                 <div class="character-frame donquixote character-frame r1">
                     <img th:src="@{/sinners/donquixote/112px-Donquixote03.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >돈키호테</div>
                 </div>
@@ -486,7 +44,6 @@
             <li class="character-card " th:data-kr-name="료슈" th:data-type="Ryoshu" onclick="openCharacterModal(this)">
                 <div class="character-frame ryoshu character-frame r1">
                     <img th:src="@{/sinners/ryoshu/112px-Ryoshu04.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >료슈</div>
                 </div>
@@ -494,7 +51,6 @@
             <li class="character-card " th:data-kr-name="뫼르소" th:data-type="Meursault" onclick="openCharacterModal(this)">
                 <div class="character-frame meursault character-frame r1">
                     <img th:src="@{/sinners/meursault/112px-Meursault05.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >뫼르소</div>
                 </div>
@@ -502,7 +58,6 @@
             <li class="character-card " th:data-kr-name="홍루" th:data-type="Honglu" onclick="openCharacterModal(this)">
                 <div class="character-frame honglu character-frame r1">
                     <img th:src="@{/sinners/honglu/112px-Honglu06.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >홍루</div>
                 </div>
@@ -510,7 +65,6 @@
             <li class="character-card " th:data-kr-name="히스클리프" th:data-type="Heathcliff" onclick="openCharacterModal(this)">
                 <div class="character-frame heathcliff character-frame r1">
                     <img th:src="@{/sinners/heathcliff/112px-Heathcliff07.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >히스클리프</div>
                 </div>
@@ -518,7 +72,6 @@
             <li class="character-card " th:data-kr-name="이스마엘" th:data-type="Ishmael" onclick="openCharacterModal(this)">
                 <div class="character-frame ishmael character-frame r1">
                     <img th:src="@{/sinners/ishmael/112px-Ishmael08.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >이스마엘</div>
                 </div>
@@ -526,7 +79,6 @@
             <li class="character-card " th:data-kr-name="로쟈" th:data-type="Rodion" onclick="openCharacterModal(this)">
                 <div class="character-frame rodion character-frame r1">
                     <img th:src="@{/sinners/rodion/112px-Rodion09.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >로쟈</div>
                 </div>
@@ -534,7 +86,6 @@
             <li class="character-card " th:data-kr-name="싱클레어" th:data-type="Sinclair" onclick="openCharacterModal(this)">
                 <div class="character-frame sinclair character-frame r1">
                     <img th:src="@{/sinners/sinclair/112px-Sinclair11.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >싱클레어</div>
                 </div>
@@ -542,7 +93,6 @@
             <li class="character-card " th:data-kr-name="오티스" th:data-type="Outis" onclick="openCharacterModal(this)">
                 <div class="character-frame outis character-frame r1">
                     <img th:src="@{/sinners/outis/112px-Outis12.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >오티스</div>
                 </div>
@@ -550,9 +100,387 @@
             <li class="character-card " th:data-kr-name="그레고르" th:data-type="Gregor" onclick="openCharacterModal(this)">
                 <div class="character-frame gregor character-frame r1">
                     <img th:src="@{/sinners/gregor/112px-Gregor13.webp}" >
-                    <div class="character-rarity"></div>
                     <div class="character-type" >기본</div>
                     <div class="character-name" >그레고르</div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- 구분선 -->
+        <div class="separator"></div>
+
+        <!-- 새로운 특별 카드 그리드 -->
+        <ul class="ego-main-grid">
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="YiSang" data-kr-name="이상">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" >
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Faust" data-kr-name="파우스트">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Faust_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Donquixote" data-kr-name="돈키호테">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Don_Quixote_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Ryoshu" data-kr-name="료슈">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Ryoshu_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Meursault" data-kr-name="뫼르소">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Meursault_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Honglu" data-kr-name="홍루">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Hong_Lu_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Heathcliff" data-kr-name="히스클리프">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Heathcliff_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Ishmael" data-kr-name="이스마엘">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Ishmael_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Rodion" data-kr-name="로쟈">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Rodion_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Sinclair" data-kr-name="싱클레어">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Sinclair_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Outis" data-kr-name="오티스">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Outis_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Gregor" data-kr-name="그레고르">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Gregor_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -561,14 +489,12 @@
     <!-- Right Sidebar - Resources -->
     <aside class="resources-panel">
         <div class="ego-support">
-            <!--            <span>E.G.O 지원</span>-->
             <span class="ego-title">E.G.O 지원</span>
             <span class="ego-count">획득가능 개수/E.G.O에 필요한 전체 개수</span>
         </div>
         <ul class="resource-list">
             <li class="resource-item">
                 <img th:src="@{/sin/Wrath.webp}" alt="Red Resource">
-                <!--                <span class="resource-count">x<span th:text="${resources.red.current}">6</span>/<span th:text="${resources.red.max}">22</span></span>-->
                 <span class="resource-count">
                     <span>0</span>/<span>0</span>
                 </span>
@@ -612,6 +538,42 @@
         </ul>
     </aside>
 
+    <!-- E.G.O Modal -->
+    <div id="egoModal" class="ego-modal">
+        <div class="ego-modal-content">
+            <span class="close-button" onclick="closeEGOModal()">&times;</span>
+            <div class="ego-modal-inner">
+                <div class="ego-frame-area">
+                    <!-- 동적으로 채워질 EGO 카드 그리드 -->
+                    <div class="ego-grid" id="egoGrid">
+                        <!-- 여기에 동적으로 ego-card 요소들이 추가됩니다 -->
+                    </div>
+                </div>
+                <div class="right-column">
+                    <!-- 2. 인격 사진영역 (우측상단) -->
+                    <div class="identity-area">
+                        <div class="identity-header">인격</div>
+                        <div class="identity-frame">
+                            <img class="identity-image" id="identityImage" alt="캐릭터 인격">
+                            <div class="identity-info-container">
+                                <div class="identity-type" id="identityType">기본</div>
+                                <div class="identity-name" id="identityName">이상</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. E.G.O 목록 영역 (우측하단) -->
+                    <div class="ego-list-area">
+                        <div class="ego-list-header">E.G.O</div>
+                        <div class="ego-list-items" id="egoListItems">
+                            <!-- 여기에 동적으로 ego-list-row 요소들이 추가됩니다 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Character Selection Modal -->
     <div id="characterModal" class="modal">
         <div class="modal-content">
@@ -624,49 +586,49 @@
                     <div>키워드</div>
                     <div class="filter-options">
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="BURN">
+                            <input type="checkbox" name="affinity" value="BURN">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Burn.webp}" alt="화상">
                             <span class="filter-text">화상</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="BLEED">
+                            <input type="checkbox" name="affinity" value="BLEED">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Bleed.webp}" alt="출혈">
                             <span class="filter-text">출혈</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="TREMOR">
+                            <input type="checkbox" name="affinity" value="TREMOR">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Tremor.webp}" alt="진동">
                             <span class="filter-text">진동</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="RUPTURE">
+                            <input type="checkbox" name="affinity" value="RUPTURE">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Rupture.webp}" alt="파열">
                             <span class="filter-text">파열</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="SINKING">
+                            <input type="checkbox" name="affinity" value="SINKING">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Sinking.webp}" alt="침잠">
                             <span class="filter-text">침잠</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="POISE">
+                            <input type="checkbox" name="affinity" value="POISE">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Poise.webp}" alt="호흡">
                             <span class="filter-text">호흡</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="keyword" value="CHARGE">
+                            <input type="checkbox" name="affinity" value="CHARGE">
                             <span class="checkbox-custom">
                             <img th:src="@{/attribute/25px-Charge.webp}" alt="충전">
                             <span class="filter-text">충전</span>
@@ -679,24 +641,80 @@
                     <div>공격종류</div>
                     <div class="filter-options">
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="attackType" value="SLASH">
+                            <input type="checkbox" name="skillType" value="SLASH">
                             <span class="checkbox-custom">
-                            <img th:src="@{/attribute/slash.webp}" style="size: 25px; width: 25px;" alt="참격">
+                            <img th:src="@{/attribute/slash.webp}" alt="참격">
                             <span class="filter-text">참격</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="attackType" value="PIERCE">
+                            <input type="checkbox" name="skillType" value="PIERCE">
                             <span class="checkbox-custom">
-                            <img th:src="@{/attribute/pierce.webp}" style="size: 25px; width: 25px;" alt="관통">
+                            <img th:src="@{/attribute/pierce.webp}" alt="관통">
                             <span class="filter-text">관통</span>
                         </span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="attackType" value="BLUNT">
+                            <input type="checkbox" name="skillType" value="BLUNT">
                             <span class="checkbox-custom">
-                            <img th:src="@{/attribute/blunt.webp}" style="size: 25px; width: 25px;" alt="타격">
+                            <img th:src="@{/attribute/blunt.webp}" alt="타격">
                             <span class="filter-text">타격</span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- New Filter Group for Skill Attributes -->
+                <div class="filter-group">
+                    <div>스킬속성</div>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="WRATH">
+                            <span class="checkbox-custom">
+                            <img  data- th:src="@{/sin/wrath.webp}" alt="분노">
+                            <span class="filter-text">분노</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="LUST">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/lust.webp}" alt="색욕">
+                            <span class="filter-text">색욕</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="SLOTH">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/sloth.webp}"  alt="나태">
+                            <span class="filter-text">나태</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="GLUTTONY">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/gluttony.webp}" alt="탐식">
+                            <span class="filter-text">탐식</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="GLOOM">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/gloom.webp}"  alt="우울">
+                            <span class="filter-text">우울</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="PRIDE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/pride.webp}" alt="오만">
+                            <span class="filter-text">오만</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="ENVY">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sin/envy.webp}" alt="질투">
+                            <span class="filter-text">질투</span>
                         </span>
                         </label>
                     </div>
@@ -707,7 +725,7 @@
                     <button id="resetFilters" class="filter-button reset">초기화</button>
                 </div>
             </div>
-            <ul class="character-grid modal-grid" id="modalCharacterGrid">
+            <ul class="character-grid modal-grid" style="min-height: 250px;" id="modalCharacterGrid">
                 <!-- Alternative characters will be loaded here via REST API -->
             </ul>
         </div>
@@ -716,364 +734,22 @@
 
 <footer class="wiki-footer">
     <div class="footer-links">
-        <a href="#" class="footer-link">이용약관</a>
-        <a href="#" class="footer-link">개인정보 처리방침</a>
-        <a href="#" class="footer-link">위키 기여하기</a>
-        <a href="#" class="footer-link">연락처</a>
+        <a href="https://github.com/keede7/mylimbus" class="footer-link">위키 기여하기</a>
     </div>
     <div class="footer-info">
-        <p>해당 페이지는 Project Moon의 공식 사이트가 아닙니다.</p>
+        <p>문의 사항 : wesaq11@gmail.com</p>
         <p>모든 게임 관련 콘텐츠와 자료는 Project Moon에 저작권이 있습니다.</p>
-        <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Limbus Company Wiki | 최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>
+        <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span>
+            <!--            Limbus Company Wiki |-->
+            <!--            최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>-->
+            최종 업데이트: <span>2025-05-06</span></p>
     </div>
 </footer>
 
 <!-- JavaScript -->
-<script th:inline="javascript">
-    // Function to open character selection modal
-    function openCharacterModal(characterElement) {
-        const personalityId = characterElement.getAttribute('data-id');
-        const personalityKRName = characterElement.getAttribute('data-kr-name');
-        const modal = document.getElementById('characterModal');
+<script th:inline="javascript" th:src="@{/components/js/modal.js}"></script>
+<script th:inline="javascript" th:src="@{/components/js/main.js}"></script>
+<script th:inline="javascript" th:src="@{/components/js/ego.js}"></script>
 
-        // Show modal
-        modal.style.display = 'block';
-
-        // Fetch alternative characters via REST API
-        fetchAlternativeCharacters(personalityId, personalityKRName);
-    }
-
-    // Function to close character selection modal
-    function closeCharacterModal() {
-        const modal = document.getElementById('characterModal');
-        modal.style.display = 'none';
-    }
-
-    // personalityId 미사용
-    function fetchAlternativeCharacters(personalityId, baseNameKor) {
-        // Clear previous content
-        const modalGrid = document.getElementById('modalCharacterGrid');
-        modalGrid.innerHTML = '';
-        modalGrid.setAttribute("data-kr-name", baseNameKor)
-
-        // Create form data for ModelAttribute
-        const formData = new FormData();
-        formData.append('baseName', baseNameKor);
-
-        // Variable to store the default images
-        let defaultImgs = [];
-
-        // Updated API endpoint with ModelAttribute approach
-        fetch(`/api/personality/base?baseName=${baseNameKor}`, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Populate modal with character alternatives
-                data.forEach(character => {
-                    const li = document.createElement('li');
-                    li.className = 'character-card';
-                    li.setAttribute('data-id', character.id);
-                    li.onclick = function() { selectCharacter(character); };
-
-                    // Convert rarity number to r1, r2, r3 format
-                    const rarityClass = `character-frame r${character.rarity}`;
-
-                    // Updated inner HTML with converted rarity class
-                    li.innerHTML = `
-                    <div class="character-frame ${rarityClass}">
-                        <img src="${character.imgUrl}" alt="${character.baseName}">
-<!--                        <div class="character-rarity">${character.rarity}</div>-->
-                        <div class="character-type">${character.personalityName}</div>
-                        <div class="character-name">${character.baseName}</div>
-                    </div>
-                `;
-
-                    modalGrid.appendChild(li);
-
-                    // Save a copy of each li element
-                    defaultImgs.push(li.cloneNode(true));
-                });
-
-                // Store the complete data for reset functionality
-                modalGrid.defaultImgs = defaultImgs;
-                console.log(modalGrid)
-                console.log(modalGrid.defaultImgs)
-            })
-            .catch(error => {
-                console.error('Error fetching character alternatives:', error);
-                modalGrid.innerHTML = '<p>인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
-            });
-
-        const applyButton = document.getElementById('applyFilters');
-        if (applyButton) {
-            applyButton.addEventListener('click', filterCharacters);
-        }
-
-        // Reset filters button
-        const resetButton = document.getElementById('resetFilters');
-        if (resetButton) {
-            resetButton.addEventListener('click', function() {
-                // Uncheck all checkboxes
-                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-                // modalGrid.innerHTML = defaultPersonalitiesComponent;
-                // Reset to original data
-                // fetchAlternativeCharacters(personalityId, baseNameKor);
-
-                // Reset to original data using our saved defaultImgs
-                modalGrid.innerHTML = '';
-                if (modalGrid.defaultImgs && modalGrid.defaultImgs.length > 0) {
-                    modalGrid.defaultImgs.forEach(imgElement => {
-                        // Add event listener back since cloning doesn't preserve events
-                        const originalId = imgElement.getAttribute('data-id');
-                        imgElement.onclick = function() {
-                            const character = data.find(c => c.id === originalId);
-                            if (character) selectCharacter(character);
-                        };
-                        modalGrid.appendChild(imgElement.cloneNode(true));
-                    });
-                } else {
-                    // If defaultImgs not available, refetch the data
-                    fetchAlternativeCharacters(personalityId, baseNameKor);
-                }
-
-            });
-        }
-    }
-
-    function selectCharacter(character) {
-        // Find the original character element that was clicked
-        const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
-        console.log(character);
-        console.log(originalCharacterSlot);
-
-        const idTagName = 'data-id';
-
-        if (originalCharacterSlot) {
-
-            console.log("originalCharacterSlot");
-            console.log(originalCharacterSlot);
-
-            // 이전에 선택된 캐릭터의 스킬 카운트 감소 (이전 캐릭터 정보 필요)
-            // 이 부분은 이전 캐릭터 정보를 어떻게 관리하는지에 따라 달라질 수 있음
-            const previousCharacterId = originalCharacterSlot.getAttribute(idTagName);
-            if (previousCharacterId) {
-                decreaseSkillCounts(previousCharacterId);
-            }
-
-            // 새로 선택된 캐릭터의 스킬 카운트 증가
-            increaseSkillCounts(character);
-
-            // 현재 선택된 캐릭터 ID를 저장해 나중에 감소시킬 때 사용
-            originalCharacterSlot.setAttribute(idTagName, character.id);
-
-            // Update the original character slot with the new character data
-            originalCharacterSlot.querySelector('img').src = character.imgUrl;
-
-            const frameTag = originalCharacterSlot.querySelector('.character-frame')
-            // Remove existing rarity class (r1, r2, r3, etc.)
-            frameTag.className = frameTag.className.replace(/\br\d\b/g, '');
-            // Add new rarity class
-            frameTag.className = `character-frame r${character.rarity}`;
-
-            // originalCharacterSlot.querySelector('.character-rarity').textContent = character.rarity;
-            originalCharacterSlot.querySelector('.character-type').textContent = character.personalityName;
-            originalCharacterSlot.querySelector('.character-name').textContent = character.baseName;
-            originalCharacterSlot.setAttribute(idTagName, character.id);
-
-            // Remove the selected attribute
-            originalCharacterSlot.removeAttribute('data-selected');
-
-            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            // Close the modal
-            closeCharacterModal();
-        }
-    }
-
-    // 스킬 카운트 증가 함수
-    function increaseSkillCounts(character) {
-        if (!character) return;
-
-        // 스킬 타입에 따라 해당 리소스 카운트 증가
-        updateSkillCount(character.firstSkill?.sinType, 1);
-        updateSkillCount(character.secondSkill?.sinType, 1);
-        updateSkillCount(character.thirdSkill?.sinType, 1);
-    }
-
-    // 스킬 카운트 업데이트 함수 (증가/감소)
-    function updateSkillCount(skillType, change) {
-        if (!skillType) return;
-
-        // 스킬 타입에 맞는 리소스 아이템 찾기
-        const resourceItem = findResourceItemBySkillType(skillType);
-        if (!resourceItem) return;
-
-        // 현재 카운트 값 가져오기
-        const countSpan = resourceItem.querySelector('.resource-count span:first-child');
-        if (!countSpan) return;
-
-        // 현재 값을 가져와서 증감시키기
-        let currentCount = parseInt(countSpan.textContent, 10);
-        currentCount += change;
-
-        // 최소값은 0, 최대값은 22로 제한 => 최대값은 전체 E.G.O 사용에 필요한 각 자원 총 합이다.
-        const maxCount = parseInt(resourceItem.querySelector('.resource-count span:last-child').textContent, 10) || 22;
-        currentCount = Math.max(0, Math.min(currentCount, maxCount));
-
-        // 업데이트된 값 적용
-        countSpan.textContent = currentCount;
-    }
-
-    // 스킬 카운트 감소 함수
-    function decreaseSkillCounts(personalityId) {
-        // 서버에서 해당 캐릭터의 스킬 정보를 가져온 후 카운트 감소
-        fetch(`/api/personality/${personalityId}`)
-            .then(response => response.json())
-            .then(personality => {
-                updateSkillCount(personality.firstSkill?.sinType, -1);
-                updateSkillCount(personality.secondSkill?.sinType, -1);
-                updateSkillCount(personality.thirdSkill?.sinType, -1);
-            })
-            .catch(error => {
-                console.error('Error fetching previous personality skills:', error);
-            });
-    }
-
-    // 스킬 타입에 해당하는 리소스 아이템 찾기
-    function findResourceItemBySkillType(skillType) {
-        const skillToImageMap = {
-            'WRATH': 'Wrath.webp',
-            'LUST': 'Lust.webp',
-            'SLOTH': 'Sloth.webp',
-            'GLUTTONY': 'Gluttony.webp',
-            'GLOOM': 'Gloom.webp',
-            'PRIDE': 'Pride.webp',
-            'ENVY': 'Envy.webp'
-        };
-
-        const imageName = skillToImageMap[skillType];
-        if (!imageName) return null;
-
-        // 이미지 경로에 해당 이름이 포함된 리소스 아이템 찾기
-        return Array.from(document.querySelectorAll('.resource-item'))
-            .find(item => {
-                const imgSrc = item.querySelector('img').getAttribute('src');
-                return imgSrc && imgSrc.includes(imageName);
-            });
-    }
-
-    // When a character is clicked, mark it as selected before opening modal
-    document.querySelectorAll('.character-card').forEach(card => {
-        card.addEventListener('click', function() {
-            // Remove previous selection
-            document.querySelectorAll('.character-card[data-selected="true"]').forEach(selected => {
-                selected.removeAttribute('data-selected');
-            });
-
-            // Mark this card as selected
-            this.setAttribute('data-selected', 'true');
-        });
-    });
-
-    // Close modal when clicking outside of it
-    window.onclick = function(event) {
-        const modal = document.getElementById('characterModal');
-        if (event.target === modal) {
-            closeCharacterModal();
-        }
-    };
-
-    // Function to handle character filtering
-    function filterCharacters() {
-        // Get all selected keywords
-
-        const modalGrid = document.getElementById('modalCharacterGrid');
-        const personalityKRName = modalGrid.getAttribute('data-kr-name');
-
-        const selectedKeywords = Array.from(
-            document.querySelectorAll('input[name="keyword"]:checked')
-        ).map(checkbox => checkbox.value);
-
-        // Get all selected attack types
-        const selectedAttackTypes = Array.from(
-            document.querySelectorAll('input[name="attackType"]:checked')
-        ).map(checkbox => checkbox.value);
-
-        // Build query parameters
-        const queryParams = new URLSearchParams();
-
-        queryParams.append("personalityKRName", personalityKRName);
-
-        if (selectedKeywords.length > 0) {
-            queryParams.append('personalityAttackKeyword', selectedKeywords.join(','));
-        }
-
-        if (selectedAttackTypes.length > 0) {
-            queryParams.append('personalityAttackTypes', selectedAttackTypes.join(','));
-        }
-
-        // Only proceed if we have filters selected
-        if (selectedKeywords.length > 0 || selectedAttackTypes.length > 0) {
-            // Clear existing grid
-            const modalGrid = document.getElementById('modalCharacterGrid');
-            modalGrid.innerHTML = '<p>데이터를 불러오는 중...</p>';
-
-            // Call the new API with filters
-            fetch(`/api/personality/filter?${queryParams.toString()}`, {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Populate modal with filtered characters
-                    populateCharacterGrid(data, modalGrid);
-                })
-                .catch(error => {
-                    console.error('Error fetching filtered characters:', error);
-                    modalGrid.innerHTML = '<p>필터링된 인격 데이터를 불러오는 중 오류가 발생했습니다.</p>';
-                });
-        } else {
-            // If no filters selected, use the original API
-            console.log("If no filters selected, use the original API");
-            fetchAlternativeCharacters(currentPersonalityId, currentBaseNameKor);
-        }
-    }
-
-    // Helper function to populate the character grid
-    function populateCharacterGrid(characters, gridElement) {
-        // Clear the grid
-        gridElement.innerHTML = '';
-
-        if (characters.length === 0) {
-            gridElement.innerHTML = '<p>조건에 맞는 인격이 없습니다.</p>';
-            return;
-        }
-
-        // Add each character to the grid
-        characters.forEach(character => {
-            const li = document.createElement('li');
-            li.className = 'character-card';
-            li.setAttribute('data-id', character.id);
-            li.onclick = function() { selectCharacter(character); };
-
-            // Convert rarity number to r1, r2, r3 format
-            const rarityClass = `character-frame r${character.rarity}`;
-
-            li.innerHTML = `
-            <div class="character-frame ${rarityClass}">
-                <img src="${character.imgUrl}" alt="${character.baseName}">
-                <div class="character-type">${character.personalityName}</div>
-                <div class="character-name">${character.baseName}</div>
-            </div>
-        `;
-
-            gridElement.appendChild(li);
-        });
-    }
-
-</script>
 </body>
 </html>
