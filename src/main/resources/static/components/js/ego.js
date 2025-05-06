@@ -343,8 +343,6 @@ function createEGOCard(ego, characterType) {
                 console.error('Error parsing use conditions:', e);
             }
         }
-        console.log("useConditions");
-        console.log(useConditions);
 
         if (!isSelected) {
             // 현재 카드 선택 상태로 변경
@@ -496,23 +494,4 @@ function getTier(tier) {
         case 'W': return  'WAW';
         case 'A': return 'ALEPH';
     }
-}
-
-// EGO 리스트 항목 생성 함수
-function createEGOListRow(ego) {
-    const egoListRow = document.createElement('div');
-    egoListRow.className = 'ego-list-row';
-
-    egoListRow.innerHTML = `
-        <span class="ego-tier-icon">${ego.tier}</span>
-        <span class="ego-name">${ego.name}</span>
-    `;
-
-    return egoListRow;
-}
-
-// EGO 선택 함수 (필요한 경우 구현)
-function selectEGO(ego) {
-    console.log('Selected EGO:', ego);
-    // 여기에 EGO 선택 시 필요한 로직 구현
 }

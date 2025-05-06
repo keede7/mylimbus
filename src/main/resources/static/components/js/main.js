@@ -73,8 +73,6 @@ function fetchAlternativeCharacters(personalityId, baseNameKor) {
 
             // Store the complete data for reset functionality
             modalGrid.defaultImgs = defaultImgs;
-            console.log(modalGrid)
-            console.log(modalGrid.defaultImgs)
         })
         .catch(error => {
             console.error('Error fetching character alternatives:', error);
@@ -122,15 +120,10 @@ function fetchAlternativeCharacters(personalityId, baseNameKor) {
 function selectCharacter(character) {
     // Find the original character element that was clicked
     const originalCharacterSlot = document.querySelector('.character-card[data-selected="true"]');
-    console.log(character);
-    console.log(originalCharacterSlot);
 
     const idTagName = 'data-id';
 
     if (originalCharacterSlot) {
-
-        console.log("originalCharacterSlot");
-        console.log(originalCharacterSlot);
 
         // 이전에 선택된 캐릭터의 스킬 카운트 감소 (이전 캐릭터 정보 필요)
         // 이 부분은 이전 캐릭터 정보를 어떻게 관리하는지에 따라 달라질 수 있음
@@ -167,16 +160,6 @@ function selectCharacter(character) {
     }
 }
 
-// 스킬 카운트 증가 함수
-function increaseSkillCounts(character) {
-    if (!character) return;
-
-    // 스킬 타입에 따라 해당 리소스 카운트 증가
-    updateSkillCount(character.firstSkill?.sinType, 1);
-    updateSkillCount(character.secondSkill?.sinType, 1);
-    updateSkillCount(character.thirdSkill?.sinType, 1);
-}
-
 // 스킬 카운트 업데이트 함수 (증가/감소)
 function updateSkillCount(skillType, change) {
     if (!skillType) return;
@@ -201,14 +184,24 @@ function updateSkillCount(skillType, change) {
     countSpan.textContent = currentCount;
 }
 
+// 스킬 카운트 증가 함수
+function increaseSkillCounts(character) {
+    if (!character) return;
+
+    // 스킬 타입에 따라 해당 리소스 카운트 증가
+    updateSkillCount(character.firstSkill?.sinType, 3);
+    updateSkillCount(character.secondSkill?.sinType, 2);
+    updateSkillCount(character.thirdSkill?.sinType, 1);
+}
+
 // 스킬 카운트 감소 함수
 function decreaseSkillCounts(personalityId) {
     // 서버에서 해당 캐릭터의 스킬 정보를 가져온 후 카운트 감소
     fetch(`/api/personality/${personalityId}`)
         .then(response => response.json())
         .then(personality => {
-            updateSkillCount(personality.firstSkill?.sinType, -1);
-            updateSkillCount(personality.secondSkill?.sinType, -1);
+            updateSkillCount(personality.firstSkill?.sinType, -3);
+            updateSkillCount(personality.secondSkill?.sinType, -2);
             updateSkillCount(personality.thirdSkill?.sinType, -1);
         })
         .catch(error => {
@@ -251,21 +244,6 @@ document.querySelectorAll('.character-card').forEach(card => {
         this.setAttribute('data-selected', 'true');
     });
 });
-
-// // Close modal when clicking outside of it
-// window.onclick = function (event) {
-//     const modal = document.getElementById('characterModal');
-//     console.log(event.target === modal)
-//     if (event.target === modal) {
-//         closeCharacterModal();
-//     }
-//
-//     const egoModal = document.getElementById('egoModal');
-//     if (event.target === egoModal) {
-//         egoModal.style.display = 'none';
-//     }
-//
-// };
 
 function filterCharacters() {
     // Get all selected keywords
@@ -339,8 +317,6 @@ function populateCharacterGrid(characters, gridElement) {
         gridElement.innerHTML = '<p>조건에 맞는 인격이 없습니다.</p>';
         return;
     }
-
-    console.log(characters);
 
     // Add each character to the grid
     characters.forEach(character => {

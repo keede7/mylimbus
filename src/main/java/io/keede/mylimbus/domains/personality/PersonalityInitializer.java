@@ -325,7 +325,7 @@ public class PersonalityInitializer {
                 ), // 질투4보유, 질투3보유, 230227
                 new Personality(1, DONQUIXOTE, "LCB 수감자 돈키호테", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, LUST, PIERCE),
-                        new PersonalitySkill(2, WRATH, PIERCE),
+                        new PersonalitySkill(2, ENVY, PIERCE),
                         new PersonalitySkill(3, GLUTTONY, PIERCE),
                         NONE,
                         "색욕",
@@ -1315,8 +1315,8 @@ public class PersonalityInitializer {
                         "/sinners/rodion/125px-Liu_Assoc.webp"
                 ), // 분노3공명, 분노6보유, 240307
                 new Personality(1, SINCLAIR, "LCB 수감자 싱클레어", List.of(LCB, 림버스_컴퍼니),
-                        new PersonalitySkill(1, WRATH, SLASH),
-                        new PersonalitySkill(2, PRIDE, SLASH),
+                        new PersonalitySkill(1, PRIDE, SLASH),
+                        new PersonalitySkill(2, WRATH, SLASH),
                         new PersonalitySkill(3, ENVY, SLASH),
                         NONE,
                         "오만",
