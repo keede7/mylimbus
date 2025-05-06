@@ -34,6 +34,10 @@ public class EGOInitializer {
     @Transactional
     public void init() {
 
+        if(!this.egoRepository.findAll().isEmpty()) {
+            return;
+        }
+
         List<EGO> egos = List.of(
                 new EGO(
                         YISANG,
