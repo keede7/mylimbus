@@ -8,7 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static io.keede.mylimbus.domains.Characters.*;
 import static io.keede.mylimbus.domains.personality.entity.Affinity.*;
@@ -37,9 +40,16 @@ public class PersonalityInitializer {
     @Transactional
     public void init() {
 
-        if (!this.personalityRepository.findPersonalities().isEmpty()) {
-                return;
-        }
+//        if (!this.personalityRepository.findPersonalities().isEmpty()) {
+//                return;
+//        }
+
+        Map<String, Personality> isRegisterPersonalities = this.personalityRepository.findPersonalities()
+                    .stream()
+                    .collect(Collectors.toMap(
+                            Personality::getPersonalityName,
+                            Function.identity()
+                    ));
 
         List<Personality> personalities = List.of(
                 new Personality(1, YISANG, "LCB 수감자 이상", List.of(LCB, 림버스_컴퍼니),
@@ -431,6 +441,19 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2025, 3, 6),
                         "/sinners/donquixote/125px-Eastern_Cinq_Assoc.webp"
+                ), // 분노오만2보유, 분노3공명, 250306
+                new Personality(3, DONQUIXOTE, "남부 섕크 협회 3과 돈키호테", List.of(해결사, 섕크_협회),
+                        new PersonalitySkill(1, LUST, PIERCE),
+                        new PersonalitySkill(2, GLOOM, PIERCE),
+                        new PersonalitySkill(3, PRIDE, PIERCE),
+                        POISE,
+                        "오만",
+                        Set.of(
+                                new Passive(PRIDE, 3, MAIN, RESONANCE),
+                                new Passive(PRIDE, 3, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2023, 7, 20),
+                        "/sinners/donquixote/125px-Southern_Cinq_Assoc.webp"
                 ), // 분노오만2보유, 분노3공명, 250306
                 new Personality(2, DONQUIXOTE, "N사 중간 망치 돈키호테", List.of(N사, N사_광신도),
                         new PersonalitySkill(1, LUST, PIERCE),
@@ -1057,6 +1080,19 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2023, 6, 8),
                         "/sinners/heathcliff/125px-Lobotomy_E.webp"
+                ),
+                new Personality(3, HEATHCLIFF, "남부 외우피 협회 3과 히스클리프", List.of(해결사, 외우피_협회),
+                        new PersonalitySkill(1, ENVY, SLASH),
+                        new PersonalitySkill(2, GLOOM, SLASH),
+                        new PersonalitySkill(3, PRIDE, PIERCE),
+                        TREMOR,
+                        "오만",
+                        Set.of(
+                                new Passive(PRIDE, 4, MAIN, POSSESSION),
+                                new Passive(PRIDE, 6, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2024, 3, 21),
+                        "/sinners/heathcliff/125px-Öufi_Assoc.webp"
                 ), // 질투3보유, 질투3보유, 230608
                 new Personality(1, ISHMAEL, "LCB 수감자 이스마엘", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, WRATH, BLUNT),
@@ -1787,10 +1823,27 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2023, 8, 10),
                         "/sinners/gregor/125px-Zwei_Assoc.webp"
-                ) // 나태5보유, 나태5보유, 230810
+                ), // 나태5보유, 나태5보유, 230810,
+                new Personality(2, GREGOR, "료.고.파 조수 그레고르", List.of(뒷골목, 조직, 료고파),
+                        new PersonalitySkill(1, LUST, BLUNT),
+                        new PersonalitySkill(2, GLUTTONY, SLASH),
+                        new PersonalitySkill(3, ENVY, SLASH),
+                        BLEED,
+                        "색욕",
+                        Set.of(
+                                new Passive(SLOTH, 4, MAIN, POSSESSION),
+                                new Passive(SLOTH, 5, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2023, 4, 23),
+                        "/sinners/gregor/125px-R.webp"
+                )
         );
 
-        this.personalityRepository.saveAll(personalities);
+        List<Personality> noRegisteredPersonalities = personalities.stream()
+                .filter(personality -> !isRegisterPersonalities.containsKey(personality.getPersonalityName()))
+                .toList();
+
+        this.personalityRepository.saveAll(noRegisteredPersonalities);
     }
 
 }
