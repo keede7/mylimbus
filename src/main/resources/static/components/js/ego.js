@@ -12,12 +12,12 @@ function closeEGOModal() {
 }
 
 // 외부 클릭 시 모달 닫기
-window.onclick = function(event) {
-    const modal = document.getElementById('egoModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-}
+// window.onclick = function(event) {
+//     const modal = document.getElementById('egoModal');
+//     if (event.target === modal) {
+//         modal.style.display = 'none';
+//     }
+// }
 
 // 캐릭터 타입에 따라 EGO 데이터 가져오기
 function fetchEGOData(characterElement) {
