@@ -283,6 +283,18 @@ function createEGOCard(ego, characterType) {
         allEgoCards.forEach(card => {
             if (card.getAttribute('data-tier') === cardTier && card !== this) {
                 if (card.getAttribute('data-selected') === 'true') {
+                    // 선택 해제될 카드의 자원 정보 가져오기
+                    const useConditionsStr = card.getAttribute('data-use-conditions');
+                    if (useConditionsStr) {
+                        try {
+                            const useConditions = JSON.parse(useConditionsStr);
+                            // 선택 해제될 카드의 자원 복원 (빼기)
+                            updateResourceCount(useConditions, false);
+                        } catch (e) {
+                            console.error('Error parsing use conditions:', e);
+                        }
+                    }
+
                     // 카드 선택 해제
                     card.setAttribute('data-selected', 'false');
                     const egoCircle = card.querySelector('.ego-circle');
@@ -321,9 +333,25 @@ function createEGOCard(ego, characterType) {
             window.letterRowOriginalNames = {};
         }
 
+        // 현재 카드의 자원 정보 가져오기
+        const useConditionsStr = this.getAttribute('data-use-conditions');
+        let useConditions = [];
+        if (useConditionsStr) {
+            try {
+                useConditions = JSON.parse(useConditionsStr);
+            } catch (e) {
+                console.error('Error parsing use conditions:', e);
+            }
+        }
+        console.log("useConditions");
+        console.log(useConditions);
+
         if (!isSelected) {
             // 현재 카드 선택 상태로 변경
             this.setAttribute('data-selected', 'true');
+
+            // 선택한 카드의 자원 적용 (더하기)
+            updateResourceCount(useConditions, true);
 
             // ego-circle 스타일 변경
             const egoCircle = this.querySelector('.ego-circle');
@@ -372,6 +400,9 @@ function createEGOCard(ego, characterType) {
             // 5. 이미 선택된 카드를 다시 클릭하면 선택 해제
             this.setAttribute('data-selected', 'false');
 
+            // 선택 해제된 카드의 자원 복원 (빼기)
+            updateResourceCount(useConditions, false);
+
             // ego-circle 스타일 초기화
             const egoCircle = this.querySelector('.ego-circle');
             egoCircle.style.border = ''; // 원래 스타일로 복원
@@ -408,6 +439,53 @@ function createEGOCard(ego, characterType) {
     });
 
     return egoCard;
+}
+
+
+// 자원 카운트 업데이트 함수
+function updateResourceCount(useConditions, isAdd) {
+    if (!useConditions || !Array.isArray(useConditions)) return;
+
+    // Sin 타입에 따른 인덱스 매핑
+    const sinTypeToIndex = {
+        'WRATH': 0,    // 빨강
+        'LUST': 1,     // 주황
+        'SLOTH': 2,    // 노랑
+        'GLUTTONY': 3, // 초록
+        'GLOOM': 4,    // 파랑
+        'PRIDE': 5,    // 남색
+        'ENVY': 6      // 보라
+    };
+
+    // 자원 항목 요소들 가져오기
+    const resourceItems = document.querySelectorAll('.resource-item');
+
+    // 각 자원 조건에 대해
+    useConditions.forEach(condition => {
+        const sinType = condition.sinType;
+        const quantity = condition.consumedQuantity || 0;
+
+        // 매핑된 인덱스 가져오기
+        const index = sinTypeToIndex[sinType];
+
+        // 해당 인덱스의 자원 항목이 존재하는지 확인
+        if (index !== undefined && index >= 0 && index < resourceItems.length) {
+            const resourceItem = resourceItems[index];
+            const resourceCountSpans = resourceItem.querySelectorAll('.resource-count span');
+
+            // 두 번째 span (필요한 전체 개수)에 접근
+            if (resourceCountSpans.length >= 2) {
+                const totalCountSpan = resourceCountSpans[1];
+                const currentTotal = parseInt(totalCountSpan.textContent) || 0;
+
+                // 더하기 또는 빼기 연산
+                const newTotal = isAdd ? currentTotal + quantity : currentTotal - quantity;
+
+                // 값 업데이트 (음수 방지)
+                totalCountSpan.textContent = Math.max(0, newTotal);
+            }
+        }
+    });
 }
 
 function getTier(tier) {
