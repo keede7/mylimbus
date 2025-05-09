@@ -8,6 +8,7 @@ import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
 import io.keede.mylimbus.web.dto.response.GetEGOResponseDto;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class ApiController {
 
     private final PersonalityQueryService personalityQueryService;
@@ -36,44 +38,49 @@ public class ApiController {
 
     @GetMapping("/personality")
     public List<GetPersonalityResponseDto> getPersonalities() {
-        System.out.println("getPersonalities...");
+        log.debug("getPersonalities...");
         return this.personalityQueryService.getPersonalities();
     }
 
     @GetMapping("/personality/keyword")
     public List<GetPersonalityResponseDto> getPersonalitiesByKeyword(RequestPersonalitiesByKeywordDto dto) {
-        System.out.println("getPersonalitiesByKeyword...");
+        log.debug("getPersonalitiesByKeyword...");
+        log.debug("dto : {}", dto);
         return this.personalityQueryService.getPersonalitiesByKeyword(dto);
     }
 
     @GetMapping("/personality/skill/sin")
     public List<GetPersonalityResponseDto> getPersonalityBySkillSin(RequestPersonalityBySkillSinDto dto) {
-        System.out.println("getPersonalityBySkillSin...");
+        log.debug("getPersonalityBySkillSin...");
+        log.debug("dto : {}", dto);
         return this.personalityQueryService.getPersonalityBySkillSin(dto);
     }
 
     @GetMapping("/personality/base")
     public List<GetPersonalityResponseDto> getPersonalityByBaseName(RequestPersonalityByBaseName dto) {
-        System.out.println("getPersonalityByBaseName...");
+        log.debug("getPersonalityByBaseName...");
+        log.debug("dto : {}", dto);
         return this.personalityQueryService.getPersonalityByBaseName(dto);
     }
 
     @GetMapping("/personality/{id}")
     public GetPersonalityResponseDto getPersonality(@PathVariable("id") Long id) {
-        System.out.println("getPersonalityById");
+        log.debug("getPersonalityById");
+        log.debug("id = {}", id);
         return this.personalityQueryService.getPersonalityById(id);
     }
 
     @GetMapping("/personality/filter")
     public List<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
-        System.out.println("getPersonalityFilter");
-        System.out.println("dto = " + dto);
+        log.debug("getPersonalityFilter");
+        log.debug("dto = {}", dto);
         return this.personalityQueryService.getPersonalityFilter(dto);
     }
 
     @GetMapping("/ego/{characterKRName}")
     public List<GetEGOResponseDto> getEGOsByCharacterKRName(@PathVariable("characterKRName") String characterKRName) {
-        System.out.println("characterKRName = " + characterKRName);
+        log.debug("getEGOsByCharacterKRName");
+        log.debug("characterKRName = {}", characterKRName);
         return this.egoQueryService.getEGOsByCharacterKRName(characterKRName);
     }
 
