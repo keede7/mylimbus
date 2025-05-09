@@ -22,13 +22,13 @@
 
     <!-- 파일 출력 설정 (일별 로그 파일) -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/limbus-simulator.log</file>
+        <file>${LOG_PATH}/limgo.log</file>
         <encoder>
             <charset>UTF-8</charset>
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/limbus-simulator-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/limgo-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory> <!-- 30일 보관 -->
         </rollingPolicy>
     </appender>
