@@ -1,5 +1,6 @@
 // Function to open character selection modal
 function openCharacterModal(characterElement) {
+    const personalityId = characterElement.getAttribute('data-id');
     const personalityKRName = characterElement.getAttribute('data-kr-name');
     const modal = document.getElementById('characterModal');
 
@@ -7,10 +8,23 @@ function openCharacterModal(characterElement) {
     modal.style.display = 'block';
 
     // Fetch alternative characters via REST API
-    fetchAlternativeCharacters(personalityKRName);
+    fetchAlternativeCharacters(personalityId, personalityKRName);
 }
 
-function fetchAlternativeCharacters(baseNameKor) {
+// Function to close character selection modal
+// function closeCharacterModal() {
+//
+//     document.querySelectorAll('input[type="checkbox"]')
+//         .forEach(checkbox => {
+//             checkbox.checked = false;
+//         });
+//
+//     const modal = document.getElementById('characterModal');
+//     modal.style.display = 'none';
+// }
+
+// personalityId 미사용
+function fetchAlternativeCharacters(personalityId, baseNameKor) {
     // Clear previous content
     const modalGrid = document.getElementById('modalCharacterGrid');
     modalGrid.innerHTML = '';
@@ -43,6 +57,7 @@ function fetchAlternativeCharacters(baseNameKor) {
                 li.innerHTML = `
                     <div class="character-frame ${rarityClass}">
                         <img src="${character.imgUrl}" alt="${character.baseName}">
+<!--                        <div class="character-rarity">${character.rarity}</div>-->
                         <div class="character-type">${character.personalityName}</div>
                         <div class="character-name">${character.baseName}</div>
                     </div>
@@ -193,6 +208,7 @@ document.querySelectorAll('.character-card').forEach(card => {
 });
 
 function filterCharacters() {
+    console.log("filterCharacters ....")
     // Get all selected keywords
     const modalGrid = document.getElementById('modalCharacterGrid');
     const personalityKRName = modalGrid.getAttribute('data-kr-name'); // characterKRName 이 적합.
@@ -233,6 +249,7 @@ function filterCharacters() {
     if (selectedKeywords.length > 0 || selectedSkillTypes.length > 0 || selectedSkillSins.length > 0) {
         // Clear existing grid
         const modalGrid = document.getElementById('modalCharacterGrid');
+        // modalGrid.innerHTML = '<p>데이터를 불러오는 중...</p>';
 
         // Call the new API with filters
         fetch(`/api/personality/filter?${queryParams.toString()}`, {
@@ -250,7 +267,7 @@ function filterCharacters() {
     } else {
         // If no filters selected, use the original API
         console.log("If no filters selected, use the original API");
-        fetchAlternativeCharacters(personalityKRName);
+        fetchAlternativeCharacters("", personalityKRName);
     }
 }
 
@@ -260,6 +277,7 @@ function populateCharacterGrid(characters, gridElement) {
     gridElement.innerHTML = '';
 
     if (characters.length === 0) {
+        // gridElement.innerHTML = '<p>조건에 맞는 인격이 없습니다.</p>';
         return;
     }
 
@@ -286,4 +304,46 @@ function populateCharacterGrid(characters, gridElement) {
         gridElement.appendChild(li);
     });
 
+    console.log(gridElement)
 }
+
+// function populateCharacterGrid(characters, gridElement) {
+//     // 기존 요소들에게 사라지는 애니메이션 적용
+//     const existingItems = gridElement.querySelectorAll('.character-card');
+//     existingItems.forEach(item => {
+//         item.classList.add('fade-out');
+//     });
+//
+//     // 애니메이션 완료 후 새로운 요소 추가
+//     setTimeout(() => {
+//         // 그리드 비우기
+//         gridElement.innerHTML = '';
+//
+//         if (characters.length === 0) {
+//             return;
+//         }
+//
+//         // 각 캐릭터를 그리드에 추가
+//         characters.forEach(character => {
+//             const li = document.createElement('li');
+//             li.className = 'character-card fade-in'; // fade-in 클래스 추가
+//             li.setAttribute('data-id', character.id);
+//             li.onclick = function () {
+//                 selectCharacter(character);
+//             };
+//
+//             // 레어리티 클래스 변환
+//             const rarityClass = `character-frame r${character.rarity}`;
+//
+//             li.innerHTML = `
+//                 <div class="character-frame ${rarityClass}">
+//                     <img src="${character.imgUrl}" alt="${character.baseName}">
+//                     <div class="character-type">${character.personalityName}</div>
+//                     <div class="character-name">${character.baseName}</div>
+//                 </div>
+//             `;
+//
+//             gridElement.appendChild(li);
+//         });
+//     }, 200); // 페이드 아웃 시간에 맞춰 조정
+// }

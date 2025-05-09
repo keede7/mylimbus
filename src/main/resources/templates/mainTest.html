@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lim GO</title>
-    <link rel="stylesheet" th:href="@{/components/main.css}">
+    <link rel="stylesheet" th:href="@{/components/mainTest.css}">
     <link rel="stylesheet" th:href="@{/components/ego.css}">
 </head>
 <body>
@@ -541,6 +541,7 @@
     <!-- E.G.O Modal -->
     <div id="egoModal" class="ego-modal">
         <div class="ego-modal-content">
+<!--            <span class="close-button" onclick="closeEGOModal()">&times;</span>-->
             <div class="ego-modal-inner">
                 <div class="ego-frame-area">
                     <!-- 동적으로 채워질 EGO 카드 그리드 -->
@@ -576,6 +577,7 @@
     <!-- Character Selection Modal -->
     <div id="characterModal" class="modal">
         <div class="modal-content">
+<!--            <span class="close-button" onclick="closeCharacterModal()">&times;</span>-->
             <h2>인격 선택</h2>
 
             <!-- Filter Section -->
@@ -717,6 +719,11 @@
                         </label>
                     </div>
                 </div>
+
+<!--                <div class="filter-actions">-->
+<!--                    <button id="applyFilters" class="filter-button">필터 적용</button>-->
+<!--                    <button id="resetFilters" class="filter-button reset">초기화</button>-->
+<!--                </div>-->
             </div>
             <ul class="character-grid modal-grid" style="min-height: 250px;" id="modalCharacterGrid">
                 <!-- Alternative characters will be loaded here via REST API -->
@@ -733,13 +740,15 @@
         <p>문의 사항 : wesaq11@gmail.com</p>
         <p>모든 게임 관련 콘텐츠와 자료는 Project Moon에 저작권이 있습니다.</p>
         <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span>
+            <!--            Limbus Company Wiki |-->
+            <!--            최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>-->
             최종 업데이트: <span>2025-05-06</span></p>
     </div>
 </footer>
 
 <!-- JavaScript -->
 <script th:inline="javascript" th:src="@{/components/js/modal.js}"></script>
-<script th:inline="javascript" th:src="@{/components/js/main.js}"></script>
+<script th:inline="javascript" th:src="@{/components/js/mainTest.js}"></script>
 <script th:inline="javascript" th:src="@{/components/js/ego.js}"></script>
 
 </body>
