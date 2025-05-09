@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ViewController {
 
     @GetMapping("")
-    public String mainTest() {
+    public String main() {
         return "main";
+    }
+
+    @GetMapping("/mainTest")
+    public String mainTest() {
+        return "mainTest";
     }
 
 }

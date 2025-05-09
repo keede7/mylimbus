@@ -49,6 +49,7 @@ function fetchAlternativeCharacters(personalityId, baseNameKor) {
                 li.className = 'character-card';
                 li.setAttribute('data-id', character.id);
                 li.onclick = function () {
+                    console.log(character)
                     selectCharacter(character);
                 };
 
@@ -101,13 +102,30 @@ function fetchAlternativeCharacters(personalityId, baseNameKor) {
             if (modalGrid.defaultImgs && modalGrid.defaultImgs.length > 0) {
                 modalGrid.defaultImgs.forEach(imgElement => {
                     // Add event listener back since cloning doesn't preserve events
-                    const originalId = imgElement.getAttribute('data-id');
-                    imgElement.onclick = function () {
-                        const character = data.find(c => c.id === originalId);
-                        if (character) selectCharacter(character);
-                    };
-                    modalGrid.appendChild(imgElement.cloneNode(true));
+                    // const originalId = imgElement.getAttribute('data-id');
+                    // imgElement.onclick = function () {
+                    //     const character = data.find(c => c.id === originalId);
+                    //     if (character) selectCharacter(character);
+                    // };
+                    // modalGrid.appendChild(imgElement.cloneNode(true));
+console.log(imgElement)
+                    // // 먼저 요소를 복제합니다
+                    // const clonedElement = imgElement.cloneNode(true);
+                    //
+                    //
+                    // // 복제된 요소에 이벤트를 추가합니다
+                    // const originalId = imgElement.getAttribute('data-id');
+                    //
+                    // imgElement.onclick = function () {
+                    //     const character = data.find(c => c.id === originalId);
+                    //     if (character) selectCharacter(character);
+                    // };
+                    // modalGrid.appendChild(clonedElement);
+
+                    // 복제하지 않고 원본 요소를 그대로 사용 (이벤트 핸들러도 그대로 유지됨)
+                    modalGrid.appendChild(imgElement);
                 });
+
             } else {
                 // If defaultImgs not available, refetch the data
                 fetchAlternativeCharacters(personalityId, baseNameKor);

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limbus Company</title>
+    <link rel="stylesheet" th:href="@{/components/main.css}">
+    <link rel="stylesheet" th:href="@{/components/ego.css}">
+</head>
+<body>
+<!-- Main Container -->
+<div class="game-container">
+    <!-- Header Area -->
+    <header class="game-header">
+        <div class="nav-title">
+            <h1>조합 시뮬레이터2</h1>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Character Grid -->
+    <main class="character-selection">
+        <ul class="character-grid" id="characterGrid">
+            <li class="character-card" th:data-kr-name="이상" th:data-type="YiSang" onclick="openCharacterModal(this)">
+                <div class="character-frame character-frame r1">
+                    <img th:src="@{/sinners/yisang/112px-YiSang01.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >이상</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="파우스트" th:data-type="Faust" onclick="openCharacterModal(this)">
+                <div class="character-frame faust character-frame r1">
+                    <img th:src="@{/sinners/faust/112px-Faust02.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >파우스트</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="돈키호테" th:data-type="Donquixote" onclick="openCharacterModal(this)">
+                <div class="character-frame donquixote character-frame r1">
+                    <img th:src="@{/sinners/donquixote/112px-DonQuixote03.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >돈키호테</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="료슈" th:data-type="Ryoshu" onclick="openCharacterModal(this)">
+                <div class="character-frame ryoshu character-frame r1">
+                    <img th:src="@{/sinners/ryoshu/112px-Ryoshu04.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >료슈</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="뫼르소" th:data-type="Meursault" onclick="openCharacterModal(this)">
+                <div class="character-frame meursault character-frame r1">
+                    <img th:src="@{/sinners/meursault/112px-Meursault05.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >뫼르소</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="홍루" th:data-type="Honglu" onclick="openCharacterModal(this)">
+                <div class="character-frame honglu character-frame r1">
+                    <img th:src="@{/sinners/honglu/112px-Honglu06.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >홍루</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="히스클리프" th:data-type="Heathcliff" onclick="openCharacterModal(this)">
+                <div class="character-frame heathcliff character-frame r1">
+                    <img th:src="@{/sinners/heathcliff/112px-Heathcliff07.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >히스클리프</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="이스마엘" th:data-type="Ishmael" onclick="openCharacterModal(this)">
+                <div class="character-frame ishmael character-frame r1">
+                    <img th:src="@{/sinners/ishmael/112px-Ishmael08.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >이스마엘</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="로쟈" th:data-type="Rodion" onclick="openCharacterModal(this)">
+                <div class="character-frame rodion character-frame r1">
+                    <img th:src="@{/sinners/rodion/112px-Rodion09.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >로쟈</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="싱클레어" th:data-type="Sinclair" onclick="openCharacterModal(this)">
+                <div class="character-frame sinclair character-frame r1">
+                    <img th:src="@{/sinners/sinclair/112px-Sinclair11.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >싱클레어</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="오티스" th:data-type="Outis" onclick="openCharacterModal(this)">
+                <div class="character-frame outis character-frame r1">
+                    <img th:src="@{/sinners/outis/112px-Outis12.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >오티스</div>
+                </div>
+            </li>
+            <li class="character-card " th:data-kr-name="그레고르" th:data-type="Gregor" onclick="openCharacterModal(this)">
+                <div class="character-frame gregor character-frame r1">
+                    <img th:src="@{/sinners/gregor/112px-Gregor13.webp}" >
+                    <div class="character-type" >기본</div>
+                    <div class="character-name" >그레고르</div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- 구분선 -->
+        <div class="separator"></div>
+
+        <!-- 새로운 특별 카드 그리드 -->
+        <ul class="ego-main-grid">
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="YiSang" data-kr-name="이상">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Yi_Sang_Icon.webp}" >
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Faust" data-kr-name="파우스트">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Faust_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Donquixote" data-kr-name="돈키호테">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Don_Quixote_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Ryoshu" data-kr-name="료슈">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Ryoshu_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Meursault" data-kr-name="뫼르소">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Meursault_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Honglu" data-kr-name="홍루">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Hong_Lu_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Heathcliff" data-kr-name="히스클리프">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Heathcliff_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Ishmael" data-kr-name="이스마엘">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Ishmael_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Rodion" data-kr-name="로쟈">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Rodion_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Sinclair" data-kr-name="싱클레어">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Sinclair_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Outis" data-kr-name="오티스">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Outis_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="ego-main-grid-header">
+                <div class="ego-main-card" onclick="openEGOModal(this)" data-type="Gregor" data-kr-name="그레고르">
+                    <div class="ego-main-card-header">
+                        <div class="card-icon">
+                            <img th:src="@{/icons/60px-Gregor_Icon.webp}">
+                        </div>
+                    </div>
+                    <div class="korean-letters">
+                        <div class="letter-row" data-tier="Z">
+                            <div class="ego-nameplate-tier">Z</div>
+                            <div class="ego-name">ZAYIN</div>
+                        </div>
+                        <div class="letter-row" data-tier="T">
+                            <div class="ego-nameplate-tier">T</div>
+                            <div class="ego-name">TETH</div>
+                        </div>
+                        <div class="letter-row" data-tier="H">
+                            <div class="ego-nameplate-tier">H</div>
+                            <div class="ego-name">HE</div>
+                        </div>
+                        <div class="letter-row" data-tier="W">
+                            <div class="ego-nameplate-tier">W</div>
+                            <div class="ego-name">WAW</div>
+                        </div>
+                        <div class="letter-row" data-tier="A">
+                            <div class="ego-nameplate-tier">A</div>
+                            <div class="ego-name">ALEPH</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </main>
+
+    <!-- Right Sidebar - Resources -->
+    <aside class="resources-panel">
+        <div class="ego-support">
+            <span class="ego-title">E.G.O 지원</span>
+            <span class="ego-count">획득가능 개수/E.G.O에 필요한 전체 개수</span>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <img th:src="@{/sins/Wrath.webp}" alt="Red Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sins/Lust.webp}" alt="Orange Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sins/Sloth.webp}" alt="Yellow Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sins/Gluttony.webp}" alt="Green Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sins/Gloom.webp}" alt="Blue Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sins/Pride.webp}" alt="Indigo Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+            <li class="resource-item">
+                <img th:src="@{/sins/Envy.webp}" alt="Violet Resource">
+                <span class="resource-count">
+                    <span>0</span>/<span>0</span>
+                </span>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- E.G.O Modal -->
+    <div id="egoModal" class="ego-modal">
+        <div class="ego-modal-content">
+            <span class="close-button" onclick="closeEGOModal()">&times;</span>
+            <div class="ego-modal-inner">
+                <div class="ego-frame-area">
+                    <!-- 동적으로 채워질 EGO 카드 그리드 -->
+                    <div class="ego-grid" id="egoGrid">
+                        <!-- 여기에 동적으로 ego-card 요소들이 추가됩니다 -->
+                    </div>
+                </div>
+                <div class="right-column">
+                    <!-- 2. 인격 사진영역 (우측상단) -->
+                    <div class="identity-area">
+                        <div class="identity-header">인격</div>
+                        <div class="identity-frame">
+                            <img class="identity-image" id="identityImage" alt="캐릭터 인격">
+                            <div class="identity-info-container">
+                                <div class="identity-type" id="identityType">기본</div>
+                                <div class="identity-name" id="identityName">이상</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. E.G.O 목록 영역 (우측하단) -->
+                    <div class="ego-list-area">
+                        <div class="ego-list-header">E.G.O</div>
+                        <div class="ego-list-items" id="egoListItems">
+                            <!-- 여기에 동적으로 ego-list-row 요소들이 추가됩니다 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Selection Modal -->
+    <div id="characterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeCharacterModal()">&times;</span>
+            <h2>인격 선택</h2>
+
+            <!-- Filter Section -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <div>키워드</div>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="BURN">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Burn.webp}" alt="화상">
+                            <span class="filter-text">화상</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="BLEED">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Bleed.webp}" alt="출혈">
+                            <span class="filter-text">출혈</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="TREMOR">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Tremor.webp}" alt="진동">
+                            <span class="filter-text">진동</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="RUPTURE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Rupture.webp}" alt="파열">
+                            <span class="filter-text">파열</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="SINKING">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Sinking.webp}" alt="침잠">
+                            <span class="filter-text">침잠</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="POISE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Poise.webp}" alt="호흡">
+                            <span class="filter-text">호흡</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="affinity" value="CHARGE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/25px-Charge.webp}" alt="충전">
+                            <span class="filter-text">충전</span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div>공격종류</div>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillType" value="SLASH">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/slash.webp}" alt="참격">
+                            <span class="filter-text">참격</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillType" value="PIERCE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/pierce.webp}" alt="관통">
+                            <span class="filter-text">관통</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillType" value="BLUNT">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/attribute/blunt.webp}" alt="타격">
+                            <span class="filter-text">타격</span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- New Filter Group for Skill Attributes -->
+                <div class="filter-group">
+                    <div>스킬속성</div>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="WRATH">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Wrath.webp}" alt="분노">
+                            <span class="filter-text">분노</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="LUST">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Lust.webp}" alt="색욕">
+                            <span class="filter-text">색욕</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="SLOTH">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Sloth.webp}" alt="나태">
+                            <span class="filter-text">나태</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="GLUTTONY">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Gluttony.webp}" alt="탐식">
+                            <span class="filter-text">탐식</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="GLOOM">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Gloom.webp}" alt="우울">
+                            <span class="filter-text">우울</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="PRIDE">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Pride.webp}" alt="오만">
+                            <span class="filter-text">오만</span>
+                        </span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="skillSin" value="ENVY">
+                            <span class="checkbox-custom">
+                            <img th:src="@{/sins/Envy.webp}" alt="질투">
+                            <span class="filter-text">질투</span>
+                        </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button id="applyFilters" class="filter-button">필터 적용</button>
+                    <button id="resetFilters" class="filter-button reset">초기화</button>
+                </div>
+            </div>
+            <ul class="character-grid modal-grid" style="min-height: 250px;" id="modalCharacterGrid">
+                <!-- Alternative characters will be loaded here via REST API -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="wiki-footer">
+    <div class="footer-links">
+        <a href="https://github.com/keede7/mylimbus" class="footer-link">위키 기여하기</a>
+    </div>
+    <div class="footer-info">
+        <p>문의 사항 : wesaq11@gmail.com</p>
+        <p>모든 게임 관련 콘텐츠와 자료는 Project Moon에 저작권이 있습니다.</p>
+        <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span>
+            <!--            Limbus Company Wiki |-->
+            <!--            최종 업데이트: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">2025-04-16</span></p>-->
+            최종 업데이트: <span>2025-05-06</span></p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script th:inline="javascript" th:src="@{/components/js/modal.js}"></script>
+<script th:inline="javascript" th:src="@{/components/js/main.js}"></script>
+<script th:inline="javascript" th:src="@{/components/js/ego.js}"></script>
+
+</body>
+</html>
