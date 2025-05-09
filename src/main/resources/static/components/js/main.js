@@ -32,7 +32,6 @@ function fetchAlternativeCharacters(baseNameKor) {
                 li.className = 'character-card';
                 li.setAttribute('data-id', character.id);
                 li.onclick = function () {
-                    console.log(character)
                     selectCharacter(character);
                 };
 
