@@ -41,8 +41,7 @@ public class EGO {
 
     private AttackType attackType;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ego_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "ego")
     private List<EGOUseCondition> egoUseConditions;
 
     private Sin sin;

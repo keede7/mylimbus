@@ -24,6 +24,7 @@ public class Passive {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "personality_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Personality personality;
 
     private Sin sin;

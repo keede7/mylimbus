@@ -28,6 +28,7 @@ public class EGOUseCondition {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ego_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private EGO ego;
 
     private Sin sinType;

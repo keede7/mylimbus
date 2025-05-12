@@ -74,8 +74,7 @@ public class Personality {
 
     private int rarity;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "personality_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "personality")
     private Set<Passive> passives = new HashSet<>();
 
     private String defend;
