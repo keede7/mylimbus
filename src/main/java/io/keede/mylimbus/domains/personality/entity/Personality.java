@@ -31,8 +31,8 @@ public class Personality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "personality_keywords")
-    private List<PersonalityKeyword> keywords;
+    @Column(name = "personality_groups")
+    private List<PersonalityGroup> groups;
 
     @Column(name = "base_name")
     private String baseName;
@@ -87,7 +87,7 @@ public class Personality {
             int rarity,
             String baseName,
             String personalityName,
-            List<PersonalityKeyword> keywords,
+            List<PersonalityGroup> groups,
             PersonalitySkill firstSkill,
             PersonalitySkill secondSkill,
             PersonalitySkill thirdSkill,
@@ -100,7 +100,7 @@ public class Personality {
         this.rarity = rarity;
         this.baseName = baseName;
         this.personalityName = personalityName;
-        this.keywords = keywords;
+        this.groups = groups;
         this.firstSkill = firstSkill;
         this.secondSkill = secondSkill;
         this.thirdSkill = thirdSkill;
@@ -130,10 +130,10 @@ public class Personality {
         );
     }
 
-    public boolean isMatchKeyword(String keyword) {
-        return this.keywords
+    public boolean isMatchGroupKeyword(String groupKeyword) {
+        return this.groups
                 .stream()
-                .anyMatch(personalityKeyword -> keyword.contains(personalityKeyword.getName()));
+                .anyMatch(group -> groupKeyword.contains(group.getName()));
     }
 
     public boolean isMatchAffinity(List<Affinity> targetAffinities) {

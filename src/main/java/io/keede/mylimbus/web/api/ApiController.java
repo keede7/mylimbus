@@ -2,7 +2,7 @@ package io.keede.mylimbus.web.api;
 
 import io.keede.mylimbus.domains.ego.service.EgoQueryService;
 import io.keede.mylimbus.domains.personality.service.PersonalityQueryService;
-import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
+import io.keede.mylimbus.web.dto.request.RequestPersonalitiesGroupByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
@@ -42,11 +42,11 @@ public class ApiController {
         return this.personalityQueryService.getPersonalities();
     }
 
-    @GetMapping("/personality/keyword")
-    public List<GetPersonalityResponseDto> getPersonalitiesByKeyword(RequestPersonalitiesByKeywordDto dto) {
-        log.debug("getPersonalitiesByKeyword...");
+    @GetMapping("/personality/group/keyword")
+    public List<GetPersonalityResponseDto> getPersonalitiesGroupByKeyword(RequestPersonalitiesGroupByKeywordDto dto) {
+        log.debug("getPersonalitiesGroupByKeyword...");
         log.debug("dto : {}", dto);
-        return this.personalityQueryService.getPersonalitiesByKeyword(dto);
+        return this.personalityQueryService.getPersonalitiesGroupByKeyword(dto);
     }
 
     @GetMapping("/personality/skill/sin")

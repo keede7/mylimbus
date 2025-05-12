@@ -1,13 +1,8 @@
 package io.keede.mylimbus.config.entity;
 
 import io.keede.mylimbus.domains.personality.entity.Affinity;
-import io.keede.mylimbus.domains.personality.entity.PersonalityKeyword;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author keede

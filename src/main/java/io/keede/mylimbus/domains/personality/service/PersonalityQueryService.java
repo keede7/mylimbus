@@ -1,7 +1,7 @@
 package io.keede.mylimbus.domains.personality.service;
 
 import io.keede.mylimbus.domains.personality.entity.*;
-import io.keede.mylimbus.web.dto.request.RequestPersonalitiesByKeywordDto;
+import io.keede.mylimbus.web.dto.request.RequestPersonalitiesGroupByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityFilterDto;
@@ -38,10 +38,10 @@ public class PersonalityQueryService {
     }
 
     @Transactional(readOnly = true)
-    public List<GetPersonalityResponseDto> getPersonalitiesByKeyword(RequestPersonalitiesByKeywordDto dto) {
+    public List<GetPersonalityResponseDto> getPersonalitiesGroupByKeyword(RequestPersonalitiesGroupByKeywordDto dto) {
         return this.personalityRepository.findPersonalities()
                 .stream()
-                .filter(s -> s.isMatchKeyword(dto.keyword()))
+                .filter(personality -> personality.isMatchGroupKeyword(dto.keyword()))
                 .map(Personality::toDto)
                 .toList();
     }
@@ -50,7 +50,7 @@ public class PersonalityQueryService {
     public List<GetPersonalityResponseDto> getPersonalityBySkillSin(RequestPersonalityBySkillSinDto dto) {
         return this.personalityRepository.findPersonalities()
                 .stream()
-                .filter(s -> s.isMatchSkillSin(dto.sin()))
+                .filter(personality -> personality.isMatchSkillSin(dto.sin()))
                 .map(Personality::toDto)
                 .toList();
     }
@@ -59,7 +59,7 @@ public class PersonalityQueryService {
     public List<GetPersonalityResponseDto> getPersonalityByBaseName(RequestPersonalityByBaseName dto) {
         return this.personalityRepository.findPersonalities()
                 .stream()
-                .filter(s -> s.isMatchName(dto.baseName()))
+                .filter(personality -> personality.isMatchName(dto.baseName()))
                 .map(Personality::toDto)
                 .toList();
     }

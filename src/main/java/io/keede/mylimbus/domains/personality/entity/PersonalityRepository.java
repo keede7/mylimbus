@@ -10,20 +10,20 @@ import java.util.Optional;
 
 public interface PersonalityRepository extends JpaRepository<Personality, Long> {
 
-    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"keywords", "passives"})
+    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"groups", "passives"})
     @Query("SELECT personality " +
             "FROM Personality personality " +
             "ORDER BY personality.rarity DESC " +
             ", personality.personalityName ASC ")
     List<Personality> findPersonalities();
 
-    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"keywords", "passives"})
+    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"groups", "passives"})
     @Query("SELECT personality " +
             "FROM Personality personality " +
             "WHERE personality.id = :id ")
     Optional<Personality> findPersonalityById(@Param("id") Long id);
 
-    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"keywords", "passives"})
+    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD, attributePaths = {"groups", "passives"})
     @Query("SELECT personality " +
             "FROM Personality personality " +
             "WHERE personality.baseName = :personalityKRName ")

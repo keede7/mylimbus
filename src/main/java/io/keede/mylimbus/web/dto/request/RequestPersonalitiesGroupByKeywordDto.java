@@ -1,5 +1,5 @@
 package io.keede.mylimbus.web.dto.request;
 
-public record RequestPersonalitiesByKeywordDto(
+public record RequestPersonalitiesGroupByKeywordDto(
         String keyword
 ) {}

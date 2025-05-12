@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Created on 2025/04/10
  */
 @AllArgsConstructor
-public enum PersonalityKeyword {
+public enum PersonalityGroup {
     림버스_컴퍼니("림버스 컴퍼니"),
     조직("조직"),
     LCE("LCE"),
@@ -67,14 +67,14 @@ public enum PersonalityKeyword {
 
     private final String name;
 
-    public static PersonalityKeyword match(String word) {
+    public static PersonalityGroup match(String word) {
         return Arrays.stream(values())
                 .filter(keyword -> keyword.name.equals(word))
                 .findFirst()
                 .orElse(null);
     }
 
-    public static PersonalityKeyword match(PersonalityKeyword word) {
+    public static PersonalityGroup match(PersonalityGroup word) {
         return Arrays.stream(values())
                 .filter(keyword -> keyword == word)
                 .findFirst()

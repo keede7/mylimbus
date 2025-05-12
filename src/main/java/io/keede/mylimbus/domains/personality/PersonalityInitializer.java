@@ -1,6 +1,5 @@
 package io.keede.mylimbus.domains.personality;
 
-import io.keede.mylimbus.domains.Characters;
 import io.keede.mylimbus.domains.personality.entity.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import static io.keede.mylimbus.domains.personality.entity.Affinity.*;
 import static io.keede.mylimbus.domains.personality.entity.AttackType.*;
 import static io.keede.mylimbus.domains.personality.entity.PassiveCondition.*;
 import static io.keede.mylimbus.domains.personality.entity.PassiveType.*;
-import static io.keede.mylimbus.domains.personality.entity.PersonalityKeyword.*;
+import static io.keede.mylimbus.domains.personality.entity.PersonalityGroup.*;
 import static io.keede.mylimbus.domains.personality.entity.Sin.*;
 
 /**

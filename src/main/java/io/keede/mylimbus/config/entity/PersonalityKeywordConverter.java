@@ -1,30 +1,29 @@
 package io.keede.mylimbus.config.entity;
 
-import io.keede.mylimbus.domains.personality.entity.PersonalityKeyword;
+import io.keede.mylimbus.domains.personality.entity.PersonalityGroup;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Converter(autoApply = true)
 public class PersonalityKeywordConverter
-        implements AttributeConverter<List<PersonalityKeyword>, String> {
+        implements AttributeConverter<List<PersonalityGroup>, String> {
 
     @Override
-    public String convertToDatabaseColumn(List<PersonalityKeyword> attribute) {
+    public String convertToDatabaseColumn(List<PersonalityGroup> attribute) {
 
         return attribute.stream()
-                .map(PersonalityKeyword::getName)
+                .map(PersonalityGroup::getName)
                 .collect(Collectors.joining(", "));
     }
 
     @Override
-    public List<PersonalityKeyword> convertToEntityAttribute(String dbData) {
+    public List<PersonalityGroup> convertToEntityAttribute(String dbData) {
         return Arrays.stream(dbData.split(", "))
-                .map(PersonalityKeyword::match)
+                .map(PersonalityGroup::match)
                 .toList();
     }
 }
