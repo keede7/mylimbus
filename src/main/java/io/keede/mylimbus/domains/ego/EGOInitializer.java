@@ -41,32 +41,6 @@ public class EGOInitializer {
         List<EGO> egos = List.of(
                 new EGO(
                         YISANG,
-                        "여우비",
-                        "/ego/yisang/280px-Sunshower_Yi_Sang.webp",
-                        WAW,
-                        SLOTH,
-                        PIERCE,
-                        List.of(
-                                new EGOUseCondition(
-                                        SLOTH,
-                                        4
-                                ),
-                                new EGOUseCondition(
-                                        GLUTTONY,
-                                        2
-                                ),
-                                new EGOUseCondition(
-                                        GLOOM,
-                                        2
-                                ),
-                                new EGOUseCondition(
-                                        PRIDE,
-                                        2
-                                )
-                        )
-                ),
-                new EGO(
-                        YISANG,
                         "오감도",
                         "/ego/yisang/280px-Crow's_Eye_View_Yi_Sang.webp",
                         ZAYIN,
@@ -79,42 +53,6 @@ public class EGOInitializer {
                                 ),
                                 new EGOUseCondition(
                                         SLOTH,
-                                        3
-                                )
-                        )
-                ),
-                new EGO(
-                        YISANG,
-                        "소망석",
-                        "/ego/yisang/280px-Wishing_Cairn_Yi_Sang.webp",
-                        TETH,
-                        SLOTH,
-                        PIERCE,
-                        List.of(
-                                new EGOUseCondition(
-                                        SLOTH,
-                                        4
-                                ),
-                                new EGOUseCondition(
-                                        GLOOM,
-                                        1
-                                )
-                        )
-                ),
-                new EGO(
-                        YISANG,
-                        "차원찢개",
-                        "/ego/yisang/280px-Dimension_Shredder_Yi_Sang.webp",
-                        HE,
-                        PRIDE,
-                        PIERCE,
-                        List.of(
-                                new EGOUseCondition(
-                                        SLOTH,
-                                        3
-                                ),
-                                new EGOUseCondition(
-                                        GLUTTONY,
                                         3
                                 )
                         )
@@ -139,19 +77,19 @@ public class EGOInitializer {
                 ),
                 new EGO(
                         YISANG,
-                        "흉탄",
-                        "/ego/yisang/280px-Fell_Bullet_Yi_Sang.webp",
-                        HE,
-                        PRIDE,
+                        "소망석",
+                        "/ego/yisang/280px-Wishing_Cairn_Yi_Sang.webp",
+                        TETH,
+                        SLOTH,
                         PIERCE,
                         List.of(
                                 new EGOUseCondition(
-                                        WRATH,
-                                        2
+                                        SLOTH,
+                                        4
                                 ),
                                 new EGOUseCondition(
-                                        PRIDE,
-                                        6
+                                        GLOOM,
+                                        1
                                 )
                         )
                 ),
@@ -178,24 +116,64 @@ public class EGOInitializer {
                         )
                 ),
                 new EGO(
-                        FAUST,
-                        "물주머니",
-                        "/ego/faust/280px-Fluid_Sac_Faust.webp",
+                        YISANG,
+                        "차원찢개",
+                        "/ego/yisang/280px-Dimension_Shredder_Yi_Sang.webp",
                         HE,
-                        GLOOM,
-                        BLUNT,
+                        PRIDE,
+                        PIERCE,
                         List.of(
                                 new EGOUseCondition(
-                                        LUST,
+                                        SLOTH,
+                                        3
+                                ),
+                                new EGOUseCondition(
+                                        GLUTTONY,
+                                        3
+                                )
+                        )
+                ),
+                new EGO(
+                        YISANG,
+                        "흉탄",
+                        "/ego/yisang/280px-Fell_Bullet_Yi_Sang.webp",
+                        HE,
+                        PRIDE,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        WRATH,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
+                                        6
+                                )
+                        )
+                ),
+                new EGO(
+                        YISANG,
+                        "여우비",
+                        "/ego/yisang/280px-Sunshower_Yi_Sang.webp",
+                        WAW,
+                        SLOTH,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        SLOTH,
+                                        4
+                                ),
+                                new EGOUseCondition(
+                                        GLUTTONY,
                                         2
                                 ),
                                 new EGOUseCondition(
                                         GLOOM,
-                                        4
+                                        2
                                 ),
                                 new EGOUseCondition(
-                                        ENVY,
-                                        3
+                                        PRIDE,
+                                        2
                                 )
                         )
                 ),
@@ -233,32 +211,10 @@ public class EGOInitializer {
                 ),
                 new EGO(
                         FAUST,
-                        "9장 2절",
-                        "/ego/faust/280px-9-2_Faust.webp",
-                        WAW,
-                        LUST,
-                        SLASH,
-                        List.of(
-                                new EGOUseCondition(
-                                        LUST,
-                                        1
-                                ),
-                                new EGOUseCondition(
-                                        GLUTTONY,
-                                        3
-                                ),
-                                new EGOUseCondition(
-                                        PRIDE,
-                                        1
-                                )
-                        )
-                ),
-                new EGO(
-                        FAUST,
-                        "영속",
-                        "/ego/faust/280px-Everlasting_Faust.webp",
-                        WAW,
-                        SLOTH,
+                        "물주머니",
+                        "/ego/faust/280px-Fluid_Sac_Faust.webp",
+                        HE,
+                        GLOOM,
                         BLUNT,
                         List.of(
                                 new EGOUseCondition(
@@ -266,15 +222,11 @@ public class EGOInitializer {
                                         2
                                 ),
                                 new EGOUseCondition(
-                                        SLOTH,
+                                        GLOOM,
                                         4
                                 ),
                                 new EGOUseCondition(
-                                        GLOOM,
-                                        2
-                                ),
-                                new EGOUseCondition(
-                                        PRIDE,
+                                        ENVY,
                                         3
                                 )
                         )
@@ -327,7 +279,7 @@ public class EGOInitializer {
                         FAUST,
                         "흉통",
                         "/ego/faust/280px-Thoracalgia_Faust.webp",
-                        WAW,
+                        HE,
                         PRIDE,
                         PIERCE,
                         List.of(
@@ -346,38 +298,16 @@ public class EGOInitializer {
                         )
                 ),
                 new EGO(
-                        DONQUIXOTE,
-                        "전봇대",
-                        "/ego/donquixote/280px-Telepole_Don_Quixote.webp",
-                        HE,
-                        ENVY,
-                        PIERCE,
-                        List.of(
-                                new EGOUseCondition(
-                                        WRATH,
-                                        1
-                                ),
-                                new EGOUseCondition(
-                                        GLOOM,
-                                        2
-                                ),
-                                new EGOUseCondition(
-                                        ENVY,
-                                        2
-                                )
-                        )
-                ),
-                new EGO(
-                        DONQUIXOTE,
-                        "갈망-미르킬라",
-                        "/ego/donquixote/280px-Yearning-Mircalla_Don_Quixote.webp",
+                        FAUST,
+                        "9장 2절",
+                        "/ego/faust/280px-9-2_Faust.webp",
                         WAW,
                         LUST,
-                        PIERCE,
+                        SLASH,
                         List.of(
                                 new EGOUseCondition(
                                         LUST,
-                                        5
+                                        1
                                 ),
                                 new EGOUseCondition(
                                         GLUTTONY,
@@ -385,14 +315,37 @@ public class EGOInitializer {
                                 ),
                                 new EGOUseCondition(
                                         PRIDE,
-                                        2
-                                ),
-                                new EGOUseCondition(
-                                        ENVY,
-                                        2
+                                        1
                                 )
                         )
                 ),
+                new EGO(
+                        FAUST,
+                        "영속",
+                        "/ego/faust/280px-Everlasting_Faust.webp",
+                        WAW,
+                        SLOTH,
+                        BLUNT,
+                        List.of(
+                                new EGOUseCondition(
+                                        LUST,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        SLOTH,
+                                        4
+                                ),
+                                new EGOUseCondition(
+                                        GLOOM,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
+                                        3
+                                )
+                        )
+                ),
+
                 new EGO(
                         DONQUIXOTE,
                         "라 샹그레 데 산초",
@@ -483,6 +436,54 @@ public class EGOInitializer {
                                 ),
                                 new EGOUseCondition(
                                         PRIDE,
+                                        2
+                                )
+                        )
+                ),
+                new EGO(
+                        DONQUIXOTE,
+                        "전봇대",
+                        "/ego/donquixote/280px-Telepole_Don_Quixote.webp",
+                        HE,
+                        ENVY,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        WRATH,
+                                        1
+                                ),
+                                new EGOUseCondition(
+                                        GLOOM,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        ENVY,
+                                        2
+                                )
+                        )
+                ),
+                new EGO(
+                        DONQUIXOTE,
+                        "갈망-미르킬라",
+                        "/ego/donquixote/280px-Yearning-Mircalla_Don_Quixote.webp",
+                        WAW,
+                        LUST,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        LUST,
+                                        5
+                                ),
+                                new EGOUseCondition(
+                                        GLUTTONY,
+                                        3
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        ENVY,
                                         2
                                 )
                         )
@@ -705,6 +706,24 @@ public class EGOInitializer {
                 ),
                 new EGO(
                         MEURSAULT,
+                        "전기울음",
+                        "/ego/meursault/280px-Electric_Screaming_Meursault.webp",
+                        TETH,
+                        ENVY,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        WRATH,
+                                        1
+                                ),
+                                new EGOUseCondition(
+                                        ENVY,
+                                        4
+                                )
+                        )
+                ),
+                new EGO(
+                        MEURSAULT,
                         "후회",
                         "/ego/meursault/280px-Regret_Meursault.webp",
                         TETH,
@@ -780,24 +799,6 @@ public class EGOInitializer {
                                 new EGOUseCondition(
                                         PRIDE,
                                         3
-                                ),
-                                new EGOUseCondition(
-                                        ENVY,
-                                        4
-                                )
-                        )
-                ),
-                new EGO(
-                        MEURSAULT,
-                        "전기울음",
-                        "/ego/meursault/280px-Electric_Screaming_Meursault.webp",
-                        TETH,
-                        ENVY,
-                        PIERCE,
-                        List.of(
-                                new EGOUseCondition(
-                                        WRATH,
-                                        1
                                 ),
                                 new EGOUseCondition(
                                         ENVY,
@@ -1970,7 +1971,6 @@ public class EGOInitializer {
                         )
                 )
         );
-
 
         this.egoRepository.saveAll(egos);
     }
