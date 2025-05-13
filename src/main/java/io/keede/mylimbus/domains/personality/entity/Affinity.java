@@ -1,6 +1,7 @@
 package io.keede.mylimbus.domains.personality.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 
@@ -8,6 +9,7 @@ import java.util.Arrays;
  * @author keede
  * Created on 2025/04/22
  */
+@Getter
 @AllArgsConstructor
 public enum Affinity {
 
@@ -35,10 +37,6 @@ public enum Affinity {
                 .filter(keyword -> keyword == word)
                 .findFirst()
                 .orElse(null);
-    }
-
-    public String getName() {
-        return this.name;
     }
 
 }

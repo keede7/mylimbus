@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Converter(autoApply = true)
-public class PersonalityKeywordConverter
+public class PersonalityGroupConverter
         implements AttributeConverter<List<PersonalityGroup>, String> {
 
     @Override

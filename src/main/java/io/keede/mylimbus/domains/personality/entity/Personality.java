@@ -70,12 +70,15 @@ public class Personality {
     )
     private PersonalitySkill thirdSkill;
 
-    private Affinity affinity;
+//    private Affinity affinity;
 
     private int rarity;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "personality")
     private Set<Passive> passives = new HashSet<>();
+
+//    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "personality")
+    private Set<Affinity> affinities = new HashSet<>();
 
     private String defend;
 
@@ -91,7 +94,6 @@ public class Personality {
             PersonalitySkill firstSkill,
             PersonalitySkill secondSkill,
             PersonalitySkill thirdSkill,
-            Affinity affinity,
             String defend,
             Set<Passive> passives,
             LocalDate releaseDate,
@@ -104,7 +106,34 @@ public class Personality {
         this.firstSkill = firstSkill;
         this.secondSkill = secondSkill;
         this.thirdSkill = thirdSkill;
-        this.affinity = affinity;
+        this.defend = defend;
+        this.passives.addAll(passives);
+        this.releaseDate = releaseDate;
+        this.imgUrl = imgUrl;
+    }
+
+    public Personality(
+            int rarity,
+            String baseName,
+            String personalityName,
+            List<PersonalityGroup> groups,
+            PersonalitySkill firstSkill,
+            PersonalitySkill secondSkill,
+            PersonalitySkill thirdSkill,
+            Set<Affinity> affinities,
+            String defend,
+            Set<Passive> passives,
+            LocalDate releaseDate,
+            String imgUrl
+    ) {
+        this.rarity = rarity;
+        this.baseName = baseName;
+        this.personalityName = personalityName;
+        this.groups = groups;
+        this.firstSkill = firstSkill;
+        this.secondSkill = secondSkill;
+        this.thirdSkill = thirdSkill;
+        this.affinities = affinities;
         this.defend = defend;
         this.passives.addAll(passives);
         this.releaseDate = releaseDate;
@@ -121,7 +150,9 @@ public class Personality {
                 this.firstSkill,
                 this.secondSkill,
                 this.thirdSkill,
-                this.affinity,
+                this.affinities.stream()
+                        .map(Enum::name)
+                        .collect(Collectors.joining()),
                 this.passives.stream()
                         .map(Passive::toDto)
                         .collect(Collectors.toSet()),
@@ -141,8 +172,12 @@ public class Personality {
             return true;
         }
 
+        String affinity = this.affinities.stream()
+                .map(Enum::name)
+                .collect(Collectors.joining());
+
         return targetAffinities.stream()
-                .anyMatch(targetAffinity -> this.affinity == targetAffinity);
+                .anyMatch(targetAffinity -> affinity.contains(targetAffinity.name()));
     }
 
     public boolean isMatchSkillSin(Sin sin) {
