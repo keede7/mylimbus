@@ -559,7 +559,7 @@ public class PersonalityInitializer {
                         LocalDate.of(2024, 9, 5),
                         "/sinners/ryoshu/125px-Lobotomy_E.webp"
                 ), // 분노3우울3보유, 질투3공명, 240905
-                new Personality(3, RYOSHU, "흑수•묘 료슈", List.of(흑수, 흑수_묘),
+                new Personality(3, RYOSHU, "흑수-묘 료슈", List.of(흑수, 흑수_묘),
                         new PersonalitySkill(1, LUST, SLASH),
                         new PersonalitySkill(2, GLUTTONY, SLASH),
                         new PersonalitySkill(3, PRIDE, SLASH),
@@ -1381,6 +1381,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2024, 3, 27),
                         "/sinners/rodion/125px-Liu_Assoc.webp"
                 ), // 분노3공명, 분노6보유, 240307
+                new Personality(3, RODION, "흑수-사 로쟈", List.of(흑수, 흑수_사),
+                        new PersonalitySkill(1, ENVY, SLASH),
+                        new PersonalitySkill(2, GLUTTONY, SLASH),
+                        new PersonalitySkill(3, GLOOM, PIERCE),
+                        Set.of(POISE, RUPTURE),
+                        "탐식",
+                        Set.of(
+                                new Passive(GLUTTONY, 5, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 5, 15),
+                        "/sinners/125px-Placeholder_Identity.webp"
+                ), //
                 new Personality(1, SINCLAIR, "LCB 수감자 싱클레어", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, SLASH),
                         new PersonalitySkill(2, WRATH, SLASH),
@@ -1628,7 +1641,7 @@ public class PersonalityInitializer {
                         LocalDate.of(2024, 10, 17),
                         "/sinners/outis/125px-The_Barber_of_La_Manchaland_Outis_Uptied.webp"
                 ), // 색욕3공명 색욕 5보유, 241017
-                new Personality(3, OUTIS, "흑수•묘 오티스", List.of(흑수, 흑수_묘),
+                new Personality(3, OUTIS, "흑수-묘 오티스", List.of(흑수, 흑수_묘),
                         new PersonalitySkill(1, SLOTH, SLASH),
                         new PersonalitySkill(2, GLUTTONY, SLASH),
                         new PersonalitySkill(3, GLOOM, SLASH),
@@ -1835,6 +1848,19 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2023, 4, 23),
                         "/sinners/gregor/125px-R.webp"
+                ),
+                new Personality(3, GREGOR, "흑수-사 그레고르", List.of(흑수, 흑수_사),
+                        new PersonalitySkill(1, PRIDE , SLASH),
+                        new PersonalitySkill(2, GLUTTONY, SLASH),
+                        new PersonalitySkill(3, ENVY, PIERCE),
+                        Set.of(POISE, RUPTURE),
+                        "탐식",
+                        Set.of(
+                                new Passive(GLUTTONY, 5, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 5, 15),
+                        "/sinners/125px-Placeholder_Identity.webp"
                 )
         );
 
