@@ -41,7 +41,7 @@ function fetchAlternativeCharacters(baseNameKor) {
                 // Updated inner HTML with converted rarity class
                 li.innerHTML = `
                     <div class="character-frame ${rarityClass}">
-                        <img src="${character.imgUrl}" alt="${character.baseName}">
+                        <img src="${character.imgUrl}" onerror="this.onerror=null; this.src='/sinners/125px-Placeholder_Identity.webp';"  ">
                         <div class="character-type">${character.personalityName}</div>
                         <div class="character-name">${character.baseName}</div>
                     </div>

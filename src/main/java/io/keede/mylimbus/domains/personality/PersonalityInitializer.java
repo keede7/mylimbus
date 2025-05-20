@@ -1392,7 +1392,7 @@ public class PersonalityInitializer {
                                 new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2025, 5, 15),
-                        "/sinners/125px-Placeholder_Identity.webp"
+                        "/sinners/rodion/125px-Heishou_Pack_-_Si_Branch_Rodion_Uptied.webp"
                 ), //
                 new Personality(1, SINCLAIR, "LCB 수감자 싱클레어", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, SLASH),
@@ -1860,7 +1860,7 @@ public class PersonalityInitializer {
                                 new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
                         ),
                         LocalDate.of(2025, 5, 15),
-                        "/sinners/125px-Placeholder_Identity.webp"
+                        "/sinners/gregor/125px-Heishou_Pack_-_Si_Branch_Gregor_Uptied.webp"
                 )
         );
 
