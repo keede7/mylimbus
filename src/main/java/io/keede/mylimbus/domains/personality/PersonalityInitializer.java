@@ -357,8 +357,8 @@ public class PersonalityInitializer {
                         Set.of(RUPTURE),
                         "탐식",
                         Set.of(
-                                new Passive(ENVY, 4, MAIN, POSSESSION),
-                                new Passive(ENVY, 3, SUPPORT, POSSESSION)
+                                new Passive(GLUTTONY, 5, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 4, SUPPORT, RESONANCE)
                         ),
                         LocalDate.of(2025, 5, 22),
                         "/sinners/faust/125px-Placeholder_Identity.webp"
