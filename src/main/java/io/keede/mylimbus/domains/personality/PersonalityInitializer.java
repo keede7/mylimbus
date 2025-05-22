@@ -350,6 +350,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2023, 2, 27),
                         "/sinners/faust/125px-W_Corp.webp"
                 ), // 질투4보유, 질투3보유, 230227
+                new Personality(3, FAUST, "흑수-묘 필두 파우스트", List.of(흑수, 흑수_묘),
+                        new PersonalitySkill(1, SLOTH, SLASH),
+                        new PersonalitySkill(2, PRIDE, SLASH),
+                        new PersonalitySkill(3, GLUTTONY, SLASH),
+                        Set.of(RUPTURE),
+                        "탐식",
+                        Set.of(
+                                new Passive(GLUTTONY, 5, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 4, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2025, 5, 22),
+                        "/sinners/faust/125px-Heishou_Pack_-_Mao_Branch_Adept_Faust_Uptied.webp"
+                ),
                 new Personality(1, DONQUIXOTE, "LCB 수감자 돈키호테", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, LUST, PIERCE),
                         new PersonalitySkill(2, ENVY, PIERCE),
