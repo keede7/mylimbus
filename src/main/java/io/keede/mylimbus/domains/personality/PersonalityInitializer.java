@@ -361,7 +361,7 @@ public class PersonalityInitializer {
                                 new Passive(GLUTTONY, 4, SUPPORT, RESONANCE)
                         ),
                         LocalDate.of(2025, 5, 22),
-                        "/sinners/faust/125px-Placeholder_Identity.webp"
+                        "/sinners/faust/125px-Heishou_Pack_-_Mao_Branch_Adept_Faust_Uptied.webp"
                 ),
                 new Personality(1, DONQUIXOTE, "LCB 수감자 돈키호테", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, LUST, PIERCE),
