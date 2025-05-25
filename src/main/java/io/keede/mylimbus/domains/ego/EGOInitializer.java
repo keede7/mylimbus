@@ -464,6 +464,32 @@ public class EGOInitializer {
                 ),
                 new EGO(
                         DONQUIXOTE,
+                        "홍적",
+                        "/ego/donquixote/280px-Red_Sheet_Don_Quixote.webp",
+                        HE,
+                        GLUTTONY,
+                        SLASH,
+                        List.of(
+                                new EGOUseCondition(
+                                        LUST,
+                                        1
+                                ),
+                                new EGOUseCondition(
+                                        GLUTTONY,
+                                        5
+                                ),
+                                new EGOUseCondition(
+                                        GLOOM,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
+                                        1
+                                )
+                        )
+                ),
+                new EGO(
+                        DONQUIXOTE,
                         "갈망-미르킬라",
                         "/ego/donquixote/280px-Yearning-Mircalla_Don_Quixote.webp",
                         WAW,
@@ -1134,6 +1160,24 @@ public class EGOInitializer {
                                 ),
                                 new EGOUseCondition(
                                         GLOOM,
+                                        2
+                                )
+                        )
+                ),
+                new EGO(
+                        ISHMAEL,
+                        "즉저살 [蝍蛆殺]",
+                        "/ego/ishmael/280px-Hundred-Footed_Death_Maggot_蝍蛆殺_Ishmael.webp",
+                        ZAYIN,
+                        GLOOM,
+                        BLUNT,
+                        List.of(
+                                new EGOUseCondition(
+                                        SLOTH,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
                                         2
                                 )
                         )
