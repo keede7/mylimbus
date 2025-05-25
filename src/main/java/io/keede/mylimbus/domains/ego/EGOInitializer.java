@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static io.keede.mylimbus.domains.Characters.*;
 import static io.keede.mylimbus.domains.ego.entity.RiskLevel.*;
@@ -34,9 +37,15 @@ public class EGOInitializer {
     @Transactional
     public void init() {
 
-        if(!this.egoRepository.findAll().isEmpty()) {
-            return;
-        }
+        List<EGO> all = this.egoRepository.findAll();
+
+        Map<String, EGO> isRegisteredEgos = all.stream()
+                .collect(
+                        Collectors.toMap(
+                                ego -> ego.getCharacterName() + ego.getEgoName(),
+                                Function.identity()
+                        )
+                );
 
         List<EGO> egos = List.of(
                 new EGO(
@@ -2016,7 +2025,12 @@ public class EGOInitializer {
                 )
         );
 
-        this.egoRepository.saveAll(egos);
+        List<EGO> noRegisteredEgos = egos.stream()
+                .filter(ego -> !isRegisteredEgos.containsKey(ego.getCharacterName() + ego.getEgoName()))
+                .toList();
+
+
+        this.egoRepository.saveAll(noRegisteredEgos);
     }
 
 }
