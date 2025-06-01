@@ -39,4 +39,18 @@ public class VisitorActivity {
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
+    public VisitorActivity(
+            String visitorId,
+            String ipAddress,
+            String userAgent,
+            String referrer,
+            String pageUrl
+    ) {
+        this.visitorId = visitorId;
+        this.ipAddress = ipAddress;
+        this.userAgent = userAgent;
+        this.referrer = referrer;
+        this.pageUrl = pageUrl;
+        this.timestamp = LocalDateTime.now().withNano(0);
+    }
 }
