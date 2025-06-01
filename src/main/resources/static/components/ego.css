@@ -78,7 +78,8 @@
 }
 
 .letter-row {
-    width: 90%;
+    width: 100%; /* 부모 컨테이너 전체 사용 */
+    position: relative; /* position 컨텍스트 */
     height: 35px;
     background-color: #222222;
     border: 1px solid #333333;
@@ -90,7 +91,6 @@
     color: #c0945c;
     font-weight: bold;
 }
-/**/
 
 /* E.G.O Modal Styles */
 .ego-modal {
@@ -377,9 +377,16 @@
 .ego-name {
     color: white;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* 기본 크기를 조금 줄임 */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    margin: 0 auto;
+    margin: 0;
+    padding-left: 20px; /* tier 공간 확보 */
+    padding-right: 8px; /* 오른쪽 여백 */
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ego-nameplate-tier {
@@ -388,7 +395,17 @@
     font-size: 0.9rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     position: absolute;
-    left: 15px;
+    left: 8px; /* 컨테이너가 작으므로 여백 줄임 */
+    z-index: 2;
+}
+
+/* 텍스트 길이에 따른 자동 크기 조절 */
+.ego-name.medium-text {
+    font-size: 0.7rem;
+}
+
+.ego-name.long-text {
+    font-size: 0.6rem;
 }
 
 .ego-effect {

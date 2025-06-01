@@ -980,6 +980,28 @@ public class EGOInitializer {
                         )
                 ),
                 new EGO(
+                        HONGLU,
+                        "오혈읍루 [汚血泣涙]",
+                        "/ego/honglu/280px-Tears_of_the_Tarnished_Blood_汚血泣涙_Hong_Lu.webp",
+                        WAW,
+                        GLUTTONY,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        GLUTTONY,
+                                        5
+                                ),
+                                new EGOUseCondition(
+                                        GLOOM,
+                                        1
+                                ),
+                                new EGOUseCondition(
+                                        ENVY,
+                                        1
+                                )
+                        )
+                ),
+                new EGO(
                         HEATHCLIFF,
                         "시체자루",
                         "/ego/heathcliff/280px-Bodysack_Heathcliff.webp",
@@ -1652,6 +1674,28 @@ public class EGOInitializer {
                                 new EGOUseCondition(
                                         ENVY,
                                         1
+                                )
+                        )
+                ),
+                new EGO(
+                        SINCLAIR,
+                        "오혈읍루 [汚血泣涙]",
+                        "/ego/sinclair/280px-Tears_of_the_Tarnished_Blood_汚血泣涙_Sinclair.webp",
+                        WAW,
+                        GLUTTONY,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        LUST,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        GLUTTONY,
+                                        6
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
+                                        2
                                 )
                         )
                 ),
