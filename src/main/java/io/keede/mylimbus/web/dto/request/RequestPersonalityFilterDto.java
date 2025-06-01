@@ -52,4 +52,14 @@ public record RequestPersonalityFilterDto(
                 .filter(Objects::nonNull)
                 .toList();
     }
+
+    @Override
+    public String toString() {
+        return "RequestPersonalityFilterDto{" +
+                "personalityKRName='" + personalityKRName + '\'' +
+                ", personalityAffinities=" + Arrays.toString(personalityAffinities) +
+                ", personalitySkillTypes=" + Arrays.toString(personalitySkillTypes) +
+                ", personalitySkillSins=" + Arrays.toString(personalitySkillSins) +
+                '}';
+    }
 }

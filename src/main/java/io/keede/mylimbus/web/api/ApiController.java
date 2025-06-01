@@ -59,7 +59,7 @@ public class ApiController {
     @GetMapping("/personality/base")
     public List<GetPersonalityResponseDto> getPersonalityByBaseName(RequestPersonalityByBaseName dto) {
         log.debug("getPersonalityByBaseName...");
-        log.debug("dto : {}", dto);
+        log.debug("dto : {}", this.bind(dto.baseName()));
         return this.personalityQueryService.getPersonalityByBaseName(dto);
     }
 
@@ -73,6 +73,7 @@ public class ApiController {
     @GetMapping("/personality/filter")
     public List<GetPersonalityResponseDto> getPersonalityFilter(RequestPersonalityFilterDto dto) {
         log.debug("getPersonalityFilter");
+        log.debug("name = {}", this.bind(dto.personalityKRName()));
         log.debug("dto = {}", dto);
         return this.personalityQueryService.getPersonalityFilter(dto);
     }
@@ -80,8 +81,28 @@ public class ApiController {
     @GetMapping("/ego/{characterKRName}")
     public List<GetEGOResponseDto> getEGOsByCharacterKRName(@PathVariable("characterKRName") String characterKRName) {
         log.debug("getEGOsByCharacterKRName");
-        log.debug("characterKRName = {}", characterKRName);
+        log.debug("characterKRName = {}", this.bind(characterKRName));
         return this.egoQueryService.getEGOsByCharacterKRName(characterKRName);
+    }
+
+    private String bind(String krName) {
+
+        return switch (krName) {
+            case "이상" -> "yisang";
+            case "파우스트" -> "faust";
+            case "돈키호테" -> "donquixote";
+            case "료슈" -> "ryoshu";
+            case "뫼르소" -> "meursault";
+            case "홍루" -> "honglu";
+            case "히스클리프" -> "heathcliff";
+            case "이스마엘" -> "ishmael";
+            case "로쟈" -> "rodion";
+            case "싱클레어" -> "sinclair";
+            case "오티스" -> "outis";
+            case "그레고르" -> "gregor";
+            default -> "unknown";
+        };
+
     }
 
 }
