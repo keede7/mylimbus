@@ -5,6 +5,8 @@ import io.keede.mylimbus.domains.ego.entity.EGORepository;
 import io.keede.mylimbus.web.dto.response.GetEGOResponseDto;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,9 +25,11 @@ public class EgoQueryService {
     }
 
     public List<GetEGOResponseDto> getEGOsByCharacterKRName(String characterKRName) {
+        List<String> riskOrder = Arrays.asList("ZAYIN", "TETH", "HE", "WAW", "ALEPH");
         return this.egoRepository.findEGOsByCharacterKRName(characterKRName)
                 .stream()
                 .map(EGO::toDto)
+                .sorted(Comparator.comparing(ego -> riskOrder.indexOf(ego.egoName())))
                 .toList();
     }
 }
