@@ -1,5 +1,6 @@
 package io.keede.mylimbus.web;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,7 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ViewController {
 
     @GetMapping("")
-    public String main() {
+    public String main(HttpServletRequest request) {
+        String userAgent = request.getHeader("User-Agent");
+        String deviceType = MobileValidator.getDeviceType(userAgent);
+
+        if ("mobile".equals(deviceType) || "tablet".equals(deviceType)) {
+            return "mobile-not-supported";
+        }
+
         return "main";
     }
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC에서 접속해주세요</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-weight: 300;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+
+    .device-info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 15px;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    .features {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .features h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .features ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .features li {
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      margin: 10px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .small-text {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="icon">💻</div>
+  <h1>PC에서 접속해주세요</h1>
+  <p class="message">
+    이 웹사이트는 최적의 경험을 위해<br>
+    데스크톱 환경에서만 이용 가능합니다.
+  </p>
+
+  <!-- Thymeleaf를 사용한 디바이스 정보 표시 -->
+  <div class="device-info" th:if="${deviceType}">
+    <p>감지된 디바이스: <strong th:text="${deviceType}">unknown</strong></p>
+  </div>
+
+<!--  <div class="features">-->
+<!--    <h3>PC에서 만나보세요</h3>-->
+<!--    <ul>-->
+<!--      <li>고해상도 그래픽과 애니메이션</li>-->
+<!--      <li>키보드 단축키 지원</li>-->
+<!--      <li>멀티태스킹 기능</li>-->
+<!--      <li>향상된 성능과 속도</li>-->
+<!--    </ul>-->
+<!--  </div>-->
+
+<!--  <a href="#" class="cta-button" onclick="sendLinkToEmail()">-->
+<!--    링크 전송하기-->
+<!--  </a>-->
+
+<!--  <a th:href="@{/}" class="cta-button">-->
+<!--    다시 시도-->
+<!--  </a>-->
+
+  <p class="small-text">
+    데스크톱이나 노트북에서 다시 방문해주세요!
+  </p>
+</div>
+
+<script>
+  function sendLinkToEmail() {
+    const url = window.location.origin;
+    const subject = encodeURIComponent('PC에서 확인해보세요!');
+    const body = encodeURIComponent(`이 링크를 PC에서 열어보세요: ${url}`);
+
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  }
+</script>
+</body>
+</html>
