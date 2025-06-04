@@ -1,5 +1,8 @@
 package io.keede.mylimbus.domains.personality.entity;
 
+import io.keede.mylimbus.domains.personality.enums.PassiveCondition;
+import io.keede.mylimbus.domains.personality.enums.PassiveType;
+import io.keede.mylimbus.domains.personality.enums.Sin;
 import io.keede.mylimbus.web.dto.response.PassiveDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

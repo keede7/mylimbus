@@ -1,4 +1,4 @@
-package io.keede.mylimbus.domains.personality.entity;
+package io.keede.mylimbus.domains.personality.enums;
 
 
 import lombok.AllArgsConstructor;
@@ -10,29 +10,25 @@ import java.util.Arrays;
  * Created on 2025/04/10
  */
 @AllArgsConstructor
-public enum Sin {
+public enum AttackType {
 
-    WRATH("분노"),
-    LUST("색욕"),
-    SLOTH("나태"),
-    GLUTTONY("탐식"),
-    GLOOM("우울"),
-    PRIDE("오만"),
-    ENVY("질투"),
+    SLASH("참격"),
+    PIERCE("관통"),
+    BLUNT("타격"),
     ;
 
     private final String type;
 
-    public static Sin match(String type) {
+    public static AttackType match(String type) {
         return Arrays.stream(values())
-                .filter(sin -> sin.type.equals(type))
+                .filter(attackType -> attackType.type.equals(type))
                 .findFirst()
                 .orElse(null);
     }
 
-    public static Sin match(Sin type) {
+    public static AttackType match(AttackType type) {
         return Arrays.stream(values())
-                .filter(sin -> sin == type)
+                .filter(attackType -> attackType == type)
                 .findFirst()
                 .orElse(null);
     }

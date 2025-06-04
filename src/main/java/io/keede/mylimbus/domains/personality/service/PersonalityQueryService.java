@@ -1,6 +1,9 @@
 package io.keede.mylimbus.domains.personality.service;
 
 import io.keede.mylimbus.domains.personality.entity.*;
+import io.keede.mylimbus.domains.personality.enums.Affinity;
+import io.keede.mylimbus.domains.personality.enums.AttackType;
+import io.keede.mylimbus.domains.personality.enums.Sin;
 import io.keede.mylimbus.web.dto.request.RequestPersonalitiesGroupByKeywordDto;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityByBaseName;
 import io.keede.mylimbus.web.dto.request.RequestPersonalityBySkillSinDto;

@@ -1,7 +1,7 @@
 package io.keede.mylimbus.domains.ego.entity;
 
-import io.keede.mylimbus.domains.personality.entity.AttackType;
-import io.keede.mylimbus.domains.personality.entity.Sin;
+import io.keede.mylimbus.domains.personality.enums.AttackType;
+import io.keede.mylimbus.domains.personality.enums.Sin;
 import io.keede.mylimbus.web.dto.response.GetEGOResponseDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -12,7 +12,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author keede

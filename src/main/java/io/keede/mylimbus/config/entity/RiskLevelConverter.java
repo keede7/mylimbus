@@ -1,7 +1,6 @@
 package io.keede.mylimbus.config.entity;
 
 import io.keede.mylimbus.domains.ego.entity.RiskLevel;
-import io.keede.mylimbus.domains.personality.entity.AttackType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

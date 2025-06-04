@@ -1,6 +1,6 @@
 package io.keede.mylimbus.config.entity;
 
-import io.keede.mylimbus.domains.personality.entity.PersonalityGroup;
+import io.keede.mylimbus.domains.personality.enums.PersonalityGroup;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

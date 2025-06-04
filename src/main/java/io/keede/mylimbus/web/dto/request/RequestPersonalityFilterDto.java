@@ -1,8 +1,8 @@
 package io.keede.mylimbus.web.dto.request;
 
-import io.keede.mylimbus.domains.personality.entity.Affinity;
-import io.keede.mylimbus.domains.personality.entity.AttackType;
-import io.keede.mylimbus.domains.personality.entity.Sin;
+import io.keede.mylimbus.domains.personality.enums.Affinity;
+import io.keede.mylimbus.domains.personality.enums.AttackType;
+import io.keede.mylimbus.domains.personality.enums.Sin;
 
 import java.util.Arrays;
 import java.util.Collections;

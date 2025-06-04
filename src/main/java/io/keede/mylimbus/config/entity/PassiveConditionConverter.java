@@ -1,7 +1,6 @@
 package io.keede.mylimbus.config.entity;
 
-import io.keede.mylimbus.domains.personality.entity.PassiveCondition;
-import io.keede.mylimbus.domains.personality.entity.Sin;
+import io.keede.mylimbus.domains.personality.enums.PassiveCondition;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

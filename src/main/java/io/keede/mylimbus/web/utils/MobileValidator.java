@@ -1,4 +1,4 @@
-package io.keede.mylimbus.web;
+package io.keede.mylimbus.web.utils;
 
 import java.util.Arrays;
 

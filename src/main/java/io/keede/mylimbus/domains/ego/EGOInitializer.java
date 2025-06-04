@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 import static io.keede.mylimbus.domains.Characters.*;
 import static io.keede.mylimbus.domains.ego.entity.RiskLevel.*;
-import static io.keede.mylimbus.domains.personality.entity.AttackType.*;
-import static io.keede.mylimbus.domains.personality.entity.Sin.*;
+import static io.keede.mylimbus.domains.personality.enums.AttackType.*;
+import static io.keede.mylimbus.domains.personality.enums.Sin.*;
 
 /**
  * @author keede

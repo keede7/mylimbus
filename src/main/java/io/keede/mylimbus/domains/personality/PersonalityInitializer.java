@@ -13,12 +13,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static io.keede.mylimbus.domains.Characters.*;
-import static io.keede.mylimbus.domains.personality.entity.Affinity.*;
-import static io.keede.mylimbus.domains.personality.entity.AttackType.*;
-import static io.keede.mylimbus.domains.personality.entity.PassiveCondition.*;
-import static io.keede.mylimbus.domains.personality.entity.PassiveType.*;
-import static io.keede.mylimbus.domains.personality.entity.PersonalityGroup.*;
-import static io.keede.mylimbus.domains.personality.entity.Sin.*;
+import static io.keede.mylimbus.domains.personality.enums.Affinity.*;
+import static io.keede.mylimbus.domains.personality.enums.AttackType.*;
+import static io.keede.mylimbus.domains.personality.enums.PassiveCondition.*;
+import static io.keede.mylimbus.domains.personality.enums.PassiveType.*;
+import static io.keede.mylimbus.domains.personality.enums.PersonalityGroup.*;
+import static io.keede.mylimbus.domains.personality.enums.Sin.*;
 
 /**
  * @author keede

@@ -1,8 +1,8 @@
 package io.keede.mylimbus.web.dto.response;
 
 import io.keede.mylimbus.domains.ego.entity.RiskLevel;
-import io.keede.mylimbus.domains.personality.entity.AttackType;
-import io.keede.mylimbus.domains.personality.entity.Sin;
+import io.keede.mylimbus.domains.personality.enums.AttackType;
+import io.keede.mylimbus.domains.personality.enums.Sin;
 
 import java.util.List;
 

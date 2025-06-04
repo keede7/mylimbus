@@ -1,5 +1,9 @@
 package io.keede.mylimbus.domains.personality.entity;
 
+import io.keede.mylimbus.domains.personality.enums.Affinity;
+import io.keede.mylimbus.domains.personality.enums.AttackType;
+import io.keede.mylimbus.domains.personality.enums.PersonalityGroup;
+import io.keede.mylimbus.domains.personality.enums.Sin;
 import io.keede.mylimbus.web.dto.response.GetPersonalityResponseDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

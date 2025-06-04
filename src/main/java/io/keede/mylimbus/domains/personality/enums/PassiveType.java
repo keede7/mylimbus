@@ -1,4 +1,4 @@
-package io.keede.mylimbus.domains.personality.entity;
+package io.keede.mylimbus.domains.personality.enums;
 
 /**
  * @author keede
