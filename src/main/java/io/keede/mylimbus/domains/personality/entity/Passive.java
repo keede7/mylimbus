@@ -61,4 +61,8 @@ public class Passive {
                 this.passiveCondition
         );
     }
+
+    public void sync(Personality personality) {
+        this.personality = personality;
+    }
 }

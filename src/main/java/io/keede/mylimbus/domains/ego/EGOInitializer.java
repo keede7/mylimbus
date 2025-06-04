@@ -2073,6 +2073,7 @@ public class EGOInitializer {
                 .filter(ego -> !isRegisteredEgos.containsKey(ego.getCharacterName() + ego.getEgoName()))
                 .toList();
 
+        noRegisteredEgos.forEach(EGO::sync);
 
         this.egoRepository.saveAll(noRegisteredEgos);
     }

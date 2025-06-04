@@ -81,7 +81,6 @@ public class Personality {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "personality")
     private Set<Passive> passives = new HashSet<>();
 
-//    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "personality")
     private Set<Affinity> affinities = new HashSet<>();
 
     private String defend;
@@ -142,6 +141,12 @@ public class Personality {
         this.passives.addAll(passives);
         this.releaseDate = releaseDate;
         this.imgUrl = imgUrl;
+    }
+
+    public void sync() {
+        this.passives.forEach(
+                passive -> passive.sync(this)
+        );
     }
 
     public GetPersonalityResponseDto toDto() {

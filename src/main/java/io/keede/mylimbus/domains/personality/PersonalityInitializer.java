@@ -1881,6 +1881,8 @@ public class PersonalityInitializer {
                 .filter(personality -> !isRegisterPersonalities.containsKey(personality.getPersonalityName()))
                 .toList();
 
+        noRegisteredPersonalities.forEach(Personality::sync);
+
         this.personalityRepository.saveAll(noRegisteredPersonalities);
     }
 

@@ -50,4 +50,8 @@ public class EGOUseCondition {
                 this.consumedQuantity
         );
     }
+
+    public void sync(EGO ego) {
+        this.ego = ego;
+    }
 }

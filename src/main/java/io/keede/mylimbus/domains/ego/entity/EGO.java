@@ -11,6 +11,7 @@ import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class EGO {
     private AttackType attackType;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "ego")
-    private List<EGOUseCondition> egoUseConditions;
+    private List<EGOUseCondition> egoUseConditions = new ArrayList<>();
 
     private Sin sin;
 
@@ -60,7 +61,8 @@ public class EGO {
         this.riskLevel = riskLevel;
         this.sin = sin;
         this.attackType = attackType;
-        this.egoUseConditions = egoUseConditions;
+//        this.egoUseConditions = egoUseConditions;
+        this.egoUseConditions.addAll(egoUseConditions);
     }
 
     public EGO(
@@ -89,6 +91,12 @@ public class EGO {
                         .stream()
                         .map(EGOUseCondition::toDto)
                         .toList()
+        );
+    }
+
+    public void sync() {
+        this.egoUseConditions.forEach(
+                egoUseCondition -> egoUseCondition.sync(this)
         );
     }
 }
