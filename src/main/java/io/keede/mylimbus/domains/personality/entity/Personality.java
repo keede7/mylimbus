@@ -16,8 +16,11 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author keede
@@ -209,6 +212,14 @@ public class Personality {
             return true;
         }
 
+        Map<AttackType, Integer> collect = Stream.of(this.firstSkill.getAttackType(), this.secondSkill.getAttackType(), this.thirdSkill.getAttackType())
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.summingInt(e -> 1)
+                ));
+
+        System.out.println("collect = " + collect);
+
         return attackTypes.stream()
                 .anyMatch(s -> this.firstSkill.getAttackType() == s || this.secondSkill.getAttackType() == s || this.thirdSkill.getAttackType() == s);
     }
@@ -216,5 +227,24 @@ public class Personality {
     public boolean isMatchName(String name) {
         return this.baseName.equals(name);
     }
+
+//    public boolean isMatchSkillType(List<AttackType> attackTypes, int quantity) {
+//        if(attackTypes.isEmpty()) {
+//            return true;
+//        }
+//
+//        Map<AttackType, Integer> collect = Stream.of(this.firstSkill.getAttackType(), this.secondSkill.getAttackType(), this.thirdSkill.getAttackType())
+//                .collect(Collectors.groupingBy(
+//                        Function.identity(),
+//                        Collectors.summingInt(e -> 1)
+//                ));
+//
+//        System.out.println("collect = " + collect);
+//
+//
+//        return attackTypes.stream()
+//                .anyMatch(s -> this.firstSkill.getAttackType() == s || this.secondSkill.getAttackType() == s || this.thirdSkill.getAttackType() == s);
+//    }
+
 
 }
