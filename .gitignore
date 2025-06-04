@@ -35,3 +35,6 @@ out/
 /src/main/resources/application-prod.yml
 ### VS Code ###
 .vscode/
+
+.DS_Store
+.DS_Store?
