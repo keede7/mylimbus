@@ -33,4 +33,8 @@ public final class PersonalitySkill {
         return this.sinType == sin;
     }
 
+    public boolean isMatchAttackType(AttackType attackType) {
+        return this.attackType == attackType;
+    }
+
 }

@@ -36,4 +36,8 @@ public enum AttackType {
     public String getType() {
         return this.type;
     }
+
+    public boolean isMatch(AttackType attackType) {
+        return this == attackType;
+    }
 }
