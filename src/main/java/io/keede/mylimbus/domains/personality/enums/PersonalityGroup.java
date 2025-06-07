@@ -64,6 +64,8 @@ public enum PersonalityGroup {
     R사("R사"),
     워더링하이츠("워더링하이츠"),
     와일드헌트("와일드헌트"),
+    가주_후보("가주 후보"),
+    가씨_가문("가씨 가문")
     ;
 
     private final String name;
