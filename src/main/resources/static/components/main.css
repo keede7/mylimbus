@@ -369,6 +369,86 @@ body {
     background-color: #555;
 }
 
+/* 공격종류 개수 필터 CSS */
+/* 기존 CSS에 추가할 selectbox 스타일 */
+
+/* Selectbox 컨테이너 스타일 */
+.filter-select-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Selectbox 기본 스타일 */
+.filter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 8px 35px 8px 12px;
+    color: #ddd;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 120px;
+}
+
+/* Selectbox 호버 및 포커스 상태 */
+.filter-select:hover {
+    background-color: #3a3a3a;
+    border-color: #666;
+}
+
+.filter-select:focus {
+    outline: none;
+    background-color: #493e2d;
+    border-color: #c0945c;
+    box-shadow: 0 0 0 2px rgba(192, 148, 92, 0.2);
+}
+
+/* 커스텀 화살표 아이콘 */
+.filter-select-container::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 12px;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.filter-select-container:hover::after {
+    color: #c0945c;
+}
+
+/* Option 스타일 (브라우저 지원 제한적) */
+.filter-select option {
+    background-color: #333;
+    color: #ddd;
+    padding: 8px;
+}
+
+.filter-select option:hover {
+    background-color: #493e2d;
+}
+
+/* 공격종류 개수 필터 전용 스타일 */
+.attack-count-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.attack-count-label {
+    color: #ddd;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+
 .modal-grid {
     margin-top: 20px;
     display: grid;

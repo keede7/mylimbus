@@ -191,6 +191,39 @@ document.querySelectorAll('.character-card').forEach(card => {
     });
 });
 
+// selectbox의 change 이벤트 리스너 추가 - NEW CODE
+document.addEventListener('DOMContentLoaded', function() {
+    const attackTypeCountSelect = document.getElementById('attackTypeQuantitySelect');
+    if (attackTypeCountSelect) {
+        attackTypeCountSelect.addEventListener('change', filterCharacters);
+    }
+
+    // 기존 체크박스들의 이벤트 리스너도 유지
+    const checkboxes = document.querySelectorAll('input[name="affinity"], input[name="skillType"], input[name="skillSin"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            // 공격종류 체크박스가 변경될 때 개수 필터 초기화 체크
+            if (checkbox.name === 'skillType') {
+                checkAndResetAttackTypeCount();
+            }
+        });
+    });
+});
+
+// 공격종류 개수 필터 초기화 체크 함수 - NEW CODE
+function checkAndResetAttackTypeCount() {
+    const selectedSkillTypes = Array.from(
+        document.querySelectorAll('input[name="skillType"]:checked')
+    );
+
+    const attackTypeQuantitySelect = document.getElementById('attackTypeQuantitySelect');
+
+    // 공격종류가 모두 미선택되면 개수 필터를 '전체'로 초기화
+    if (selectedSkillTypes.length === 0 && attackTypeQuantitySelect) {
+        attackTypeQuantitySelect.value = '1';
+    }
+}
+
 function filterCharacters() {
     // Get all selected keywords
     const modalGrid = document.getElementById('modalCharacterGrid');
@@ -210,6 +243,16 @@ function filterCharacters() {
         document.querySelectorAll('input[name="skillSin"]:checked')
     ).map(checkbox => checkbox.value);
 
+    // Get selected attack type count - NEW CODE
+    const attackTypeQuantitySelect = document.getElementById('attackTypeQuantitySelect');
+
+    // 공격종류가 모두 미선택되면 공격종류 개수도 '전체'로 초기화 - NEW CODE
+    if (selectedSkillTypes.length === 0 && attackTypeQuantitySelect) {
+        attackTypeQuantitySelect.value = '1';
+    }
+
+    const selectedAttackTypeQuantity = attackTypeQuantitySelect ? attackTypeQuantitySelect.value : '';
+    
     // Build query parameters
     const queryParams = new URLSearchParams();
 
@@ -228,8 +271,18 @@ function filterCharacters() {
         queryParams.append('personalitySkillSins', selectedSkillSins.join(','));
     }
 
+    // Add attack type count parameter - NEW CODE
+    if (selectedAttackTypeQuantity && selectedAttackTypeQuantity !== '') {
+        queryParams.append('attackTypeQuantity', selectedAttackTypeQuantity);
+    }
+
     // Only proceed if we have filters selected
-    if (selectedKeywords.length > 0 || selectedSkillTypes.length > 0 || selectedSkillSins.length > 0) {
+    if (
+        selectedKeywords.length > 0 ||
+        selectedSkillTypes.length > 0 ||
+        selectedSkillSins.length > 0 ||
+        selectedAttackTypeQuantity !== ''
+    ) {
         // Clear existing grid
         const modalGrid = document.getElementById('modalCharacterGrid');
 
