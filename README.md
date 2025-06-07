@@ -15,11 +15,11 @@ Project Moon 게임사의 Limbus Company(림버스 컴퍼니) 앱의 각 캐릭�
 
 ---
 
-![personality_modal](/src/main/resources/static/image/modal.PNG)
+![personality_modal](/src/main/resources/static/image/personalityModal.PNG)
 
 ---
 
-![ego_modal](/src/main/resources/static/image/modal2.PNG)
+![ego_modal](/src/main/resources/static/image/egoModal.PNG)
 
 
 ---

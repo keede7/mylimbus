@@ -17,7 +17,8 @@ public record RequestPersonalityFilterDto(
         String personalityKRName,
         Affinity[] personalityAffinities,
         AttackType[] personalitySkillTypes,
-        Sin[] personalitySkillSins
+        Sin[] personalitySkillSins,
+        Integer attackTypeQuantity
 ) {
 
     public List<Affinity> toAffinitiesEffects() {
@@ -60,6 +61,7 @@ public record RequestPersonalityFilterDto(
                 ", personalityAffinities=" + Arrays.toString(personalityAffinities) +
                 ", personalitySkillTypes=" + Arrays.toString(personalitySkillTypes) +
                 ", personalitySkillSins=" + Arrays.toString(personalitySkillSins) +
+                ", attackTypeQuantity=" + attackTypeQuantity +
                 '}';
     }
 }

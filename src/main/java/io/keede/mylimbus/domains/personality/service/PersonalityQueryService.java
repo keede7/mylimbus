@@ -80,11 +80,12 @@ public class PersonalityQueryService {
         List<Affinity> affinities = dto.toAffinitiesEffects();
         List<AttackType> skillTypes = dto.toSkillTypes();
         List<Sin> skillSinAttributes = dto.toSkillSin();
+        int attackTypeQuantity = dto.attackTypeQuantity();
 
         List<Personality> personalities = this.personalityRepository.findPersonalityByKRName(personalityKRName)
                 .stream()
                 .filter(personality -> personality.isMatchAffinity(affinities))
-                .filter(personality -> personality.isMatchSkillType(skillTypes))
+                .filter(personality -> personality.isMatchSkillType(skillTypes, attackTypeQuantity))
                 .filter(personality -> personality.isMatchSkillSin(skillSinAttributes))
                 .toList();
 

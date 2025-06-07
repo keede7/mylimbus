@@ -1249,6 +1249,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2023, 7, 27),
                         "/sinners/ishmael/125px-Molar_Boatworks_Fixer_Ishmael_Uptied.webp"
                 ), // 오만3보유, 오만4보유, 230727
+                new Personality(3, ISHMAEL, "가주 후보 이스마엘", List.of(가주_후보, 가씨_가문),
+                        new PersonalitySkill(1, GLOOM, BLUNT),
+                        new PersonalitySkill(2, GLUTTONY, BLUNT),
+                        new PersonalitySkill(3, ENVY, SLASH),
+                        Set.of(RUPTURE, POISE),
+                        "우울",
+                        Set.of(
+                                new Passive(GLUTTONY, 5, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 4, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2025, 6, 5),
+                        "/sinners/ishmael/125px-Family_Hierarch_Candidate_Ishmael_Uptied.webp"
+                ),
                 new Personality(1, RODION, "LCB 수감자 로쟈", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, PRIDE, SLASH),
