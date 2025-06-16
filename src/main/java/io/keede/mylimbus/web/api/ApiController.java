@@ -36,26 +36,6 @@ public class ApiController {
         this.egoQueryService = egoQueryService;
     }
 
-    @GetMapping("/personality")
-    public List<GetPersonalityResponseDto> getPersonalities() {
-        log.debug("getPersonalities...");
-        return this.personalityQueryService.getPersonalities();
-    }
-
-    @GetMapping("/personality/group/keyword")
-    public List<GetPersonalityResponseDto> getPersonalitiesGroupByKeyword(RequestPersonalitiesGroupByKeywordDto dto) {
-        log.debug("getPersonalitiesGroupByKeyword...");
-        log.debug("dto : {}", dto);
-        return this.personalityQueryService.getPersonalitiesGroupByKeyword(dto);
-    }
-
-    @GetMapping("/personality/skill/sin")
-    public List<GetPersonalityResponseDto> getPersonalityBySkillSin(RequestPersonalityBySkillSinDto dto) {
-        log.debug("getPersonalityBySkillSin...");
-        log.debug("dto : {}", dto);
-        return this.personalityQueryService.getPersonalityBySkillSin(dto);
-    }
-
     @GetMapping("/personality/base")
     public List<GetPersonalityResponseDto> getPersonalityByBaseName(RequestPersonalityByBaseName dto) {
         log.debug("getPersonalityByBaseName...");

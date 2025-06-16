@@ -173,12 +173,6 @@ public class Personality {
         );
     }
 
-    public boolean isMatchGroupKeyword(String groupKeyword) {
-        return this.groups
-                .stream()
-                .anyMatch(group -> groupKeyword.contains(group.getName()));
-    }
-
     public boolean isMatchAffinity(List<Affinity> targetAffinities) {
         if(targetAffinities.isEmpty()) {
             return true;
@@ -206,39 +200,6 @@ public class Personality {
         return sins.stream()
                 .anyMatch(this::isMatchSkillSin);
     }
-
-//    public boolean isMatchSkillType(List<AttackType> attackTypes) {
-//        if(attackTypes.isEmpty()) {
-//            return true;
-//        }
-//
-//        // 공격속성과, 공격속성의 개수가 들어온다.
-//        // 해당 인격이 가진 공격속성을 찾는다.
-//        // 공격속성은 여러개가 들어올수가 있다.
-//        // 그러므로,, 여러 인격이 나올 가능성은 존재한다.
-//        // 해당 캐릭터의 각 공격속성의 개수를 파악해둔다.
-//        // 선택한 공격속성이 있고 && 그 공격속성이 일정개수 이상이면, 통과시켜준다.
-//        // 대신 개수를 지정하지 않는다면? 공격속성의 여부만으로 판단해서 준다.
-//        // 사실 1개라도 있는 경우 현재 필터링과 동일하게 결과가 나오는게 맞다
-//        //
-//
-//        Map<AttackType, Integer> collect = Stream.of(this.firstSkill.getAttackType(), this.secondSkill.getAttackType(), this.thirdSkill.getAttackType())
-//                .collect(Collectors.groupingBy(
-//                        Function.identity(),
-//                        Collectors.summingInt(e -> 1)
-//                ));
-//
-//        System.out.println("collect = " + collect);
-//
-//        return attackTypes.stream()
-//                .anyMatch(this::isMatchAttackType);
-//    }
-
-//    private boolean isMatchAttackType(AttackType attackType) {
-//        return this.firstSkill.isMatchAttackType(attackType)
-//                || this.secondSkill.isMatchAttackType(attackType)
-//                || this.thirdSkill.isMatchAttackType(attackType);
-//    }
 
     public boolean isMatchName(String name) {
         return this.baseName.equals(name);

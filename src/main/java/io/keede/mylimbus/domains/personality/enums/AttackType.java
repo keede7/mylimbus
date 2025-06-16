@@ -37,7 +37,4 @@ public enum AttackType {
         return this.type;
     }
 
-    public boolean isMatch(AttackType attackType) {
-        return this == attackType;
-    }
 }

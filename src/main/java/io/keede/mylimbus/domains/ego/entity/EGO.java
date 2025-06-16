@@ -65,20 +65,6 @@ public class EGO {
         this.egoUseConditions.addAll(egoUseConditions);
     }
 
-    public EGO(
-            String characterName,
-            String egoName,
-            String imgUrl,
-            RiskLevel riskLevel,
-            AttackType attackType
-    ) {
-        this.characterName = characterName;
-        this.egoName = egoName;
-        this.imgUrl = imgUrl;
-        this.riskLevel = riskLevel;
-        this.attackType = attackType;
-    }
-
     public GetEGOResponseDto toDto() {
         return new GetEGOResponseDto(
                 this.id,

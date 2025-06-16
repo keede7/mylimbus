@@ -27,35 +27,9 @@ public class PersonalityQueryService {
     private final PersonalityRepository personalityRepository;
 
     public PersonalityQueryService(
-            PersonalityRepository personalityRepository
+            final PersonalityRepository personalityRepository
     ) {
         this.personalityRepository = personalityRepository;
-    }
-
-    @Transactional(readOnly = true)
-    public List<GetPersonalityResponseDto> getPersonalities() {
-        return this.personalityRepository.findPersonalities()
-                .stream()
-                .map(Personality::toDto)
-                .toList();
-    }
-
-    @Transactional(readOnly = true)
-    public List<GetPersonalityResponseDto> getPersonalitiesGroupByKeyword(RequestPersonalitiesGroupByKeywordDto dto) {
-        return this.personalityRepository.findPersonalities()
-                .stream()
-                .filter(personality -> personality.isMatchGroupKeyword(dto.keyword()))
-                .map(Personality::toDto)
-                .toList();
-    }
-
-    @Transactional(readOnly = true)
-    public List<GetPersonalityResponseDto> getPersonalityBySkillSin(RequestPersonalityBySkillSinDto dto) {
-        return this.personalityRepository.findPersonalities()
-                .stream()
-                .filter(personality -> personality.isMatchSkillSin(dto.sin()))
-                .map(Personality::toDto)
-                .toList();
     }
 
     @Transactional(readOnly = true)
