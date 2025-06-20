@@ -794,6 +794,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2024, 3, 28),
                         "/sinners/meursault/125px-Dead_Rabbits_Boss_Meursault_Uptied.webp"
                 ), // 탐식3공명, 탐식3공명, 240328
+                new Personality(3, MEURSAULT, "동부 엄지 카포IIII 뫼르소", List.of(조직, 엄지, 카포IIII),
+                        new PersonalitySkill(1, SLOTH, SLASH),
+                        new PersonalitySkill(2, LUST, SLASH),
+                        new PersonalitySkill(3, WRATH, BLUNT),
+                        Set.of(TREMOR, BURN),
+                        "나태",
+                        Set.of(
+                                new Passive(SLOTH, 3, MAIN, POSSESSION),
+                                new Passive(SLOTH, 3, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 6, 19),
+                        "/sinners/meursault/125px-The_Thumb_East_Capo_IIII_Meursault_Uptied.webp"
+                ),
                 new Personality(1, HONGLU, "LCB 수감자 홍루", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, SLOTH, SLASH),
@@ -1576,6 +1589,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2024, 10, 10),
                         "/sinners/sinclair/125px-Western_Zwei_Assoc.webp"
                 ), // 나태5보유, 나태4보유, 241010
+                new Personality(3, SINCLAIR, "동부 엄지 솔다토II 싱클레어", List.of(조직, 엄지, 솔다토II),
+                        new PersonalitySkill(1, LUST, PIERCE),
+                        new PersonalitySkill(2, SLOTH, PIERCE),
+                        new PersonalitySkill(3, WRATH, SLASH),
+                        Set.of(TREMOR, BURN),
+                        "오만",
+                        Set.of(
+                                new Passive(PRIDE, 3, MAIN, RESONANCE),
+                                new Passive(PRIDE, 4, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2025, 6, 19),
+                        "/sinners/sinclair/125px-The_Thumb_East_Soldato_II_Sinclair_Uptied.webp"
+                ),
                 new Personality(1, OUTIS, "LCB 수감자 오티스", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, SLOTH, PIERCE),
                         new PersonalitySkill(2, PRIDE, SLASH),
