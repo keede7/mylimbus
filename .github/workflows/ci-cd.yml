@@ -78,7 +78,9 @@ jobs:
           scp -i private_key -o StrictHostKeyChecking=no "$JAR_FILE" "$USER@$HOST:/app/auto/"
           
           echo "JAR file uploaded successfully to /app/$JAR_NAME"
-          
+
+      - name: Application Exit & ReStart
+        run: |
           # 기존 애플리케이션 종료
           echo "Stopping existing application..."
           ssh -i private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "$USER@$HOST" << 'EOF'
@@ -109,9 +111,9 @@ jobs:
               fi
             
               # 최종 확인
-              if pgrep -f "java -jar" > /dev/null; then
+              if pgrep -f "mylimbus" > /dev/null; then
                 echo "Warning: Some Java processes may still be running"
-                pgrep -f "java -jar"
+                pgrep -f "mylimbus"
               else
                 echo "All Java applications stopped"
               fi
