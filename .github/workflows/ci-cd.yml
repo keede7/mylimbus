@@ -79,7 +79,13 @@ jobs:
           
           echo "JAR file uploaded successfully to /app/$JAR_NAME"
 
-      - name: Application Exit & ReStart
+      - name: Application Exit & Deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+          USER: ${{ secrets.USER }}
+          JAR_FILE: ${{ steps.jar-name.outputs.JAR_FILE }}
+          JAR_NAME: ${{ steps.jar-name.outputs.JAR_NAME }}
         run: |
           # 기존 애플리케이션 종료
           echo "Stopping existing application..."
