@@ -79,5 +79,49 @@ jobs:
           
           echo "JAR file uploaded successfully to /app/$JAR_NAME"
           
+          # 기존 애플리케이션 종료
+          echo "Stopping existing application..."
+          ssh -i private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "$USER@$HOST" << 'EOF'
+            # Java 애플리케이션 프로세스 찾기
+            PID=$(pgrep -f "mylimbus")
+            
+            if [ ! -z "$PID" ]; then
+              echo "Found running Java application (PID: $PID)"
+    
+              # 정상 종료 시도
+              kill $PID
+              
+              # 프로세스가 완전히 종료될 때까지 대기 (최대 30초)
+              for i in {1..30}; do
+                if ! kill -0 $PID 2>/dev/null; then
+                  echo "Application stopped successfully"
+                  break
+                fi
+                echo "Waiting for application to stop... ($i/30)"
+                sleep 1
+              done
+              
+              # 여전히 실행 중이면 강제 종료
+              if kill -0 $PID 2>/dev/null; then
+                echo "Force killing application..."
+                kill -9 $PID
+                sleep 2
+              fi
+            
+              # 최종 확인
+              if pgrep -f "java -jar" > /dev/null; then
+                echo "Warning: Some Java processes may still be running"
+                pgrep -f "java -jar"
+              else
+                echo "All Java applications stopped"
+              fi
+            else
+              echo "No running Java application found"
+            fi
+          EOF
+          
+          # start.sh 스크립트 실행 (현재 주석처리 - 기존 애플리케이션 종료 후 활성화)
+          ssh -i private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "$USER@$HOST" "cd /app && ./start.sh"
+          
           # 임시 키 파일 삭제
           rm private_key
