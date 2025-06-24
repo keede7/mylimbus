@@ -1,0 +1,336 @@
+/* 모바일 가로모드 최적화 CSS */
+
+/* 모바일 가로모드 (480px ~ 768px, landscape, 터치 디바이스) */
+@media screen and (max-width: 768px) and (min-width: 480px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    /* 메인 컨테이너 조정 */
+    .game-container {
+        height: 100vh;
+        max-width: none;
+        margin: 0;
+        grid-template-columns: 1fr 200px; /* 사이드바를 더 좁게 */
+        grid-template-rows: 60px 1fr; /* 헤더를 더 낮게 */
+    }
+
+    /* 헤더 조정 */
+    .game-header {
+        padding: 8px 15px;
+    }
+
+    .nav-title h1 {
+        font-size: 1.2rem;
+    }
+
+    .nav-button,
+    .detail-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        min-height: 44px; /* 터치 타겟 크기 */
+    }
+
+    /* 캐릭터 선택 영역 */
+    .character-selection {
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .character-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+
+    .character-frame img {
+        height: 180px; /* 이미지 높이 조정 */
+    }
+
+    .character-name,
+    .character-type {
+        font-size: 0.8rem;
+    }
+
+    .character-rarity {
+        font-size: 0.7rem;
+    }
+
+    /* 리소스 패널 조정 */
+    .resources-panel {
+        padding: 10px 8px;
+    }
+
+    .ego-support {
+        padding: 8px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+    .resource-item {
+        padding: 6px;
+        margin-bottom: 8px;
+    }
+
+    .resource-item img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .resource-count {
+        font-size: 0.8rem;
+    }
+
+    /* 필터 컨테이너 조정 */
+    .filter-container {
+        margin: 15px 0;
+        padding: 12px;
+        max-width: 85%;
+    }
+
+    .filter-section h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .checkbox-custom {
+        padding: 4px 8px;
+    }
+
+    .checkbox-custom img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .filter-text {
+        font-size: 12px;
+    }
+
+    .filter-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* 모달 조정 */
+    .modal-content {
+        width: 95%;
+        margin: 3% auto;
+        padding: 15px;
+        max-height: 94vh;
+    }
+
+    .modal-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+}
+
+/* 작은 모바일 가로모드 (320px ~ 479px, landscape, 터치 디바이스) */
+@media screen and (max-width: 479px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    .game-container {
+        grid-template-columns: 1fr 180px; /* 사이드바를 더욱 좁게 */
+        grid-template-rows: 50px 1fr; /* 헤더를 더욱 낮게 */
+    }
+
+    .game-header {
+        padding: 5px 10px;
+    }
+
+    .nav-title h1 {
+        font-size: 1rem;
+    }
+
+    .nav-controls {
+        gap: 5px;
+    }
+
+    .nav-button,
+    .detail-button {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .character-selection {
+        padding: 10px;
+    }
+
+    .character-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 8px;
+    }
+
+    .character-frame img {
+        height: 140px;
+    }
+
+    .character-name,
+    .character-type,
+    .character-rarity {
+        font-size: 0.7rem;
+    }
+
+    .resources-panel {
+        padding: 8px 5px;
+    }
+
+    .ego-support {
+        padding: 6px;
+        margin-bottom: 8px;
+        font-size: 0.8rem;
+    }
+
+    .resource-item {
+        padding: 4px;
+        margin-bottom: 6px;
+    }
+
+    .resource-item img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .resource-count {
+        font-size: 0.7rem;
+    }
+}
+
+/* E.G.O 모달 모바일 가로모드 최적화 */
+@media screen and (max-width: 768px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    .ego-modal-content {
+        width: 98%;
+        margin: 1% auto;
+        padding: 10px;
+        max-height: 98vh;
+        min-height: auto;
+    }
+
+    .ego-modal-inner {
+        flex-direction: row; /* 가로 배치 유지 */
+        height: auto;
+        min-height: 60vh;
+    }
+
+    .ego-frame-area {
+        flex: 1;
+        padding: 5px;
+    }
+
+    .right-column {
+        width: 220px;
+        gap: 10px;
+    }
+
+    .identity-area,
+    .ego-list-area {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+    }
+
+    .identity-area {
+        height: 250px;
+    }
+
+    .ego-list-area {
+        min-height: 180px;
+    }
+
+    .identity-image {
+        height: 180px;
+    }
+
+    .ego-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        padding: 5px;
+    }
+
+    .ego-frame {
+        width: 120px;
+        height: 160px;
+    }
+
+    .ego-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .ego-nameplate {
+        width: 100px;
+        height: 30px;
+        bottom: 10px;
+    }
+
+    .ego-name {
+        font-size: 0.7rem;
+        padding-left: 15px;
+    }
+
+    .ego-nameplate-tier {
+        font-size: 0.8rem;
+        left: 5px;
+    }
+}
+
+/* 매우 작은 모바일 가로모드 화면을 위한 추가 최적화 */
+@media screen and (max-width: 479px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    .ego-modal-inner {
+        flex-direction: column;
+    }
+
+    .right-column {
+        width: 100%;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .identity-area,
+    .ego-list-area {
+        width: 50%;
+        height: 200px;
+        min-height: auto;
+    }
+
+    .ego-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .ego-frame {
+        width: 100px;
+        height: 140px;
+    }
+
+    .ego-circle {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* 터치 디바이스를 위한 추가 최적화 */
+@media (hover: none) and (pointer: coarse) {
+    /* 터치 디바이스에서는 호버 효과 제거 */
+    .character-card:hover,
+    .ego-card:hover,
+    .ego-main-card:hover {
+        transform: none;
+    }
+
+    /* 터치 시 시각적 피드백 */
+    .character-card,
+    .ego-card,
+    .ego-main-card {
+        transition: opacity 0.1s;
+    }
+
+    .character-card:active,
+    .ego-card:active,
+    .ego-main-card:active {
+        opacity: 0.8;
+    }
+
+    /* 터치하기 쉽도록 버튼 최소 크기 보장 */
+    .nav-button,
+    .detail-button,
+    .filter-button,
+    .close-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
