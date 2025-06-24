@@ -33,14 +33,14 @@ public class ViewController {
             HttpServletRequest request,
             HttpServletResponse response
     ) {
-        String userAgent = request.getHeader("User-Agent");
-        String deviceType = MobileValidator.getDeviceType(userAgent);
-
-        if ("mobile".equals(deviceType) || "tablet".equals(deviceType)) {
-            return "mobile-not-supported";
-        }
+//        String userAgent = request.getHeader("User-Agent");
+//        String deviceType = MobileValidator.getDeviceType(userAgent);
 
         this.recordVisitorActivity(request, response);
+
+//        if ("mobile".equals(deviceType) || "tablet".equals(deviceType)) {
+//            return "mobile-not-supported";
+//        }
 
         return "main";
     }
