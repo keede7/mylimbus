@@ -207,6 +207,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2025, 2, 20),
                         "/sinners/yisang/125px-Liu_Assoc.webp"
                 ),
+                new Personality(3, YISANG, "N사 E.G.O::흉탄 이상", List.of(N사, EGO_장비),
+                        new PersonalitySkill(1, WRATH, BLUNT),
+                        new PersonalitySkill(2, LUST, PIERCE),
+                        new PersonalitySkill(3, PRIDE, PIERCE),
+                        Set.of(POISE, BLEED),
+                        "호흡",
+                        Set.of(
+                                new Passive(PRIDE, 6, MAIN, POSSESSION),
+                                new Passive(PRIDE, 4, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2025, 7, 3),
+                        "/sinners/yisang/125px-N_Corp.webp"
+                ),
                 new Personality(1, FAUST, "LCB 수감자 파우스트", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, BLUNT),
                         new PersonalitySkill(2, SLOTH, BLUNT),
