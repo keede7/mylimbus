@@ -79,6 +79,8 @@ jobs:
           
           echo "JAR file uploaded successfully to /app/$JAR_NAME"
 
+          ssh -i private_key -o StrictHostKeyChecking=no "$USER@$HOST" "cp /app/auto/$JAR_NAME /app/"
+
       - name: Application Exit & Deploy
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
