@@ -519,6 +519,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2023, 2, 27),
                         "/sinners/donquixote/125px-Shi_Assoc.webp"
                 ), // 분노3공명, 분노5보유, 230227
+                new Personality(3, DONQUIXOTE, "로보토미 E.G.O::사랑과 증오의 이름으로 돈키호테", List.of(EGO_장비, 로보토미_본사),
+                        new PersonalitySkill(1, WRATH, BLUNT),
+                        new PersonalitySkill(2, ENVY, BLUNT),
+                        new PersonalitySkill(3, ENVY, BLUNT),
+                        Set.of(RUPTURE, CHARGE),
+                        "질투",
+                        Set.of(
+                                new Passive(ENVY, 4, MAIN, RESONANCE),
+                                new Passive(ENVY, 3, SUPPORT, RESONANCE)
+                        ),
+                        LocalDate.of(2025, 7, 17),
+                        "/sinners/donquixote/125px-Lobotomy_E.G.O__In_the_Name_of_Love_and_Hate_Don_Quixote.webp"
+                ),
                 new Personality(1, RYOSHU, "LCB 수감자 료슈", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, GLUTTONY, SLASH),
                         new PersonalitySkill(2, LUST, SLASH),
@@ -1446,6 +1459,20 @@ public class PersonalityInitializer {
                         LocalDate.of(2025, 5, 15),
                         "/sinners/rodion/125px-Heishou_Pack_-_Si_Branch_Rodion_Uptied.webp"
                 ), //
+                new Personality(3, RODION, "로보토미 E.G.O::눈물로 벼려낸 검 로쟈", List.of(EGO_장비, 로보토미_본사),
+                        new PersonalitySkill(1, GLOOM, PIERCE),
+                        new PersonalitySkill(2, ENVY, PIERCE),
+                        new PersonalitySkill(3, PRIDE, PIERCE),
+                        Set.of(SINKING, CHARGE),
+                        "우울",
+                        Set.of(
+                                new Passive(GLOOM, 3, MAIN, POSSESSION),
+                                new Passive(PRIDE, 3, MAIN, POSSESSION),
+                                new Passive(GLOOM, 5, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 7, 17),
+                        "/sinners/rodion/125px-Lobotomy_E.webp"
+                ),
                 new Personality(1, SINCLAIR, "LCB 수감자 싱클레어", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, SLASH),
                         new PersonalitySkill(2, WRATH, SLASH),

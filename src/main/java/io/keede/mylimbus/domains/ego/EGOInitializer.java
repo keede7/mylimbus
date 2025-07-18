@@ -524,6 +524,32 @@ public class EGOInitializer {
                         )
                 ),
                 new EGO(
+                        DONQUIXOTE,
+                        "사랑과 증오의 이름으로",
+                        "/ego/donquixote/280px-In_the_Name_of_Love_and_Hate_Don_Quixote.webp",
+                        WAW,
+                        ENVY,
+                        BLUNT,
+                        List.of(
+                                new EGOUseCondition(
+                                        WRATH,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        GLOOM,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        PRIDE,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        ENVY,
+                                        6
+                                )
+                        )
+                ),
+                new EGO(
                         RYOSHU,
                         "삼라염상",
                         "/ego/ryoshu/280px-Forest_for_the_Flames_Ryoshu.webp",
