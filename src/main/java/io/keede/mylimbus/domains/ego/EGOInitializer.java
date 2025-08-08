@@ -868,6 +868,32 @@ public class EGOInitializer {
                         )
                 ),
                 new EGO(
+                        MEURSAULT,
+                        "분쇄될 과거",
+                        "/ego/meursault/280px-Crushbound_Past_Meursault.webp",
+                        WAW,
+                        LUST,
+                        PIERCE,
+                        List.of(
+                                new EGOUseCondition(
+                                        WRATH,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        LUST,
+                                        2
+                                ),
+                                new EGOUseCondition(
+                                        SLOTH,
+                                        6
+                                ),
+                                new EGOUseCondition(
+                                        ENVY,
+                                        1
+                                )
+                        )
+                ),
+                new EGO(
                         HONGLU,
                         "허환경",
                         "/ego/honglu/280px-Land_of_Illusion_Hong_Lu.webp",

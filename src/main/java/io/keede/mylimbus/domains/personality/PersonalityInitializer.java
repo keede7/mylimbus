@@ -1798,6 +1798,19 @@ public class PersonalityInitializer {
                         LocalDate.of(2023, 4, 6),
                         "/sinners/outis/125px-Seven_Assoc.webp"
                 ),// 탐식3공명, 탐식4보유, 230406
+                new Personality(3, OUTIS, "T사 3등급 강력징수직 직원 오티스", List.of(T사),
+                        new PersonalitySkill(1, PRIDE, BLUNT),
+                        new PersonalitySkill(2, SLOTH, BLUNT),
+                        new PersonalitySkill(3, LUST, BLUNT),
+                        Set.of(TREMOR),
+                        "나태",
+                        Set.of(
+                                new Passive(SLOTH, 5, MAIN, POSSESSION),
+                                new Passive(SLOTH, 5, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 7, 31),
+                        "/sinners/outis/125px-T_Corp.webp"
+                ),
                 new Personality(1, GREGOR, "LCB 수감자 그레고르", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, GLOOM, SLASH),
                         new PersonalitySkill(2, GLUTTONY, PIERCE),
