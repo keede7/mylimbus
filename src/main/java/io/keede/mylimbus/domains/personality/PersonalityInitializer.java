@@ -988,7 +988,20 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2025, 4, 30),
                         "/sinners/honglu/125px-R_Corp.webp"
-                ),// 탐식2공명, 탐식5보유, 230227
+                ),
+                new Personality(3, HONGLU, "홍원 군주 홍루", List.of(H사, 가씨_가문),
+                        new PersonalitySkill(1, GLOOM, SLASH),
+                        new PersonalitySkill(2, GLUTTONY, SLASH),
+                        new PersonalitySkill(3, PRIDE, SLASH),
+                        Set.of(RUPTURE),
+                        "탐식",
+                        Set.of(
+                                new Passive(GLUTTONY, 5, MAIN, RESONANCE),
+                                new Passive(GLUTTONY, 6, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 8, 14),
+                        "/sinners/honglu/125px-The_Lord_of_Hongyuan_Hong_Lu_Uptied.webp"
+                ),
                 new Personality(1, HEATHCLIFF, "LCB 수감자 히스클리프", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, ENVY, BLUNT),
                         new PersonalitySkill(2, WRATH, BLUNT),
