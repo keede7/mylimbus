@@ -199,7 +199,7 @@ public class PersonalityInitializer {
                         new PersonalitySkill(2, WRATH, SLASH),
                         new PersonalitySkill(3, ENVY, SLASH),
                         Set.of(BURN),
-                        "화상",
+                        "분노",
                         Set.of(
                                 new Passive(WRATH, 4, MAIN, POSSESSION),
                                 new Passive(WRATH, 3, SUPPORT, RESONANCE)
@@ -212,13 +212,26 @@ public class PersonalityInitializer {
                         new PersonalitySkill(2, LUST, PIERCE),
                         new PersonalitySkill(3, PRIDE, PIERCE),
                         Set.of(POISE, BLEED),
-                        "호흡",
+                        "오만",
                         Set.of(
                                 new Passive(PRIDE, 6, MAIN, POSSESSION),
                                 new Passive(PRIDE, 4, SUPPORT, RESONANCE)
                         ),
                         LocalDate.of(2025, 7, 3),
                         "/sinners/yisang/125px-N_Corp.webp"
+                ),
+                new Personality(3, YISANG, "흑수-오 필두 이상", List.of(H사, 가씨_가문, 흑수_오),
+                        new PersonalitySkill(1, SLOTH, SLASH),
+                        new PersonalitySkill(2, ENVY, SLASH),
+                        new PersonalitySkill(3, GLUTTONY, SLASH),
+                        Set.of(POISE, RUPTURE),
+                        "탐식",
+                        Set.of(
+                                new Passive(GLUTTONY, 5, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 4, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 8, 28),
+                        "/sinners/yisang/125px-Heishou_Pack_-_Wu_Branch_Adept_Yi_Sang_Uptied.webp"
                 ),
                 new Personality(1, FAUST, "LCB 수감자 파우스트", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, PRIDE, BLUNT),
@@ -1654,6 +1667,21 @@ public class PersonalityInitializer {
                         ),
                         LocalDate.of(2025, 6, 19),
                         "/sinners/sinclair/125px-The_Thumb_East_Soldato_II_Sinclair_Uptied.webp"
+                ),
+                new Personality(3, SINCLAIR, "흑수-유 싱클레어", List.of(H사, 흑수, 흑수_유),
+                        new PersonalitySkill(1, LUST, SLASH),
+                        new PersonalitySkill(2, GLUTTONY, SLASH),
+                        new PersonalitySkill(3, WRATH, SLASH),
+                        Set.of(RUPTURE, BURN),
+                        "탐식",
+                        Set.of(
+                                new Passive(WRATH, 3, MAIN, POSSESSION),
+                                new Passive(GLUTTONY, 3, MAIN, POSSESSION),
+                                new Passive(WRATH, 3, SUPPORT, POSSESSION),
+                                new Passive(GLUTTONY, 3, SUPPORT, POSSESSION)
+                        ),
+                        LocalDate.of(2025, 8, 28),
+                        "/sinners/sinclair/125px-Heishou_Pack_-_You_Branch_Sinclair_Uptied.webp"
                 ),
                 new Personality(1, OUTIS, "LCB 수감자 오티스", List.of(LCB, 림버스_컴퍼니),
                         new PersonalitySkill(1, SLOTH, PIERCE),
