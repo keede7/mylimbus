@@ -1,5 +1,51 @@
 /* 모바일 가로모드 최적화 CSS */
 
+/* 모바일 세로모드에서 가로모드 권장 메시지 */
+@media screen and (max-width: 768px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
+    body::before {
+        content: "📱 더 나은 게임 경험을 위해 화면을 가로모드로 돌려주세요!";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        z-index: 9999;
+        font-size: 1.1rem;
+        max-width: 80%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        border: 2px solid #c0945c;
+    }
+
+    .game-container {
+        filter: blur(3px);
+        pointer-events: none;
+    }
+}
+
+/* 태블릿 가로모드 최적화 (769px ~ 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .game-container {
+        height: 100vh;
+        grid-template-columns: 1fr 220px;
+        grid-template-rows: 70px 1fr;
+        overflow: hidden;
+    }
+
+    .character-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .character-frame img {
+        height: 180px;
+        width: auto;
+    }
+}
+
 /* 모바일 가로모드 (480px ~ 768px, landscape, 터치 디바이스) */
 @media screen and (max-width: 768px) and (min-width: 480px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
     /* 메인 컨테이너 조정 */
@@ -7,8 +53,9 @@
         height: 100vh;
         max-width: none;
         margin: 0;
-        grid-template-columns: 1fr 200px; /* 사이드바를 더 좁게 */
-        grid-template-rows: 60px 1fr; /* 헤더를 더 낮게 */
+        grid-template-columns: 1fr 180px; /* 사이드바를 더 좁게 */
+        grid-template-rows: 55px 1fr; /* 헤더를 더 낮게 */
+        overflow: hidden; /* 전체 컨테이너 스크롤 방지 */
     }
 
     /* 헤더 조정 */
@@ -34,12 +81,19 @@
     }
 
     .character-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 8px;
+        padding: 5px 0;
     }
 
     .character-frame img {
-        height: 180px; /* 이미지 높이 조정 */
+        height: 160px; /* 이미지 높이 조정 */
+        width: auto;
+    }
+
+    .character-frame {
+        width: 110px;
+        height: auto;
     }
 
     .character-name,
@@ -108,23 +162,36 @@
 
     /* 모달 조정 */
     .modal-content {
-        width: 95%;
-        margin: 3% auto;
-        padding: 15px;
-        max-height: 94vh;
+        width: 98%;
+        margin: 1% auto;
+        padding: 10px;
+        max-height: 98vh;
+        overflow-y: auto;
     }
 
     .modal-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 8px;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    /* 모달 내 캐릭터 카드 크기 조정 */
+    .modal-content .character-frame {
+        width: 90px;
+    }
+
+    .modal-content .character-frame img {
+        height: 130px;
     }
 }
 
 /* 작은 모바일 가로모드 (320px ~ 479px, landscape, 터치 디바이스) */
 @media screen and (max-width: 479px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
     .game-container {
-        grid-template-columns: 1fr 180px; /* 사이드바를 더욱 좁게 */
-        grid-template-rows: 50px 1fr; /* 헤더를 더욱 낮게 */
+        grid-template-columns: 1fr 160px; /* 사이드바를 더욱 좁게 */
+        grid-template-rows: 45px 1fr; /* 헤더를 더욱 낮게 */
+        overflow: hidden;
     }
 
     .game-header {
@@ -152,12 +219,19 @@
     }
 
     .character-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        gap: 8px;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 6px;
+        padding: 3px 0;
     }
 
     .character-frame img {
-        height: 140px;
+        height: 130px;
+        width: auto;
+    }
+
+    .character-frame {
+        width: 90px;
+        height: auto;
     }
 
     .character-name,
